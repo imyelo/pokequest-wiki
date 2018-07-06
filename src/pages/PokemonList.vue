@@ -1,18 +1,18 @@
 <template>
   <div class="view">
     <div class="pokemon-list">
-      <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon">
+      <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail">
+        <div class="picture">
+          <div v-show="picture === 'sprite'" class="sprite" @click="switchPicture"><img :src="pokemon.sprite" /></div>
+          <div v-show="picture === 'avatar'" class="avatar" @click="switchPicture"><img :src="pokemon.avatar" /></div>
+        </div>
         <div class="information">
-          <div class="title">{{ pokemon.id }}. {{ pokemon.name }}</div>
+          <div class="title">No.{{ (1000 + pokemon.id + '').slice(1) }} <span class="name">{{ pokemon.name }}</span></div>
           <div class="type-list">
             <div v-for="type of pokemon.type" :key="type" class="type" :class="`type-${type}`">
               {{ type }}
             </div>
           </div>
-        </div>
-        <div class="picture">
-          <div class="sprite"><img :src="pokemon.sprite" /></div>
-          <div class="avatar"><img :src="pokemon.avatar" /></div>
         </div>
       </div>
     </div>
@@ -29,10 +29,19 @@ export default {
   data () {
     return {
       pokemons,
+      picture: 'avatar',
     }
   },
+  methods: {
+    toDetail () {
+      // alert(1)
+    },
+    switchPicture () {
+      this.picture = this.picture === 'avatar' ? 'sprite' : 'avatar'
+    },
+  },
   components: {
-  }
+  },
 }
 </script>
 
@@ -50,13 +59,32 @@ export default {
   -webkit-overflow-scrolling: touch;
   .pokemon {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     padding: 24px;
+    border-left: 16px solid hsla(0,0%,80%,0.5);
+    &.color-red {
+      border-left-color: hsl(0,80%,55%);
+    }
+    &.color-blue {
+      border-left-color: hsl(200,80%,55%);
+    }
+    &.color-yellow {
+      border-left-color: hsl(50,80%,55%);
+    }
+    &.color-gray {
+      border-left-color: hsl(0,0%,30%);
+    }
     &:nth-child(2n) {
-      background-color: hsl(40, 63%, 86%);
+      background-color: hsl(40,63%,86%);
+      &:active {
+        background-color: hsl(40,63%,76%);
+      }
     }
     &:nth-child(2n+1) {
-      background-color: hsl(40, 63%, 91%);
+      background-color: hsl(40,63%,91%);
+      &:active {
+        background-color: hsl(40,63%,81%);
+      }
     }
     .information {
       display: flex;
@@ -66,6 +94,9 @@ export default {
         font-size: 14px;
         font-weight: bold;
         color: #444;
+        .name {
+          font-weight: normal;
+        }
       }
       .type-list {
         display: flex;
@@ -75,6 +106,7 @@ export default {
           padding: 0.5em 1em;
           background-color: #ddd;
           color: #fff;
+          border-radius: 8px;
           &.type-grass {
             background-color: $type-grass;
           }
@@ -133,9 +165,10 @@ export default {
       display: flex;
       .avatar, .sprite {
         box-shadow: 0 2px 0 #fff, 0 4px 0 rgba(0,0,0,0.1);
+        background-color: hsl(40,50%,95%);
         width: 48px;
         height: 48px;
-        margin-left: 12px;
+        margin-right: 16px;
         border: 2px solid #fff;
         border-radius: 8px;
         img {
