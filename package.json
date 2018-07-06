@@ -15,6 +15,11 @@
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
     "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
     "@vue/cli-service": "^3.0.0-beta.15",
+    "autoprefixer": "^8.6.5",
+    "postcss-calc": "^6.0.1",
+    "postcss-loader": "^2.1.5",
+    "postcss-plugin-px2rem": "^0.7.0",
+    "precss": "^3.1.2",
     "vue-template-compiler": "^2.5.16"
   },
   "eslintConfig": {
@@ -30,15 +35,5 @@
     "parserOptions": {
       "parser": "babel-eslint"
     }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  }
 }
