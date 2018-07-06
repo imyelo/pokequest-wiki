@@ -1,0 +1,17 @@
+$type-grass: hsl(100,30%,55%);
+$type-electric: hsl(50,80%,55%);
+$type-poison: hsl(300,30%,55%);
+$type-fire: hsl(0,60%,55%);
+$type-flying: hsl(190,30%,55%);
+$type-water: hsl(200,60%,55%);
+$type-bug: hsl(70,30%,55%);
+$type-normal: hsl(0,0%,65%);
+$type-ground: hsl(50,30%,55%);
+$type-fairy: hsl(350,55%,75%);
+$type-fighting: hsl(0,60%,35%);
+$type-psychic: hsl(330,60%,65%);
+$type-rock: hsl(50,30%,35%);
+$type-steel: hsl(0,0%,85%);
+$type-ice: hsl(200,60%,75%);
+$type-ghost: hsl(220,30%,35%);
+$type-dragon: hsl(200,55%,35%);

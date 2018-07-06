@@ -2,7 +2,6 @@
   <div class="view">
     <div class="pokemon-list">
       <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon">
-        <div class="avatar"><img :src="pokemon.avatar" /></div>
         <div class="information">
           <div class="title">{{ pokemon.id }}. {{ pokemon.name }}</div>
           <div class="type-list">
@@ -10,6 +9,10 @@
               {{ type }}
             </div>
           </div>
+        </div>
+        <div class="picture">
+          <div class="sprite"><img :src="pokemon.sprite" /></div>
+          <div class="avatar"><img :src="pokemon.avatar" /></div>
         </div>
       </div>
     </div>
@@ -34,6 +37,8 @@ export default {
 </script>
 
 <style lang="postcss">
+@import '../themes/offical.css';
+
 .view {
   background-color: hsl(47, 100%, 70%);
   height: 100%;
@@ -42,25 +47,16 @@ export default {
 .pokemon-list {
   height: 100%;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   .pokemon {
     display: flex;
+    justify-content: space-between;
     padding: 24px;
     &:nth-child(2n) {
-      background-color: rgba(255,255,255,0.8);
+      background-color: hsl(40, 63%, 86%);
     }
     &:nth-child(2n+1) {
-      background-color: rgba(255,255,255,0.5);
-    }
-    .avatar {
-      width: 48px;
-      height: 48px;
-      margin-right: 24px;
-      border: 2px solid #fff;
-      border-radius: 8px;
-      img {
-        width: 100%;
-        max-width: 100%;
-      }
+      background-color: hsl(40, 63%, 91%);
     }
     .information {
       display: flex;
@@ -80,56 +76,71 @@ export default {
           background-color: #ddd;
           color: #fff;
           &.type-grass {
-            background-color: hsl(100,30%,55%);
+            background-color: $type-grass;
           }
           &.type-electric {
-            background-color: hsl(50,80%,55%);
+            background-color: $type-electric;
           }
           &.type-poison {
-            background-color: hsl(300,30%,55%);
+            background-color: $type-poison;
           }
           &.type-fire {
-            background-color: hsl(0,60%,55%);
+            background-color: $type-fire;
           }
           &.type-flying {
-            background-color: hsl(190,30%,55%);
+            background-color: $type-flying;
           }
           &.type-water {
-            background-color: hsl(200,60%,55%);
+            background-color: $type-water;
           }
           &.type-bug {
-            background-color: hsl(70,30%,55%);
+            background-color: $type-bug;
           }
           &.type-normal {
-            background-color: hsl(0,0%,65%);
+            background-color: $type-normal;
           }
           &.type-ground {
-            background-color: hsl(50,30%,55%);
+            background-color: $type-ground;
           }
           &.type-fairy {
-            background-color: hsl(350,55%,75%);
+            background-color: $type-fairy;
           }
           &.type-fighting {
-            background-color: hsl(0,60%,35%);
+            background-color: $type-fighting;
           }
           &.type-psychic {
-            background-color: hsl(330,60%,65%);
+            background-color: $type-psychic;
           }
           &.type-rock {
-            background-color: hsl(50,30%,35%);
+            background-color: $type-rock;
           }
           &.type-steel {
-            background-color: hsl(0,0%,85%);
+            background-color: $type-steel;
           }
           &.type-ice {
-            background-color: hsl(200,60%,75%);
+            background-color: $type-ice;
           }
           &.type-ghost {
-            background-color: hsl(220,30%,35%);
+            background-color: $type-ghost;
           }
           &.type-dragon {
-            background-color: hsl(200,55%,35%);
+            background-color: $type-dragon;
           }
+        }
+      }
+    }
+    .picture {
+      display: flex;
+      .avatar, .sprite {
+        box-shadow: 0 2px 0 #fff, 0 4px 0 rgba(0,0,0,0.1);
+        width: 48px;
+        height: 48px;
+        margin-left: 12px;
+        border: 2px solid #fff;
+        border-radius: 8px;
+        img {
+          width: 100%;
+          max-width: 100%;
         }
       }
     }
