@@ -13,5 +13,6 @@ body, html {
   margin: 0;
   padding: 0;
   user-select: none;
+  font-family: "Open Sans";
 }
 </style>

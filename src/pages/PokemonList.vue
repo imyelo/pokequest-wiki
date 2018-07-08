@@ -1,18 +1,16 @@
 <template>
   <div class="view">
     <div class="pokemon-list">
-      <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail">
+      <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
+        <div class="information">
+          <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
+          <div class="type-list">
+            <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" />
+          </div>
+        </div>
         <div class="picture">
           <div v-show="picture === 'sprite'" class="sprite" @click="switchPicture"><img :src="pokemon.sprite" /></div>
           <div v-show="picture === 'avatar'" class="avatar" @click="switchPicture"><img :src="pokemon.avatar" /></div>
-        </div>
-        <div class="information">
-          <div class="title">No.{{ (1000 + pokemon.id + '').slice(1) }} <span class="name">{{ pokemon.name }}</span></div>
-          <div class="type-list">
-            <div v-for="type of pokemon.type" :key="type" class="type" :class="`type-${type}`">
-              {{ type }}
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -21,6 +19,7 @@
 
 <script>
 import database from '../assets/database.production.js'
+import TypeCapsule from '../components/TypeCapsule.vue'
 
 const { pokemons } = database
 
@@ -33,25 +32,25 @@ export default {
     }
   },
   methods: {
-    toDetail () {
-      // alert(1)
+    toDetail (id) {
+      this.$router.push(`/pokemons/${id}`)
     },
     switchPicture () {
       this.picture = this.picture === 'avatar' ? 'sprite' : 'avatar'
     },
   },
   components: {
+    TypeCapsule,
   },
 }
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 @import '../themes/offical.css';
 
 .view {
   background-color: hsl(47, 100%, 70%);
   height: 100%;
-  font-family: monospace;
 }
 .pokemon-list {
   height: 100%;
@@ -59,7 +58,7 @@ export default {
   -webkit-overflow-scrolling: touch;
   .pokemon {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     padding: 24px;
     border-left: 16px solid hsla(0,0%,80%,0.5);
     &.color-red {
@@ -92,73 +91,14 @@ export default {
       justify-content: space-between;
       .title {
         font-size: 14px;
-        font-weight: bold;
         color: #444;
-        .name {
-          font-weight: normal;
+        .id {
+          font-size: 10px;
+          font-weight: bold;
         }
       }
       .type-list {
         display: flex;
-        .type {
-          font-size: 10px;
-          margin-right: 1em;
-          padding: 0.5em 1em;
-          background-color: #ddd;
-          color: #fff;
-          border-radius: 8px;
-          &.type-grass {
-            background-color: $type-grass;
-          }
-          &.type-electric {
-            background-color: $type-electric;
-          }
-          &.type-poison {
-            background-color: $type-poison;
-          }
-          &.type-fire {
-            background-color: $type-fire;
-          }
-          &.type-flying {
-            background-color: $type-flying;
-          }
-          &.type-water {
-            background-color: $type-water;
-          }
-          &.type-bug {
-            background-color: $type-bug;
-          }
-          &.type-normal {
-            background-color: $type-normal;
-          }
-          &.type-ground {
-            background-color: $type-ground;
-          }
-          &.type-fairy {
-            background-color: $type-fairy;
-          }
-          &.type-fighting {
-            background-color: $type-fighting;
-          }
-          &.type-psychic {
-            background-color: $type-psychic;
-          }
-          &.type-rock {
-            background-color: $type-rock;
-          }
-          &.type-steel {
-            background-color: $type-steel;
-          }
-          &.type-ice {
-            background-color: $type-ice;
-          }
-          &.type-ghost {
-            background-color: $type-ghost;
-          }
-          &.type-dragon {
-            background-color: $type-dragon;
-          }
-        }
       }
     }
     .picture {
@@ -168,7 +108,6 @@ export default {
         background-color: hsl(40,50%,95%);
         width: 48px;
         height: 48px;
-        margin-right: 16px;
         border: 2px solid #fff;
         border-radius: 8px;
         img {
