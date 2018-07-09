@@ -31,22 +31,31 @@
       </div>
       <div v-show="pokemon.dishes.length > 0" class="section dishes">
         <h3>Dishes</h3>
-        <div class="dish title">
-          <div class="name">Name</div>
-          <div class="quality">Quality</div>
-        </div>
-        <div v-for="(dish, index) of pokemon.dishes" :key="index" class="dish">
-          <div class="name">{{ dish.name }}</div>
-          <div class="quality">{{ dish.quality }}</div>
-        </div>
+        <table>
+          <thead class="title">
+            <tr>
+              <th class="name">Name</th>
+              <th class="quality">Quality</th>
+              <th class="chance">Chance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(dish, index) of pokemon.dishes" :key="index" class="dish">
+              <td class="name">{{ dish.name }}</td>
+              <td class="quality">{{ dish.quality }}</td>
+              <td class="quality">{{ (dish.chance * 100).toFixed(2) }}%</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { pokemons } from '../data'
+import { pokemons, dishes } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
+console.log(dishes)
 
 export default {
   name: 'app',
@@ -172,13 +181,15 @@ export default {
   }
   .dishes {
     line-height: 2em;
-    .dish {
-      display: flex;
-      justify-content: space-between;
-      &.title {
-        font-weight: bold;
-        margin: 2em 0 1em;
-      }
+    table {
+      width: 100%;
+      border: none;
+    }
+    .name {
+      text-align: left;
+    }
+    .quality, .chance {
+      text-align: right;
     }
   }
 }

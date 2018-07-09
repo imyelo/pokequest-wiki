@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "just-flatten-it": "^2.0.0",
+    "normalize.css": "^8.0.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },

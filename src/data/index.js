@@ -18,7 +18,7 @@ const MULLIGAN_DISH = dishes[0]
 const LEGENDARY_DISH = dishes[17]
 
 /**
- * compute dishes of each pokemon
+ * compute dishes of each pokemons
  */
 pokemons = pokemons.map((pokemon) => {
   let groups = [
@@ -59,3 +59,26 @@ pokemons = pokemons.map((pokemon) => {
     dishes: result,
   }
 })
+
+/**
+ * compute dishes amount weight
+ */
+dishes = dishes.map((dish) => ({
+  ...dish,
+  weights: QUALITIES.map((quality) => {
+    return pokemons.reduce((memo, pokemon) => {
+      return memo + pokemon.dishes.filter((d) => d.id === dish.id && d.quality === quality).reduce((m, { weight }) => m + weight, 0)
+    }, 0)
+  }),
+}))
+
+/**
+ * compute chance of each dishes of each pokemons
+ */
+pokemons = pokemons.map((pokemon) => ({
+  ...pokemon,
+  dishes: pokemon.dishes.map((dish) => ({
+    ...dish,
+    chance: dish.weight / dishes.find(({ id }) => id === dish.id).weights[QUALITIES.indexOf(dish.quality)],
+  })),
+}))
