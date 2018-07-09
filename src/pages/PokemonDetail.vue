@@ -21,19 +21,32 @@
         <h3>Evolution</h3>
         {{ pokemon.evolution }}
       </div>
-      <div v-show="pokemon.color !== 'unkonwn'" class="section color">
+      <div v-show="pokemon.color !== 'unknown'" class="section color">
         <h3>Color</h3>
         <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`">{{ pokemon.color }}</span>
+      </div>
+      <div class="section">
+        <h3>Automatic Style</h3>
+        {{ pokemon.automaticStyle }}
+      </div>
+      <div v-show="pokemon.dishes.length > 0" class="section dishes">
+        <h3>Dishes</h3>
+        <div class="dish title">
+          <div class="name">Name</div>
+          <div class="quality">Quality</div>
+        </div>
+        <div v-for="(dish, index) of pokemon.dishes" :key="index" class="dish">
+          <div class="name">{{ dish.name }}</div>
+          <div class="quality">{{ dish.quality }}</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import database from '../assets/database.production.js'
+import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
-
-const { pokemons } = database
 
 export default {
   name: 'app',
@@ -47,6 +60,9 @@ export default {
   components: {
     TypeCapsule,
   },
+  mounted () {
+    console.log(this.pokemon)
+  },
 }
 </script>
 
@@ -57,6 +73,7 @@ export default {
   background-color: hsl(40,63%,86%);
   height: 100%;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .pokemon {
   padding: 24px;
@@ -150,6 +167,17 @@ export default {
       }
       &.color-gray {
         background-color: $color-gray;
+      }
+    }
+  }
+  .dishes {
+    line-height: 2em;
+    .dish {
+      display: flex;
+      justify-content: space-between;
+      &.title {
+        font-weight: bold;
+        margin: 2em 0 1em;
       }
     }
   }

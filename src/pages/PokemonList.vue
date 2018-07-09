@@ -18,10 +18,8 @@
 </template>
 
 <script>
-import database from '../assets/database.production.js'
+import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
-
-const { pokemons } = database
 
 export default {
   name: 'app',
