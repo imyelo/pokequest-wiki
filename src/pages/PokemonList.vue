@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-@import '../themes/offical.css';
+@import '../stylesheet/colors.css';
 
 .view {
   background-color: hsl(47, 100%, 70%);
@@ -62,16 +62,16 @@ export default {
     padding: 24px;
     border-left: 16px solid hsla(0,0%,80%,0.5);
     &.color-red {
-      border-left-color: hsl(0,80%,55%);
+      border-left-color: $color-red;
     }
     &.color-blue {
-      border-left-color: hsl(200,80%,55%);
+      border-left-color: $color-blue;
     }
     &.color-yellow {
-      border-left-color: hsl(50,80%,55%);
+      border-left-color: $color-yellow;
     }
     &.color-gray {
-      border-left-color: hsl(0,0%,30%);
+      border-left-color: $color-gray;
     }
     &:nth-child(2n) {
       background-color: hsl(40,63%,86%);

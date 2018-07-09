@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-@import '../themes/offical.css';
+@import '../stylesheet/themes/offical.css';
 
 .capsule {
   font-family: "Open Sans";
@@ -25,6 +25,9 @@ export default {
   background-color: #ddd;
   color: #fff;
   border-radius: 8px;
+  text-align: center;
+  min-width: 6em;
+  box-sizing: border-box;
   &.type-grass {
     background-color: $type-grass;
   }
