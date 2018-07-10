@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "just-flatten-it": "^2.0.0",
+    "just-range": "^2.0.0",
+    "ml-combinations": "^1.0.1",
     "normalize.css": "^8.0.0",
+    "uniq": "^1.0.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
