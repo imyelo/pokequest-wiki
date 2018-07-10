@@ -34,6 +34,7 @@
         <table>
           <thead class="title">
             <tr>
+              <th class="logo"></th>
               <th class="name">Name</th>
               <th class="quality">Quality</th>
               <th class="chance">Chance</th>
@@ -41,9 +42,10 @@
           </thead>
           <tbody>
             <tr v-for="(dish, index) of pokemon.dishes" :key="index" class="dish">
+              <td class="logo"><img :src="dish.logo" /></td>
               <td class="name">{{ dish.name }}</td>
               <td class="quality">{{ dish.quality }}</td>
-              <td class="quality">{{ (dish.chance * 100).toFixed(2) }}%</td>
+              <td class="chance">{{ (dish.chance * 100).toFixed(2) }}%</td>
             </tr>
           </tbody>
         </table>
@@ -53,9 +55,8 @@
 </template>
 
 <script>
-import { pokemons, dishes } from '../data'
+import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
-console.log(dishes)
 
 export default {
   name: 'app',
@@ -68,9 +69,6 @@ export default {
   },
   components: {
     TypeCapsule,
-  },
-  mounted () {
-    console.log(this.pokemon)
   },
 }
 </script>
@@ -185,10 +183,21 @@ export default {
       width: 100%;
       border: none;
     }
-    .name {
+    th {
+      min-height: 32px;
+    }
+    .logo {
+      width: 24px;
+      padding: 12px 6px 0 0;
+      img {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    .name, .quality {
       text-align: left;
     }
-    .quality, .chance {
+    .chance {
       text-align: right;
     }
   }

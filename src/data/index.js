@@ -47,6 +47,7 @@ pokemons = pokemons.map((pokemon) => {
     return {
       id: dish.id,
       name: dish.name,
+      logo: dish.logo,
       quality: QUALITIES[index],
       weight: +value,
     }
