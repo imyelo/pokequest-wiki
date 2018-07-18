@@ -41,7 +41,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(dish, index) of pokemon.dishes" :key="index" class="dish">
+            <tr v-for="(dish, index) of pokemon.dishes" :key="index" class="dish" @click="toDish(dish.id)">
               <td class="logo"><img :src="dish.logo" /></td>
               <td class="name">{{ dish.name }}</td>
               <td class="quality">{{ dish.quality }}</td>
@@ -60,12 +60,15 @@ import TypeCapsule from '../components/TypeCapsule.vue'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      pokemon: pokemons.find((pokemon) => pokemon.id === +this.$route.params.id) || {},
-    }
+  computed: {
+    pokemon () {
+      return pokemons.find((pokemon) => pokemon.id === +this.$route.params.id) || {}
+    },
   },
   methods: {
+    toDish (id) {
+      this.$router.push(`/dishes/${id}`)
+    },
   },
   components: {
     TypeCapsule,
@@ -182,9 +185,15 @@ export default {
     table {
       width: 100%;
       border: none;
+      border-collapse:collapse;
     }
     th {
       min-height: 32px;
+    }
+    tbody {
+      tr:active {
+        background: hsl(40,63%,76%);
+      }
     }
     .logo {
       width: 24px;
