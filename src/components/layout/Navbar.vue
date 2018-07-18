@@ -35,6 +35,8 @@ export default {
 .navbar {
   height: 42px;
   padding-bottom: 4px;
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: constant(safe-area-inset-bottom);
   background-color: hsl(48,100%,50%);
   box-shadow: 0 -4px 0 4px color(hsl(48,100%,50%)  l(- 4%));
   z-index: 1;
