@@ -21,10 +21,38 @@
       <div class="section recipes">
         <h3>Recipes</h3>
         <div v-for="(quality, index) in qualities" :key="index" class="group">
-          <h4>{{ quality.title }} <span class="count">({{ recipes.filter((recipe) => recipe.quality === quality.value).length }})</span></h4>
-          <div class="ingredients" v-for="recipe in recipes.filter((recipe) => recipe.quality === quality.value)" :key="recipe.id">
-            <div class="ingredient" v-for="(ingredient, index) in recipe.ingredients" :key="index">
-              <img :src="ingredient.logo" />
+          <h4>{{ quality.title }}</h4>
+          <div class="pokemons">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pokemon</th>
+                  <th>Chance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="pokemon in quality.pokemons" :key="pokemon.id" @click="toPokemon(pokemon.id)" class="pokemon">
+                  <td>
+                    <div class="avatar">
+                      <img :src="pokemon.avatar" />
+                    </div>
+                  </td>
+                  <td>
+                    {{ (pokemon.chance * 100).toFixed(2) }}%
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="combinations">
+            <h5>Combinations <span class="count">({{ quality.recipes.length }})</span></h5>
+            <div v-if="quality.recipes.length === 0" class="ingredients">
+              Not exist
+            </div>
+            <div v-for="recipe in quality.recipes" :key="recipe.id" class="ingredients">
+              <div v-for="(ingredient, index) in recipe.ingredients" :key="index" class="ingredient">
+                <img :src="ingredient.logo" />
+              </div>
             </div>
           </div>
         </div>
@@ -34,7 +62,7 @@
 </template>
 
 <script>
-import { dishes, recipes } from '../data'
+import { pokemons, dishes, recipes } from '../data'
 
 const QUALITIES = [
   {
@@ -57,20 +85,36 @@ const QUALITIES = [
 
 export default {
   name: 'app',
-  data () {
-    return {
-      qualities: QUALITIES,
-    }
-  },
   computed: {
     dish () {
       return dishes.find((dish) => dish.id === +this.$route.params.id) || {}
     },
-    recipes () {
-      return recipes.filter((recipe) => recipe.dish.id === +this.$route.params.id) || []
+    qualities () {
+      let matchRecipes = recipes.filter((recipe) => recipe.dish.id === +this.$route.params.id) || []
+      return QUALITIES.map((quality) => ({
+        ...quality,
+        recipes: matchRecipes.filter((recipe) => recipe.quality === quality.value),
+        pokemons: pokemons
+          .map((pokemon) => {
+            let dish = pokemon.dishes.find((dish) => dish.id === +this.$route.params.id && dish.quality === quality.value)
+            if (!dish) {
+              return
+            }
+            return {
+              ...pokemon,
+              chance: dish.chance,
+              weight: dish.weight,
+            }
+          })
+          .filter(Boolean)
+          .sort((left, right) => right.weight - left.weight),
+      }))
     },
   },
   methods: {
+    toPokemon (id) {
+      this.$router.push(`/pokemons/${id}`)
+    },
   },
   components: {
   },
@@ -137,10 +181,7 @@ export default {
   .recipes {
     .group {
       margin-bottom: 24px;
-      padding: 18px 24px;
-      border-radius: 8px;
-      background-color: hsl(40,50%,95%);
-      box-shadow: 0 4px 0 #fff, 0 8px 0 rgba(0,0,0,0.1);
+      padding: 18px 0;
     }
     h4 {
       margin: 0;
@@ -150,23 +191,97 @@ export default {
       font-weight: normal;
       line-height: 2em;
       text-transform: capitalize;
-      .count {
-        color: #555;
-      }
     }
-    .ingredients {
-      display: flex;
-      justify-content: space-around;
-      margin: 18px 0;
-      padding: 18px;
+    .pokemons {
+      margin: 12px 0;
       border-radius: 8px;
-      background-color: hsl(40,63%,86%);
+      background-color: hsl(40,50%,95%);
       box-shadow: 0 4px 0 #fff, 0 8px 0 rgba(0,0,0,0.1);
-      .ingredient {
-        width: 18px;
+      overflow: hidden;
+      table {
+        width: 100%;
+        border: none;
+        border-collapse:collapse;
+      }
+      tr {
+        border-bottom: 1px solid #fff;
+      }
+      th {
+        padding: 12px 0;
+        line-height: 2em;
+      }
+      td {
+        text-align: center;
+      }
+      thead {
+        tr {
+          background-color: hsl(42,52%,90%);
+          border-bottom: none;
+        }
+      }
+      tbody {
+        tr {
+          &:nth-child(2n) {
+            background-color: hsl(42,52%,96%);
+          }
+          &:nth-child(2n+1) {
+            background-color: hsl(42,52%,98%);
+          }
+          &:active {
+            background: hsl(40,63%,76%);
+          }
+        }
+      }
+      .avatar {
+        width: 48px;
+        margin: 8px auto;
+        border-radius: 4px;
+        background-color: hsl(40,63%,86%);
+        box-shadow: 0 2px 0 #fff, 0 4px 0 rgba(0,0,0,0.1);
+        overflow: hidden;
         img {
           display: block;
           width: 100%;
+        }
+      }
+    }
+    .combinations {
+      margin: 18px 0;
+      border-radius: 8px;
+      background-color: hsl(40,50%,95%);
+      box-shadow: 0 4px 0 #fff, 0 8px 0 rgba(0,0,0,0.1);
+      overflow: hidden;
+      h5 {
+        margin: 0;
+        padding: 12px 0;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 2em;
+        color: #666;
+        text-align: center;
+        background-color: hsl(42,52%,90%);
+        .count {
+          padding-left: 0.5em;
+          color: #999;
+        }
+      }
+      .ingredients {
+        display: flex;
+        justify-content: space-around;
+        padding: 24px;
+        border-bottom: 1px solid #fff;
+        &:nth-child(2n) {
+          background-color: hsl(42,52%,96%);
+        }
+        &:nth-child(2n+1) {
+          background-color: hsl(42,52%,98%);
+        }
+        .ingredient {
+          width: 24px;
+          img {
+            display: block;
+            width: 100%;
+          }
         }
       }
     }
