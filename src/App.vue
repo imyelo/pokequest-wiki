@@ -15,5 +15,6 @@ body, html {
   padding: 0;
   user-select: none;
   font-family: "Open Sans";
+  overflow: hidden;
 }
 </style>
