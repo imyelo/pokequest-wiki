@@ -3,6 +3,9 @@
     <div class="item" @click="toHome">
       <Iconfont class="icon" type="home" />
     </div>
+    <div class="item" @click="back">
+      <Iconfont class="icon" type="left" />
+    </div>
   </div>
 </template>
 
@@ -21,6 +24,9 @@ export default {
     toHome () {
       this.$router.push('/')
     },
+    back () {
+      this.$router.back()
+    },
   },
 }
 </script>
@@ -36,11 +42,13 @@ export default {
   justify-content: space-around;
   align-items: center;
   .item {
+    height: 100%;
     width: 100%;
     color: #333;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
     .icon {
       font-size: 24px;
