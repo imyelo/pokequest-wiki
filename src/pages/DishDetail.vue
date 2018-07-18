@@ -224,13 +224,14 @@ export default {
       }
       tbody {
         tr {
+          cursor: pointer;
           &:nth-child(2n) {
             background-color: hsl(42,52%,96%);
           }
           &:nth-child(2n+1) {
             background-color: hsl(42,52%,98%);
           }
-          &:active {
+          &:active, &:hover {
             background: hsl(40,63%,76%);
           }
         }

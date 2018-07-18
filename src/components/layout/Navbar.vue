@@ -36,10 +36,12 @@ export default {
   justify-content: space-around;
   align-items: center;
   .item {
+    width: 100%;
     color: #333;
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
     .icon {
       font-size: 24px;
     }

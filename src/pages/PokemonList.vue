@@ -64,6 +64,7 @@ export default {
     justify-content: space-between;
     padding: 24px;
     border-left: 16px solid hsla(0,0%,80%,0.5);
+    cursor: pointer;
     &.color-red {
       border-left-color: $color-red;
     }
@@ -78,13 +79,13 @@ export default {
     }
     &:nth-child(2n) {
       background-color: hsl(40,63%,86%);
-      &:active {
+      &:active, &:hover {
         background-color: hsl(40,63%,76%);
       }
     }
     &:nth-child(2n+1) {
       background-color: hsl(40,63%,91%);
-      &:active {
+      &:active, &:hover {
         background-color: hsl(40,63%,81%);
       }
     }

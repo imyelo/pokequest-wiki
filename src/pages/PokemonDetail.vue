@@ -188,14 +188,49 @@ export default {
     table {
       width: 100%;
       border: none;
-      border-collapse:collapse;
+      border-collapse: collapse;
+      border-radius: 8px;
+      background-color: hsl(40,50%,95%);
+      box-shadow: 0 4px 0 #fff, 0 8px 0 rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    tr {
+      border-bottom: 1px solid #fff;
+      td, th {
+        &:first-child {
+          padding-left: 1em;
+        }
+        &:last-child {
+          padding-right: 1em;
+        }
+      }
     }
     th {
-      min-height: 32px;
+      padding: 12px 0;
+      line-height: 2em;
+    }
+    td {
+      text-align: center;
+      padding: 12px 0;
+    }
+    thead {
+      tr {
+        background-color: hsl(42,52%,90%);
+        border-bottom: none;
+      }
     }
     tbody {
-      tr:active {
-        background: hsl(40,63%,76%);
+      tr {
+        cursor: pointer;
+        &:nth-child(2n) {
+          background-color: hsl(42,52%,96%);
+        }
+        &:nth-child(2n+1) {
+          background-color: hsl(42,52%,98%);
+        }
+        &:active, &:hover {
+          background: hsl(40,63%,76%);
+        }
       }
     }
     .logo {
