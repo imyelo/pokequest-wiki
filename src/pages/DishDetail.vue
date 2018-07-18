@@ -1,67 +1,73 @@
 <template>
-  <div class="view">
-    <div class="dish">
-      <div class="header">
-        <div class="title">
-          <div class="id">Dish {{ (100 + dish.id + '').slice(1) }}</div>
-          <div class="name">{{ dish.name }}</div>
-        </div>
-      </div>
-      <div class="section">
-        <div>{{ dish.description }}</div>
-      </div>
-      <div class="section">
-        <h3>Picture</h3>
-        <div class="picture"><img :src="dish.logo" /></div>
-      </div>
-      <div class="section">
-        <h3>Ingredients</h3>
-        <div>{{ dish.ingredients }}</div>
-      </div>
-      <div class="section recipes">
-        <h3>Recipes</h3>
-        <div v-for="(quality, index) in qualities" :key="index" class="group">
-          <h4>{{ quality.title }}</h4>
-          <div class="pokemons">
-            <table>
-              <thead>
-                <tr>
-                  <th>Pokemon</th>
-                  <th>Chance</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="pokemon in quality.pokemons" :key="pokemon.id" @click="toPokemon(pokemon.id)" class="pokemon">
-                  <td>
-                    <div class="avatar">
-                      <img :src="pokemon.avatar" />
-                    </div>
-                  </td>
-                  <td>
-                    {{ (pokemon.chance * 100).toFixed(2) }}%
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+  <Screen>
+    <Main>
+      <div class="dish">
+        <div class="header">
+          <div class="title">
+            <div class="id">Dish {{ (100 + dish.id + '').slice(1) }}</div>
+            <div class="name">{{ dish.name }}</div>
           </div>
-          <div class="combinations">
-            <h5>Combinations <span class="count">({{ quality.recipes.length }})</span></h5>
-            <div v-if="quality.recipes.length === 0" class="ingredients">
-              Not exist
+        </div>
+        <div class="section">
+          <div>{{ dish.description }}</div>
+        </div>
+        <div class="section">
+          <h3>Picture</h3>
+          <div class="picture"><img :src="dish.logo" /></div>
+        </div>
+        <div class="section">
+          <h3>Ingredients</h3>
+          <div>{{ dish.ingredients }}</div>
+        </div>
+        <div class="section recipes">
+          <h3>Recipes</h3>
+          <div v-for="(quality, index) in qualities" :key="index" class="group">
+            <h4>{{ quality.title }}</h4>
+            <div class="pokemons">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Pokemon</th>
+                    <th>Chance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="pokemon in quality.pokemons" :key="pokemon.id" @click="toPokemon(pokemon.id)" class="pokemon">
+                    <td>
+                      <div class="avatar">
+                        <img :src="pokemon.avatar" />
+                      </div>
+                    </td>
+                    <td>
+                      {{ (pokemon.chance * 100).toFixed(2) }}%
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div v-for="recipe in quality.recipes" :key="recipe.id" class="ingredients">
-              <div v-for="(ingredient, index) in recipe.ingredients" :key="index" class="ingredient">
-                <img :src="ingredient.logo" />
+            <div class="combinations">
+              <h5>Combinations <span class="count">({{ quality.recipes.length }})</span></h5>
+              <div v-if="quality.recipes.length === 0" class="ingredients">
+                Not exist
+              </div>
+              <div v-for="recipe in quality.recipes" :key="recipe.id" class="ingredients">
+                <div v-for="(ingredient, index) in recipe.ingredients" :key="index" class="ingredient">
+                  <img :src="ingredient.logo" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </Main>
+    <Navbar />
+  </Screen>
 </template>
 
 <script>
+import Screen from '../components/layout/Screen.vue'
+import Main from '../components/layout/Main.vue'
+import Navbar from '../components/layout/Navbar.vue'
 import { pokemons, dishes, recipes } from '../data'
 
 const QUALITIES = [
@@ -117,6 +123,9 @@ export default {
     },
   },
   components: {
+    Screen,
+    Main,
+    Navbar,
   },
 }
 </script>
@@ -124,12 +133,6 @@ export default {
 <style lang="postcss" scoped>
 @import '../stylesheet/colors.css';
 
-.view {
-  background-color: hsl(40,63%,86%);
-  height: 100%;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
 .dish {
   padding: 24px;
   .header {

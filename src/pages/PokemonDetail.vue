@@ -1,62 +1,68 @@
 <template>
-  <div class="view">
-    <div class="pokemon">
-      <div class="header">
-        <div class="avatar"><img :src="pokemon.avatar" /></div>
-        <div class="title">
-          <div class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</div>
-          <div class="name">{{ pokemon.name }}</div>
+  <Screen>
+    <Main>
+      <div class="pokemon">
+        <div class="header">
+          <div class="avatar"><img :src="pokemon.avatar" /></div>
+          <div class="title">
+            <div class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</div>
+            <div class="name">{{ pokemon.name }}</div>
+          </div>
+        </div>
+        <div class="section classification">{{ pokemon.classification }}</div>
+        <div class="section type-list">
+          <h3>Type</h3>
+          <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" />
+        </div>
+        <div class="section picture">
+          <h3>Sprite</h3>
+          <div class="sprite"><img :src="pokemon.sprite" /></div>
+        </div>
+        <div v-show="pokemon.evolution" class="section evolution">
+          <h3>Evolution</h3>
+          {{ pokemon.evolution }}
+        </div>
+        <div v-show="pokemon.color !== 'unknown'" class="section color">
+          <h3>Color</h3>
+          <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`">{{ pokemon.color }}</span>
+        </div>
+        <div class="section">
+          <h3>Automatic Style</h3>
+          {{ pokemon.automaticStyle }}
+        </div>
+        <div v-show="pokemon.dishes.length > 0" class="section dishes">
+          <h3>Dishes</h3>
+          <table>
+            <thead class="title">
+              <tr>
+                <th class="logo"></th>
+                <th class="name">Name</th>
+                <th class="quality">Quality</th>
+                <th class="chance">Chance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(dish, index) of pokemon.dishes" :key="index" class="dish" @click="toDish(dish.id)">
+                <td class="logo"><img :src="dish.logo" /></td>
+                <td class="name">{{ dish.name }}</td>
+                <td class="quality">{{ dish.quality }}</td>
+                <td class="chance">{{ (dish.chance * 100).toFixed(2) }}%</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="section classification">{{ pokemon.classification }}</div>
-      <div class="section type-list">
-        <h3>Type</h3>
-        <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" />
-      </div>
-      <div class="section picture">
-        <h3>Sprite</h3>
-        <div class="sprite"><img :src="pokemon.sprite" /></div>
-      </div>
-      <div v-show="pokemon.evolution" class="section evolution">
-        <h3>Evolution</h3>
-        {{ pokemon.evolution }}
-      </div>
-      <div v-show="pokemon.color !== 'unknown'" class="section color">
-        <h3>Color</h3>
-        <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`">{{ pokemon.color }}</span>
-      </div>
-      <div class="section">
-        <h3>Automatic Style</h3>
-        {{ pokemon.automaticStyle }}
-      </div>
-      <div v-show="pokemon.dishes.length > 0" class="section dishes">
-        <h3>Dishes</h3>
-        <table>
-          <thead class="title">
-            <tr>
-              <th class="logo"></th>
-              <th class="name">Name</th>
-              <th class="quality">Quality</th>
-              <th class="chance">Chance</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(dish, index) of pokemon.dishes" :key="index" class="dish" @click="toDish(dish.id)">
-              <td class="logo"><img :src="dish.logo" /></td>
-              <td class="name">{{ dish.name }}</td>
-              <td class="quality">{{ dish.quality }}</td>
-              <td class="chance">{{ (dish.chance * 100).toFixed(2) }}%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+    </Main>
+    <Navbar />
+  </Screen>
 </template>
 
 <script>
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
+import Screen from '../components/layout/Screen.vue'
+import Main from '../components/layout/Main.vue'
+import Navbar from '../components/layout/Navbar.vue'
 
 export default {
   name: 'app',
@@ -72,6 +78,9 @@ export default {
   },
   components: {
     TypeCapsule,
+    Screen,
+    Main,
+    Navbar,
   },
 }
 </script>
@@ -79,12 +88,6 @@ export default {
 <style lang="postcss" scoped>
 @import '../stylesheet/colors.css';
 
-.view {
-  background-color: hsl(40,63%,86%);
-  height: 100%;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
 .pokemon {
   padding: 24px;
   .header {

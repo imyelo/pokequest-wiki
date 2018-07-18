@@ -1,5 +1,6 @@
 <template>
-  <div class="view">
+  <Screen class="screen">
+    <Main>
     <div class="pokemon-list">
       <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
         <div class="information">
@@ -14,12 +15,16 @@
         </div>
       </div>
     </div>
-  </div>
+    </Main>
+  </Screen>
 </template>
 
 <script>
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
+import Screen from '../components/layout/Screen.vue'
+import Main from '../components/layout/Main.vue'
+import Navbar from '../components/layout/Navbar.vue'
 
 export default {
   name: 'app',
@@ -39,6 +44,9 @@ export default {
   },
   components: {
     TypeCapsule,
+    Screen,
+    Main,
+    Navbar,
   },
 }
 </script>
@@ -46,14 +54,11 @@ export default {
 <style lang="postcss" scoped>
 @import '../stylesheet/colors.css';
 
-.view {
+.screen {
   background-color: hsl(47, 100%, 70%);
-  height: 100%;
 }
+
 .pokemon-list {
-  height: 100%;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
   .pokemon {
     display: flex;
     justify-content: space-between;

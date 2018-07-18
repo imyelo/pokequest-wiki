@@ -8,6 +8,7 @@
 				">0% in CN"
 			]
 		},
-		"postcss-calc": {}
+		"postcss-calc": {},
+    "postcss-color-function": {},
 	}
 }
