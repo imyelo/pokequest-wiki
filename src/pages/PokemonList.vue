@@ -1,20 +1,20 @@
 <template>
   <Screen class="screen">
     <Main>
-    <div class="pokemon-list">
-      <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
-        <div class="information">
-          <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
-          <div class="type-list">
-            <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" />
+      <div class="pokemon-list">
+        <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
+          <div class="information">
+            <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
+            <div class="type-list">
+              <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" />
+            </div>
+          </div>
+          <div class="picture">
+            <div v-show="picture === 'sprite'" class="sprite" @click="switchPicture"><img :src="pokemon.sprite" /></div>
+            <div v-show="picture === 'avatar'" class="avatar" @click="switchPicture"><img :src="pokemon.avatar" /></div>
           </div>
         </div>
-        <div class="picture">
-          <div v-show="picture === 'sprite'" class="sprite" @click="switchPicture"><img :src="pokemon.sprite" /></div>
-          <div v-show="picture === 'avatar'" class="avatar" @click="switchPicture"><img :src="pokemon.avatar" /></div>
-        </div>
       </div>
-    </div>
     </Main>
   </Screen>
 </template>
@@ -22,9 +22,6 @@
 <script>
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
-import Screen from '../components/layout/Screen.vue'
-import Main from '../components/layout/Main.vue'
-import Navbar from '../components/layout/Navbar.vue'
 
 export default {
   name: 'app',
@@ -44,9 +41,6 @@ export default {
   },
   components: {
     TypeCapsule,
-    Screen,
-    Main,
-    Navbar,
   },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <Screen>
+  <Screen :title="dish.name">
     <Main>
       <div class="dish">
         <div class="header">
@@ -65,9 +65,6 @@
 </template>
 
 <script>
-import Screen from '../components/layout/Screen.vue'
-import Main from '../components/layout/Main.vue'
-import Navbar from '../components/layout/Navbar.vue'
 import { pokemons, dishes, recipes } from '../data'
 
 const QUALITIES = [
@@ -123,9 +120,6 @@ export default {
     },
   },
   components: {
-    Screen,
-    Main,
-    Navbar,
   },
 }
 </script>

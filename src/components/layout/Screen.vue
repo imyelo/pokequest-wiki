@@ -1,12 +1,32 @@
 <template>
   <div class="screen">
+    <Headful :title="fullTitle" />
     <slot />
   </div>
 </template>
 
 <script>
+import Headful from 'vue-headful'
+
+const SITE_TITLE = 'PokeQuest Wiki'
+
 export default {
   name: 'Screen',
+  props: {
+    title: String,
+  },
+  computed: {
+    fullTitle () {
+      let { title } = this
+      if (!title) {
+        return SITE_TITLE
+      }
+      return `${title} - ${SITE_TITLE}`
+    },
+  },
+  components: {
+    Headful,
+  },
 }
 </script>
 
