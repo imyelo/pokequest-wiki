@@ -16,6 +16,7 @@
     "scroll-into-view": "^1.9.3",
     "uniq": "^1.0.1",
     "vue": "^2.5.16",
+    "vue-analytics": "^5.12.2",
     "vue-headful": "^2.0.1",
     "vue-router": "^3.0.1"
   },
