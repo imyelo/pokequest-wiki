@@ -22,7 +22,7 @@
         <div class="section recipes">
           <h3>Recipes</h3>
           <div v-for="(quality, index) in qualities" :key="index" class="group">
-            <h4>{{ quality.title }}</h4>
+            <h4 :data-anchor="`Quality-${quality.value}`">{{ quality.title }}</h4>
             <div class="pokemons">
               <table>
                 <thead>
@@ -114,12 +114,12 @@ export default {
       }))
     },
   },
+  components: {
+  },
   methods: {
     toPokemon (id) {
       this.$router.push(`/pokemons/${id}`)
     },
-  },
-  components: {
   },
 }
 </script>

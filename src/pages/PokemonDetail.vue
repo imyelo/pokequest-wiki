@@ -42,7 +42,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(dish, index) of pokemon.dishes" :key="index" class="dish" @click="toDish(dish.id)">
+              <tr v-for="(dish, index) of pokemon.dishes" :key="index" class="dish" @click="toDish(dish.id, dish.quality)">
                 <td class="logo"><img :src="dish.logo" /></td>
                 <td class="name">{{ dish.name }}</td>
                 <td class="quality">{{ dish.quality }}</td>
@@ -69,8 +69,8 @@ export default {
     },
   },
   methods: {
-    toDish (id) {
-      this.$router.push(`/dishes/${id}`)
+    toDish (id, quality) {
+      this.$router.push(`/dishes/${id}?anchor=Quality-${quality}`)
     },
   },
   components: {

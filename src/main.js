@@ -1,6 +1,7 @@
 import 'normalize.css'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import AnchorPlugin from './plugins/anchor'
 import App from './App.vue'
 import router from './router'
 import Screen from './components/layout/Screen.vue'
@@ -14,6 +15,7 @@ Vue.component('Main', Main)
 Vue.component('Navbar', Navbar)
 
 Vue.use(VueRouter)
+Vue.use(AnchorPlugin)
 
 new Vue({
   router,
