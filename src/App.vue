@@ -15,6 +15,7 @@ body, html {
   user-select: none;
   font-family: "Open Sans";
   overflow: hidden;
+  background-color: hsl(40,63%,86%);
   -webkit-tap-highlight-color: transparent;
 }
 
