@@ -13,6 +13,7 @@
     "just-range": "^2.0.0",
     "ml-combinations": "^1.0.1",
     "normalize.css": "^8.0.0",
+    "register-service-worker": "^1.0.0",
     "scroll-into-view": "^1.9.3",
     "uniq": "^1.0.1",
     "vue": "^2.5.16",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
     "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
+    "@vue/cli-plugin-pwa": "^3.0.0-rc.5",
     "@vue/cli-service": "^3.0.0-beta.15",
     "autoprefixer": "^8.6.5",
     "gh-pages": "^1.2.0",

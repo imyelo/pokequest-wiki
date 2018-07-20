@@ -8,6 +8,7 @@ import router from './router'
 import Screen from './components/layout/Screen.vue'
 import Main from './components/layout/Main.vue'
 import Navbar from './components/layout/Navbar.vue'
+import './registerServiceWorker'
 
 const GA_ID = process.env.VUE_APP_GA_ID
 
