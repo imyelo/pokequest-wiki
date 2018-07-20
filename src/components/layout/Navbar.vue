@@ -4,7 +4,7 @@
       <Iconfont class="icon" type="home" />
     </div>
     <div class="item" @click="back">
-      <Iconfont class="icon" type="left" />
+      <Iconfont class="icon" type="back" />
     </div>
   </div>
 </template>
