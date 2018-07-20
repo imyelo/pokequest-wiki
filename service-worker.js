@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.73fe34f65c05cbb6e709d4e0b057ab2d.js"
+  "/precache-manifest.012c54d01368c7ba17db1808a3003dd3.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "pokemon-quest-toolbox-web"});
