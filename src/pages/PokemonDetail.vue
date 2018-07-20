@@ -1,6 +1,6 @@
 <template>
   <Screen :title="pokemon.name">
-    <Main>
+    <Main ref="main">
       <div class="pokemon">
         <div class="header">
           <div class="avatar"><img :src="pokemon.avatar" /></div>
@@ -51,6 +51,20 @@
             </tbody>
           </table>
         </div>
+        <div class="section pokemons">
+          <h3>See other pokemons</h3>
+          <div class="paginations">
+            <div v-if="previous.id" class="previous" @click="toPokemon(previous.id)">
+              <Iconfont class="icon" type="left" />
+              <div class="avatar"><img :src="previous.avatar" /></div>
+            </div>
+            <div v-if="next.id" class="next" @click="toPokemon(next.id)">
+              <div class="avatar"><img :src="next.avatar" /></div>
+              <Iconfont class="icon" type="right" />
+            </div>
+            <Clearfix />
+          </div>
+        </div>
       </div>
     </Main>
     <Navbar />
@@ -60,6 +74,7 @@
 <script>
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
+import Iconfont from '../components/iconfont/Iconfont.vue'
 
 export default {
   name: 'app',
@@ -67,14 +82,25 @@ export default {
     pokemon () {
       return pokemons.find((pokemon) => pokemon.id === +this.$route.params.id) || {}
     },
+    previous () {
+      return pokemons.find((pokemon) => pokemon.id === +this.$route.params.id - 1) || {}
+    },
+    next () {
+      return pokemons.find((pokemon) => pokemon.id === +this.$route.params.id + 1) || {}
+    },
   },
   methods: {
     toDish (id, quality) {
       this.$router.push(`/dishes/${id}?anchor=Quality-${quality}`)
     },
+    toPokemon (id) {
+      this.$router.push(`/pokemons/${id}`)
+      this.$refs.main.$el.scrollTop = 0 // TODO: remove it if page is recreated when router is changed
+    },
   },
   components: {
     TypeCapsule,
+    Iconfont,
   },
 }
 </script>
@@ -240,6 +266,41 @@ export default {
     }
     .chance {
       text-align: right;
+    }
+  }
+  .pokemons {
+    .paginations {
+      .previous, .next {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .icon {
+          font-size: 24px;
+          color: #333;
+        }
+      }
+      .previous {
+        float: left;
+        .icon {
+          margin-right: 24px;
+        }
+      }
+      .next {
+        float: right;
+        .icon {
+          margin-left: 24px;
+        }
+      }
+      .avatar {
+        width: 42px;
+        border: 2px solid #fff;
+        border-radius: 8px;
+        img {
+          display: block;
+          width: 100%;
+          max-width: 100%;
+        }
+      }
     }
   }
 }
