@@ -10,8 +10,8 @@
             </div>
           </div>
           <div class="picture">
-            <div v-show="picture === 'sprite'" class="sprite" @click="switchPicture"><img :src="pokemon.sprite" /></div>
-            <div v-show="picture === 'avatar'" class="avatar" @click="switchPicture"><img :src="pokemon.avatar" /></div>
+            <div v-show="picture === 'sprite'" class="sprite" @click.stop="switchPicture"><img :src="pokemon.sprite" /></div>
+            <div v-show="picture === 'avatar'" class="avatar" @click.stop="switchPicture"><img :src="pokemon.avatar" /></div>
           </div>
         </div>
       </div>
