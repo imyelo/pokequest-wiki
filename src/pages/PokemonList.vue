@@ -2,6 +2,9 @@
   <Screen class="screen">
     <Main class="main">
       <div class="pokemon-list">
+        <div class="filter">
+          <div class="button" @click="filters.show = true"><Iconfont class="icon" type="filter" /> Filter</div>
+        </div>
         <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
           <div class="information">
             <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
@@ -15,16 +18,9 @@
           </div>
         </div>
       </div>
-      <transition name="fold-up-toolbar">
-        <div v-show="!filters.show" class="toolbar" @click="filters.show = true">
-          <div class="filter">
-            <Iconfont class="icon" type="filter" />
-          </div>
-        </div>
-      </transition>
 
-      <transition name="fold-up-panel">
-        <div v-show="filters.show" class="filters" @click.self="filters.show = false">
+      <transition name="filter-panel">
+        <div v-show="filters.show" class="filters" @click.self="filters.show = false" @touchmove.prevent>
           <div class="panel">
             <h2><Iconfont class="icon" type="filter" /> Pokemon Filter</h2>
             <div class="filter">
@@ -113,11 +109,43 @@ export default {
 
 .screen {
   background-color: hsl(47, 100%, 70%);
+}
+.main {
   position: relative;
 }
 
 .pokemon-list {
   padding-bottom: 50px;
+  .filter {
+    height: 48px;
+    background-color: hsl(48,100%,50%);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: 0 4px 0 4px rgb(235, 188, 0);
+    margin-bottom: 8px;
+    .button {
+      background: hsl(48,50%,93%);
+      color: hsl(48,50%,40%);
+      min-width: 36px;
+      height: 18px;
+      padding: 0 1em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid hsl(48,50%,80%);
+      border-radius: 8px;
+      box-shadow: 0 1px 0 hsl(48,50%,80%), 0 2px 0 rgba(0,0,0,0.1);
+      margin-right: 24px;
+      font-size: 14px;
+    }
+    .icon {
+      font-size: 14px;
+      color: #666;
+      display: inline-block;
+      margin-right: 0.5em;
+    }
+  }
   .pokemon {
     display: flex;
     justify-content: space-between;
@@ -185,40 +213,14 @@ export default {
   }
 }
 
-.toolbar {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  .filter {
-    background-color: hsl(0,0%,95%);
-    margin: 0 auto;
-    width: 64px;
-    height: 64px;
-    text-align: center;
-    line-height: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid hsl(0,0%,98%);
-    border-bottom: none;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    box-shadow: 0 -2px 36px 4px rgba(0,0,0,0.1);
-    .icon {
-      font-size: 36px;
-      color: #333;
-    }
-  }
-}
-
 .filters {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: rgba(255,255,255,0.5);
+  overflow: hidden;
   .panel {
     position: absolute;
     background-color: hsla(0,0%,95%,0.95);
@@ -226,12 +228,12 @@ export default {
     min-height: 300px;
     max-height: 100%;
     overflow-y: scroll;
-    bottom: 0;
+    top: 0;
     padding: 36px 24px;
     box-sizing: border-box;
-    box-shadow: 0 -2px 32px 4px rgba(0,0,0,0.1);
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    box-shadow: 0 2px 32px 4px rgba(0,0,0,0.1);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
     h2 {
       font-size: 24px;
       font-weight: normal;
@@ -356,22 +358,15 @@ export default {
   }
 }
 
-.fold-up-toolbar-enter-active, .fold-up-toolbar-leave-active {
-  transition: all .4s ease;
-}
-.fold-up-toolbar-enter, .fold-up-toolbar-leave-to {
-  transform: translateY(100%);
-  opacity: 0;
-}
-.fold-up-panel-enter-active, .fold-up-panel-leave-active {
+.filter-panel-enter-active, .filter-panel-leave-active {
   &, .panel {
     transition: all .4s ease;
   }
 }
-.fold-up-panel-enter, .fold-up-panel-leave-to {
+.filter-panel-enter, .filter-panel-leave-to {
   opacity: 0;
   .panel {
-    transform: translateY(100%);
+    transform: translateY(-10%);
   }
 }
 </style>
