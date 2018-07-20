@@ -193,8 +193,8 @@ export default {
   .filter {
     background-color: hsl(0,0%,95%);
     margin: 0 auto;
-    width: 36px;
-    height: 36px;
+    width: 64px;
+    height: 64px;
     text-align: center;
     line-height: 1em;
     display: flex;
@@ -206,7 +206,7 @@ export default {
     border-top-right-radius: 4px;
     box-shadow: 0 -2px 36px 4px rgba(0,0,0,0.1);
     .icon {
-      font-size: 24px;
+      font-size: 36px;
       color: #333;
     }
   }
