@@ -3,7 +3,7 @@
     <Main class="main">
       <div class="pokemon-list">
         <div class="filter">
-          <div class="button" @click="filters.show = true"><Iconfont class="icon" type="filter" /> Filter</div>
+          <div class="button" @click="filters.show = true"><Iconfont class="icon" type="filter" /></div>
         </div>
         <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
           <div class="information">
@@ -119,32 +119,31 @@ export default {
   min-height: 100%; /* hack for safari scroll bug */
   .filter {
     height: 48px;
-    background-color: hsl(48,100%,50%);
+    background-color: hsl(0,0%,35%);
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    box-shadow: 0 4px 0 4px rgb(235, 188, 0);
+    box-shadow: 0 4px 0 4px hsl(0,0%,25%);
     margin-bottom: 8px;
+    padding: 0 24px;
+    box-sizing: border-box;
     .button {
-      background: hsl(48,50%,93%);
-      color: hsl(48,50%,40%);
-      min-width: 36px;
+      background: hsl(0,0%,85%);
+      color: hsl(0,0%,35%);
       height: 18px;
       padding: 0 1em;
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 2px solid hsl(48,50%,80%);
-      border-radius: 8px;
-      box-shadow: 0 1px 0 hsl(48,50%,80%), 0 2px 0 rgba(0,0,0,0.1);
-      margin-right: 24px;
+      border: 2px solid hsl(0,0%,55%);
+      border-radius: 4px;
+      box-shadow: 0 1px 0 hsl(0,0%,55%), 0 2px 0 rgba(0,0,0,0.1);
       font-size: 14px;
     }
     .icon {
       font-size: 14px;
-      color: #666;
+      color: hsl(0,0%,35%);
       display: inline-block;
-      margin-right: 0.5em;
     }
   }
   .pokemon {
