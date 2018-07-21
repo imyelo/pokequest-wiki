@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <div class="item" @click="toHome">
+    <div v-show="!isHome" class="item" @click="toHome">
       <Iconfont class="icon" type="home" />
     </div>
     <div class="item" @click="back">
@@ -12,6 +12,8 @@
 <script>
 import Iconfont from '../iconfont/Iconfont.vue'
 
+const HOME_PATH = '/pokemons'
+
 export default {
   name: 'Navbar',
   props: {
@@ -19,6 +21,11 @@ export default {
   },
   components: {
     Iconfont,
+  },
+  computed: {
+    isHome () {
+      return this.$route.path === HOME_PATH
+    },
   },
   methods: {
     toHome () {

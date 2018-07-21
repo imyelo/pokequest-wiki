@@ -24,39 +24,40 @@
           </template>
         </transition-group>
       </div>
-    </Main>
 
-    <transition name="toolbar">
-      <div v-show="!showFilters" class="toolbar">
-        <div class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
-      </div>
-    </transition>
+      <transition name="toolbar">
+        <div v-show="!showFilters" class="toolbar">
+          <div class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
+        </div>
+      </transition>
 
-    <transition name="filter-panel">
-      <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>
-        <div class="panel">
-          <h2><Iconfont class="icon" type="filter" /> Pokemon Filter</h2>
-          <div class="filter">
-            <h3>Type</h3>
-            <div class="options">
-              <div v-for="type in POKEMON_TYPES" :key="type" class="option" :class="`type-${type}`" @click="switchFilter('types', type)">
-                <span class="check" :class="{ 'is-checked': ~filters.types.indexOf(type) }"><Iconfont v-if="~filters.types.indexOf(type)" class="icon" type="check" /></span>
-                {{ type }}
+      <transition name="filter-panel">
+        <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>
+          <div class="panel">
+            <h2><Iconfont class="icon" type="filter" /> Pokemon Filter</h2>
+            <div class="filter">
+              <h3>Type</h3>
+              <div class="options">
+                <div v-for="type in POKEMON_TYPES" :key="type" class="option" :class="`type-${type}`" @click="switchFilter('types', type)">
+                  <span class="check" :class="{ 'is-checked': ~filters.types.indexOf(type) }"><Iconfont v-if="~filters.types.indexOf(type)" class="icon" type="check" /></span>
+                  {{ type }}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="filter">
-            <h3>Color</h3>
-            <div class="options">
-              <div v-for="color in POKEMON_COLORS" :key="color" class="option" :class="`color-${color}`" @click="switchFilter('color', color)">
-                <span class="check" :class="{ 'is-checked': filters.color === color }"><Iconfont v-if="filters.color === color" class="icon" type="check" /></span>
-                {{ color }}
+            <div class="filter">
+              <h3>Color</h3>
+              <div class="options">
+                <div v-for="color in POKEMON_COLORS" :key="color" class="option" :class="`color-${color}`" @click="switchFilter('color', color)">
+                  <span class="check" :class="{ 'is-checked': filters.color === color }"><Iconfont v-if="filters.color === color" class="icon" type="check" /></span>
+                  {{ color }}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </transition>
+      </transition>
+    </Main>
+    <Navbar v-show="hasFilters" />
   </Screen>
 </template>
 
@@ -74,11 +75,6 @@ export default {
       POKEMON_TYPES,
       POKEMON_COLORS,
       showFilters: false,
-      // filters: {
-      //   show: false,
-      //   types: [],
-      //   color: '',
-      // },
     }
   },
   computed: {
@@ -98,6 +94,9 @@ export default {
         types: query.types ? query.types.split(',') : [],
         color: query.color || '',
       }
+    },
+    hasFilters () {
+      return this.filters.types.length > 0 || this.filters.color
     },
   },
   methods: {
@@ -136,7 +135,7 @@ export default {
           delete query[key]
         }
       }
-      this.$router.replace({
+      this.$router.push({
         query,
       })
     },
@@ -161,7 +160,13 @@ export default {
 
 .pokemon-list {
   padding-bottom: 100px;
-  min-height: 100%; /* hack for safari scroll bug */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
   .pokemon {
     display: flex;
     justify-content: space-between;
@@ -233,8 +238,8 @@ export default {
 }
 
 .toolbar {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  bottom: 12px;
   width: 100%;
   height: 64px;
   background-color: transparent;
@@ -267,7 +272,7 @@ export default {
 }
 
 .filters {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;

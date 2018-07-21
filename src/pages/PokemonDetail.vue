@@ -12,7 +12,7 @@
         <div class="section classification">{{ pokemon.classification }}</div>
         <div class="section type-list">
           <h3>Type</h3>
-          <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" />
+          <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" @click.native="toPokemonList({ types: type })" />
         </div>
         <div class="section picture">
           <h3>Sprite</h3>
@@ -24,7 +24,7 @@
         </div>
         <div v-show="pokemon.color !== 'unknown'" class="section color">
           <h3>Color</h3>
-          <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`">{{ pokemon.color }}</span>
+          <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`" @click="toPokemonList({ color: pokemon.color.toLowerCase() })">{{ pokemon.color }}</span>
         </div>
         <div class="section">
           <h3>Automatic Style</h3>
@@ -96,6 +96,13 @@ export default {
     toPokemon (id) {
       this.$router.push(`/pokemons/${id}`)
       this.$refs.main.$el.scrollTop = 0 // TODO: remove it if page is recreated when router is changed
+    },
+    toPokemonList (filter) {
+      console.log(filter)
+      this.$router.push({
+        path: '/pokemons',
+        query: filter,
+      })
     },
   },
   components: {
