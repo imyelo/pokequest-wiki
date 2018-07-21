@@ -116,6 +116,7 @@ export default {
 
 .pokemon-list {
   padding-bottom: 50px;
+  min-height: 100%; /* hack for safari scroll bug */
   .filter {
     height: 48px;
     background-color: hsl(48,100%,50%);
