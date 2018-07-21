@@ -29,7 +29,7 @@
         <div v-show="!showFilters" class="toolbar">
           <div class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
         </div>
-      </transition>>
+      </transition>
     </Main>
 
     <Navbar v-show="hasFilters" />
@@ -429,7 +429,7 @@ export default {
 }
 .list-enter, .list-leave-to {
   opacity: 0;
-  transform: translateX(-10px);
+  transform: translate3d(-10px, 0, 0);
 }
 
 .toolbar-enter-active, .toolbar-leave-active {
@@ -437,7 +437,7 @@ export default {
 }
 .toolbar-enter, .toolbar-leave-to {
   opacity: 0;
-  transform: translateY(10%);
+  transform: translate3d(0, 10%, 0);
 }
 
 .filter-panel-enter-active, .filter-panel-leave-active {
@@ -448,7 +448,7 @@ export default {
 .filter-panel-enter, .filter-panel-leave-to {
   opacity: 0;
   .panel {
-    transform: translateY(10%);
+    transform: translate3d(0,10%,0);
   }
 }
 </style>

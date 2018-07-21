@@ -43,6 +43,6 @@ input, textarea {
 }
 .view-enter, .view-leave-to {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translate3d(0,-10px,0);
 }
 </style>
