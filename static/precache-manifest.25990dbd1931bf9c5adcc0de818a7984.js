@@ -8,12 +8,12 @@ self.__precacheManifest = [
     "url": "/static/img/icons/safari-pinned-tab.svg"
   },
   {
-    "revision": "d8444968201a525f1ee1",
-    "url": "/static/js/chunk-vendors.d8444968.js"
+    "revision": "3122a8a683ad8dc68dd4",
+    "url": "/static/js/chunk-vendors.3122a8a6.js"
   },
   {
-    "revision": "3f44a9f9e70767264bc0",
-    "url": "/static/js/app.3f44a9f9.js"
+    "revision": "8705b2632ce790947665",
+    "url": "/static/js/app.8705b263.js"
   },
   {
     "revision": "7562e6198044c0b4f0e3e02dd7d5b457",
@@ -1300,7 +1300,7 @@ self.__precacheManifest = [
     "url": "/static/img/035.27272a02.png"
   },
   {
-    "revision": "ede3cc58e5b04745f1859dddd9fde9ec",
+    "revision": "fd62914510586a3089894f89b0cf699a",
     "url": "/index.html"
   },
   {
@@ -1364,12 +1364,12 @@ self.__precacheManifest = [
     "url": "/static/img/001.b345fe9d.png"
   },
   {
-    "revision": "d8444968201a525f1ee1",
+    "revision": "3122a8a683ad8dc68dd4",
     "url": "/static/css/chunk-vendors.d4c6bd24.css"
   },
   {
-    "revision": "3f44a9f9e70767264bc0",
-    "url": "/static/css/app.572b3104.css"
+    "revision": "8705b2632ce790947665",
+    "url": "/static/css/app.65492616.css"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
