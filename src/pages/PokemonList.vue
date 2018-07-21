@@ -2,6 +2,11 @@
   <Screen class="screen">
     <Main class="main">
       <div class="pokemon-list">
+        <div v-if="pokemons.length === 0" class="pokemon">
+          <div class="information">
+            <div class="title invalid">Not found</div>
+          </div>
+        </div>
         <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
           <div class="information">
             <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
@@ -39,8 +44,8 @@
           <div class="filter">
             <h3>Color</h3>
             <div class="options">
-              <div v-for="color in POKEMON_COLORS" :key="color" class="option" :class="`color-${color}`" @click="switchFilter('colors', color)">
-                <span class="check" :class="{ 'is-checked': ~filters.colors.indexOf(color) }"><Iconfont v-if="~filters.colors.indexOf(color)" class="icon" type="check" /></span>
+              <div v-for="color in POKEMON_COLORS" :key="color" class="option" :class="`color-${color}`" @click="switchFilter('color', color)">
+                <span class="check" :class="{ 'is-checked': filters.color === color }"><Iconfont v-if="filters.color === color" class="icon" type="check" /></span>
                 {{ color }}
               </div>
             </div>
@@ -67,7 +72,7 @@ export default {
       filters: {
         show: false,
         types: [],
-        colors: [],
+        color: '',
       },
     }
   },
@@ -75,10 +80,10 @@ export default {
     pokemons () {
       let filtered = pokemons
       if (this.filters.types.length) {
-        filtered = filtered.filter((pokemon) => pokemon.type.some((type) => ~this.filters.types.indexOf(type)))
+        filtered = filtered.filter((pokemon) => this.filters.types.every((type) => ~pokemon.type.indexOf(type)))
       }
-      if (this.filters.colors.length) {
-        filtered = filtered.filter((pokemon) => ~this.filters.colors.indexOf(pokemon.color.toLowerCase()))
+      if (this.filters.color) {
+        filtered = filtered.filter((pokemon) => this.filters.color === pokemon.color.toLowerCase())
       }
       return filtered
     },
@@ -92,11 +97,16 @@ export default {
     },
     switchFilter (filterName, value) {
       let filter = this.filters[filterName]
-      if (!Array.isArray(filter)) {
-        throw new Error('Invalid filter')
+      if (filterName === 'types') {
+        let index = filter.indexOf(value)
+        this.filters[filterName] = ~index ? [...filter.slice(0, index), ...filter.slice(index + 1)] : [...filter, value]
+        return
       }
-      let index = filter.indexOf(value)
-      this.filters[filterName] = ~index ? [...filter.slice(0, index), ...filter.slice(index + 1)] : [...filter, value]
+      if (filterName === 'color') {
+        this.filters[filterName] = filter === value ? '' : value
+        return
+      }
+      throw new Error('Invalid filter')
     },
   },
   components: {
@@ -157,6 +167,9 @@ export default {
       .title {
         font-size: 14px;
         color: #444;
+        &.invalid {
+          color: #aaa;
+        }
         .id {
           font-size: 10px;
           font-weight: bold;
