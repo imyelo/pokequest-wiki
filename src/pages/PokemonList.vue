@@ -2,9 +2,6 @@
   <Screen class="screen">
     <Main class="main">
       <div class="pokemon-list">
-        <div class="filter">
-          <div class="button" @click="filters.show = true"><Iconfont class="icon" type="filter" /></div>
-        </div>
         <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
           <div class="information">
             <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
@@ -18,33 +15,39 @@
           </div>
         </div>
       </div>
+    </Main>
 
-      <transition name="filter-panel">
-        <div v-show="filters.show" class="filters" @click.self="filters.show = false" @touchmove.prevent>
-          <div class="panel">
-            <h2><Iconfont class="icon" type="filter" /> Pokemon Filter</h2>
-            <div class="filter">
-              <h3>Type</h3>
-              <div class="options">
-                <div v-for="type in POKEMON_TYPES" :key="type" class="option" :class="`type-${type}`" @click="switchFilter('types', type)">
-                  <span class="check" :class="{ 'is-checked': ~filters.types.indexOf(type) }"><Iconfont v-if="~filters.types.indexOf(type)" class="icon" type="check" /></span>
-                  {{ type }}
-                </div>
+    <transition name="toolbar">
+      <div v-show="!filters.show" class="toolbar">
+        <div class="button" @click="filters.show = true"><Iconfont class="icon" type="filter" /></div>
+      </div>
+    </transition>
+
+    <transition name="filter-panel">
+      <div v-show="filters.show" class="filters" @click.self="filters.show = false" @touchmove.prevent>
+        <div class="panel">
+          <h2><Iconfont class="icon" type="filter" /> Pokemon Filter</h2>
+          <div class="filter">
+            <h3>Type</h3>
+            <div class="options">
+              <div v-for="type in POKEMON_TYPES" :key="type" class="option" :class="`type-${type}`" @click="switchFilter('types', type)">
+                <span class="check" :class="{ 'is-checked': ~filters.types.indexOf(type) }"><Iconfont v-if="~filters.types.indexOf(type)" class="icon" type="check" /></span>
+                {{ type }}
               </div>
             </div>
-            <div class="filter">
-              <h3>Color</h3>
-              <div class="options">
-                <div v-for="color in POKEMON_COLORS" :key="color" class="option" :class="`color-${color}`" @click="switchFilter('colors', color)">
-                  <span class="check" :class="{ 'is-checked': ~filters.colors.indexOf(color) }"><Iconfont v-if="~filters.colors.indexOf(color)" class="icon" type="check" /></span>
-                  {{ color }}
-                </div>
+          </div>
+          <div class="filter">
+            <h3>Color</h3>
+            <div class="options">
+              <div v-for="color in POKEMON_COLORS" :key="color" class="option" :class="`color-${color}`" @click="switchFilter('colors', color)">
+                <span class="check" :class="{ 'is-checked': ~filters.colors.indexOf(color) }"><Iconfont v-if="~filters.colors.indexOf(color)" class="icon" type="check" /></span>
+                {{ color }}
               </div>
             </div>
           </div>
         </div>
-      </transition>
-    </Main>
+      </div>
+    </transition>
   </Screen>
 </template>
 
@@ -115,37 +118,8 @@ export default {
 }
 
 .pokemon-list {
-  padding-bottom: 50px;
+  padding-bottom: 100px;
   min-height: 100%; /* hack for safari scroll bug */
-  .filter {
-    height: 48px;
-    background-color: hsl(0,0%,35%);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    box-shadow: 0 4px 0 4px hsl(0,0%,25%);
-    margin-bottom: 8px;
-    padding: 0 24px;
-    box-sizing: border-box;
-    .button {
-      background: hsl(0,0%,85%);
-      color: hsl(0,0%,35%);
-      height: 18px;
-      padding: 0 1em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid hsl(0,0%,55%);
-      border-radius: 4px;
-      box-shadow: 0 1px 0 hsl(0,0%,55%), 0 2px 0 rgba(0,0,0,0.1);
-      font-size: 14px;
-    }
-    .icon {
-      font-size: 14px;
-      color: hsl(0,0%,35%);
-      display: inline-block;
-    }
-  }
   .pokemon {
     display: flex;
     justify-content: space-between;
@@ -213,6 +187,40 @@ export default {
   }
 }
 
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 24px;
+  box-sizing: border-box;
+  .button {
+    background: hsl(0,0%,95%);
+    color: hsl(0,0%,55%);
+    height: 36px;
+    padding: 0 1em;
+    line-height: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid hsl(0,0%,75%);
+    border-radius: 8px;
+    box-shadow: 0 4px 0 hsl(0,0%,75%), 0 8px 0 rgba(0,0,0,0.25);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .icon {
+    font-size: 14px;
+    line-height: 1em;
+    color: hsl(0,0%,55%);
+    display: inline-block;
+  }
+}
+
 .filters {
   position: fixed;
   top: 0;
@@ -228,7 +236,7 @@ export default {
     min-height: 300px;
     max-height: 100%;
     overflow-y: scroll;
-    top: 0;
+    bottom: 0;
     padding: 36px 24px;
     box-sizing: border-box;
     box-shadow: 0 2px 32px 4px rgba(0,0,0,0.1);
@@ -358,6 +366,13 @@ export default {
   }
 }
 
+.toolbar-enter-active, .toolbar-leave-active {
+  transition: all .4s ease;
+}
+.toolbar-enter, .toolbar-leave-to {
+  opacity: 0;
+  transform: translateY(10%);
+}
 .filter-panel-enter-active, .filter-panel-leave-active {
   &, .panel {
     transition: all .4s ease;
@@ -366,7 +381,7 @@ export default {
 .filter-panel-enter, .filter-panel-leave-to {
   opacity: 0;
   .panel {
-    transform: translateY(-10%);
+    transform: translateY(10%);
   }
 }
 </style>
