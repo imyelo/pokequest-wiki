@@ -51,7 +51,7 @@
                 Not exist
               </div>
               <div v-for="recipe in quality.recipes" :key="recipe.id" class="ingredients">
-                <div v-for="(ingredient, index) in recipe.ingredients" :key="index" class="ingredient">
+                <div v-for="(ingredient, index) in recipe.ingredients" :key="index" class="ingredient" :class="{ small: ingredient.quality === 1 }">
                   <img :src="ingredient.logo" />
                 </div>
               </div>
@@ -275,10 +275,18 @@ export default {
           background-color: hsl(42,52%,98%);
         }
         .ingredient {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           width: 24px;
           img {
             display: block;
             width: 100%;
+          }
+          &.small {
+            img {
+              width: 58%;
+            }
           }
         }
       }

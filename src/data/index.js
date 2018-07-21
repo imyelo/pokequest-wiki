@@ -105,7 +105,7 @@ ingredients = ingredients.map((ingredient) => ({
  * generate all recipes
  */
 recipes = multicombinations(10, 5).map((indexes) => {
-  let objects = indexes.map((index) => ingredients[index])
+  let objects = indexes.map((index) => ingredients[index]).sort((left, right) => left.id - right.id)
   return {
     ingredients: objects,
     dish: getDish(objects),
