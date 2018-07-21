@@ -26,7 +26,7 @@ module.exports = {
       msTileImage: `${CACHEABLE_DIRECTORY}/img/icons/mstile-144x144.png`,
     },
     workboxOptions: {
-      include: [/^static\/.*$/],
+      exclude: [/\.map$/, /^manifest.*\.js(?:on)?$/, 'CNAME'],
       importWorkboxFrom: 'local',
       importsDirectory: CACHEABLE_DIRECTORY,
     },
