@@ -9,9 +9,13 @@ import Screen from './components/layout/Screen.vue'
 import Main from './components/layout/Main.vue'
 import Navbar from './components/layout/Navbar.vue'
 import Clearfix from './components/Clearfix.vue'
+import FastClick from 'fastclick'
+import './utils/prevent-overscroll'
 import './registerServiceWorker'
 
 const GA_ID = process.env.VUE_APP_GA_ID
+
+FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 

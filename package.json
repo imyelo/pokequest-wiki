@@ -9,6 +9,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "fastclick": "^1.0.6",
     "just-flatten-it": "^2.0.0",
     "just-range": "^2.0.0",
     "ml-combinations": "^1.0.1",

@@ -40,7 +40,7 @@ export default {
 
 <style lang="postcss" scoped>
 .navbar {
-  height: 42px;
+  height: 48px;
   padding-bottom: 4px;
   padding-bottom: env(safe-area-inset-bottom);
   padding-bottom: constant(safe-area-inset-bottom);
@@ -50,6 +50,7 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  box-sizing: border-box;
   .item {
     height: 100%;
     width: 100%;
