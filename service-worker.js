@@ -11,10 +11,11 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
+importScripts("/static/workbox-v3.4.1/workbox-sw.js");
+workbox.setConfig({modulePathPrefix: "/static/workbox-v3.4.1"});
 
 importScripts(
-  "/precache-manifest.bda1da2a4f7eb4a39a50a68de37cc3a7.js"
+  "/static/precache-manifest.872893aaf12c43b2c579916edb218487.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "pokemon-quest-toolbox-web"});
