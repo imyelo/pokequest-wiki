@@ -29,35 +29,36 @@
         <div v-show="!showFilters" class="toolbar">
           <div class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
         </div>
-      </transition>
+      </transition>>
+    </Main>
 
-      <transition name="filter-panel">
-        <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>
-          <div class="panel">
-            <h2><Iconfont class="icon" type="filter" /> Pokemon Filter</h2>
-            <div class="filter">
-              <h3>Type</h3>
-              <div class="options">
-                <div v-for="type in POKEMON_TYPES" :key="type" class="option" :class="`type-${type}`" @click="switchFilter('types', type)">
-                  <span class="check" :class="{ 'is-checked': ~filters.types.indexOf(type) }"><Iconfont v-if="~filters.types.indexOf(type)" class="icon" type="check" /></span>
-                  {{ type }}
-                </div>
+    <Navbar v-show="hasFilters" />
+
+    <transition name="filter-panel">
+      <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>
+        <div class="panel">
+          <h2><Iconfont class="icon" type="filter" /> Pokemon Filter</h2>
+          <div class="filter">
+            <h3>Type</h3>
+            <div class="options">
+              <div v-for="type in POKEMON_TYPES" :key="type" class="option" :class="`type-${type}`" @click="switchFilter('types', type)">
+                <span class="check" :class="{ 'is-checked': ~filters.types.indexOf(type) }"><Iconfont v-if="~filters.types.indexOf(type)" class="icon" type="check" /></span>
+                {{ type }}
               </div>
             </div>
-            <div class="filter">
-              <h3>Color</h3>
-              <div class="options">
-                <div v-for="color in POKEMON_COLORS" :key="color" class="option" :class="`color-${color}`" @click="switchFilter('color', color)">
-                  <span class="check" :class="{ 'is-checked': filters.color === color }"><Iconfont v-if="filters.color === color" class="icon" type="check" /></span>
-                  {{ color }}
-                </div>
+          </div>
+          <div class="filter">
+            <h3>Color</h3>
+            <div class="options">
+              <div v-for="color in POKEMON_COLORS" :key="color" class="option" :class="`color-${color}`" @click="switchFilter('color', color)">
+                <span class="check" :class="{ 'is-checked': filters.color === color }"><Iconfont v-if="filters.color === color" class="icon" type="check" /></span>
+                {{ color }}
               </div>
             </div>
           </div>
         </div>
-      </transition>
-    </Main>
-    <Navbar v-show="hasFilters" />
+      </div>
+    </transition>
   </Screen>
 </template>
 
@@ -135,9 +136,15 @@ export default {
           delete query[key]
         }
       }
-      this.$router.push({
-        query,
-      })
+      if (this.hasFilters) {
+        this.$router.replace({
+          query,
+        })
+      } else {
+        this.$router.push({
+          query,
+        })
+      }
     },
   },
   components: {
@@ -273,6 +280,7 @@ export default {
 
 .filters {
   position: absolute;
+  z-index: 10;
   top: 0;
   right: 0;
   bottom: 0;
@@ -290,8 +298,8 @@ export default {
     padding: 36px 24px;
     box-sizing: border-box;
     box-shadow: 0 2px 32px 4px rgba(0,0,0,0.1);
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
     h2 {
       font-size: 24px;
       font-weight: normal;
