@@ -27,13 +27,13 @@
     </Main>
 
     <transition name="toolbar">
-      <div v-show="!filters.show" class="toolbar">
-        <div class="button" @click="filters.show = true"><Iconfont class="icon" type="filter" /></div>
+      <div v-show="!showFilters" class="toolbar">
+        <div class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
       </div>
     </transition>
 
     <transition name="filter-panel">
-      <div v-show="filters.show" class="filters" @click.self="filters.show = false" @touchmove.prevent>
+      <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>
         <div class="panel">
           <h2><Iconfont class="icon" type="filter" /> Pokemon Filter</h2>
           <div class="filter">
@@ -73,11 +73,12 @@ export default {
       picture: 'avatar',
       POKEMON_TYPES,
       POKEMON_COLORS,
-      filters: {
-        show: false,
-        types: [],
-        color: '',
-      },
+      showFilters: false,
+      // filters: {
+      //   show: false,
+      //   types: [],
+      //   color: '',
+      // },
     }
   },
   computed: {
@@ -91,6 +92,13 @@ export default {
       }
       return filtered
     },
+    filters () {
+      let { query } = this.$route
+      return {
+        types: query.types ? query.types.split(',') : [],
+        color: query.color || '',
+      }
+    },
   },
   methods: {
     toDetail (id) {
@@ -103,14 +111,34 @@ export default {
       let filter = this.filters[filterName]
       if (filterName === 'types') {
         let index = filter.indexOf(value)
-        this.filters[filterName] = ~index ? [...filter.slice(0, index), ...filter.slice(index + 1)] : [...filter, value]
+        this.updateFilter({
+          types: (~index ? [...filter.slice(0, index), ...filter.slice(index + 1)] : [...filter, value]).join(','),
+        })
         return
       }
       if (filterName === 'color') {
-        this.filters[filterName] = filter === value ? '' : value
+        this.updateFilter({
+          color: filter === value ? '' : value,
+        })
         return
       }
       throw new Error('Invalid filter')
+    },
+    updateFilter (patch) {
+      let query = {
+        ...this.$route.query,
+        ...patch,
+      }
+      for (let key in query) {
+        if (Array.isArray(patch[key]) && patch[key].length === 0) {
+          delete query[key]
+        } else if (typeof patch[key] === 'string' && patch[key] === '') {
+          delete query[key]
+        }
+      }
+      this.$router.replace({
+        query,
+      })
     },
   },
   components: {
