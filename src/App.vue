@@ -1,5 +1,7 @@
 <template>
-  <router-view />
+  <transition name="view">
+    <router-view />
+  </transition>
 </template>
 
 <script>
@@ -34,5 +36,13 @@ input, textarea {
 
 ::-webkit-scrollbar{
   display: none;
+}
+
+.view-enter-active, .view-leave-active {
+  transition: all .2s ease;
+}
+.view-enter, .view-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>

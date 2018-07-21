@@ -2,23 +2,27 @@
   <Screen class="screen">
     <Main class="main">
       <div class="pokemon-list">
-        <div v-if="pokemons.length === 0" class="pokemon">
-          <div class="information">
-            <div class="title invalid">Not found</div>
-          </div>
-        </div>
-        <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
-          <div class="information">
-            <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
-            <div class="type-list">
-              <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" />
+        <transition-group name="list">
+          <template>
+            <div v-if="pokemons.length === 0" class="pokemon" key="NOT_FOUND">
+              <div class="information">
+                <div class="title invalid">Not found</div>
+              </div>
             </div>
-          </div>
-          <div class="picture">
-            <div v-show="picture === 'sprite'" class="sprite" @click.stop="switchPicture"><img :src="pokemon.sprite" /></div>
-            <div v-show="picture === 'avatar'" class="avatar" @click.stop="switchPicture"><img :src="pokemon.avatar" /></div>
-          </div>
-        </div>
+            <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
+              <div class="information">
+                <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
+                <div class="type-list">
+                  <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" />
+                </div>
+              </div>
+              <div class="picture">
+                <div v-show="picture === 'sprite'" class="sprite" @click.stop="switchPicture"><img :src="pokemon.sprite" /></div>
+                <div v-show="picture === 'avatar'" class="avatar" @click.stop="switchPicture"><img :src="pokemon.avatar" /></div>
+              </div>
+            </div>
+          </template>
+        </transition-group>
       </div>
     </Main>
 
@@ -379,6 +383,14 @@ export default {
   }
 }
 
+.list-enter-active, .list-leave-active {
+  transition: all 200ms;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
 .toolbar-enter-active, .toolbar-leave-active {
   transition: all .4s ease;
 }
@@ -386,6 +398,7 @@ export default {
   opacity: 0;
   transform: translateY(10%);
 }
+
 .filter-panel-enter-active, .filter-panel-leave-active {
   &, .panel {
     transition: all .4s ease;
