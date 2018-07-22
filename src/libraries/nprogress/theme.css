@@ -1,0 +1,16 @@
+#nprogress .bar {
+  background: hsl(50,10%,20%);
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px hsl(50,10%,20%), 0 0 5px hsl(50,10%,20%);
+}
+
+#nprogress .spinner-icon {
+  border-top-color: hsl(50,10%,20%);
+  border-left-color: hsl(50,10%,20%);
+}
+
+#nprogress .spinner, #nprogress .bar {
+  z-index: 3000;
+}
