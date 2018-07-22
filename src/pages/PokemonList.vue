@@ -1,7 +1,7 @@
 <template>
   <Screen class="screen">
     <Main class="main">
-      <div class="pokemon-list" ref="list">
+      <div class="pokemon-list" ref="list" @scroll="handleScroll">
         <transition-group name="list">
           <template>
             <div v-if="pokemons.length === 0" class="pokemon" key="NOT_FOUND">
@@ -25,11 +25,14 @@
         </transition-group>
       </div>
 
-      <transition name="toolbar">
-        <div v-show="!showFilters" class="toolbar">
-          <div class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
-        </div>
-      </transition>
+      <div class="toolbar">
+        <transition name="toolbar-button">
+          <div key="top" v-if="!isAtTop" class="button" @click="scrollToTop"><Iconfont class="icon" type="top" /></div>
+        </transition>
+        <transition name="toolbar-button">
+          <div key="filter" v-if="!showFilters" class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
+        </transition>
+      </div>
     </Main>
 
     <Navbar v-show="hasFilters" />
@@ -63,6 +66,8 @@
 </template>
 
 <script>
+import scroll from 'scroll'
+import debounce from 'just-debounce-it'
 import { POKEMON_TYPES, POKEMON_COLORS } from '../constants'
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
@@ -76,6 +81,7 @@ export default {
       POKEMON_TYPES,
       POKEMON_COLORS,
       showFilters: false,
+      isAtTop: true,
     }
   },
   computed: {
@@ -151,8 +157,11 @@ export default {
         })
       }
     },
+    handleScroll: debounce(function (event) {
+      this.isAtTop = event.target.scrollTop === 0
+    }, 200),
     scrollToTop () {
-      this.$refs.list.scrollTop = 0
+      scroll.top(this.$refs.list, 0)
     },
   },
   components: {
@@ -254,14 +263,14 @@ export default {
 
 .toolbar {
   position: absolute;
-  bottom: 12px;
+  bottom: 0;
   width: 100%;
-  height: 64px;
+  height: 90px;
   background-color: transparent;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  padding: 0 24px;
+  padding: 12px;
   box-sizing: border-box;
   .button {
     background: hsl(0,0%,95%);
@@ -274,9 +283,9 @@ export default {
     align-items: center;
     border: 2px solid hsl(0,0%,75%);
     border-radius: 8px;
-    box-shadow: 0 4px 0 hsl(0,0%,75%), 0 8px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 4px 0 hsl(0,0%,75%), 0 8px 0 rgba(0,0,0,0.25), 0 0 12px 2px rgba(0,0,0,0.1);
     font-size: 14px;
-    margin-bottom: 8px;
+    margin: 0 8px 8px;
   }
   .icon {
     font-size: 14px;
@@ -440,12 +449,12 @@ export default {
   transform: translate3d(-10px, 0, 0);
 }
 
-.toolbar-enter-active, .toolbar-leave-active {
-  transition: all .4s ease;
+.toolbar-button-enter-active, .toolbar-button-leave-active {
+  transition: all 400ms;
 }
-.toolbar-enter, .toolbar-leave-to {
+.toolbar-button-enter, .toolbar-button-leave-to {
   opacity: 0;
-  transform: translate3d(0, 10%, 0);
+  transform: translate3d(10px, 0, 0);
 }
 
 .filter-panel-enter-active, .filter-panel-leave-active {
