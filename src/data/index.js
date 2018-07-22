@@ -1,6 +1,9 @@
 import flatten from 'just-flatten-it'
 import multicombinations from '../utils/multicombinations'
-import database from '../assets/database.production.js'
+
+const ENV = process.env.NODE_ENV
+
+const database = require(`./raw/${ENV}`)
 
 export let pokemons = database.pokemons
 export let dishes = database.dishes
