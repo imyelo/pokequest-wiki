@@ -9,7 +9,7 @@
                 <div class="title invalid">Not found</div>
               </div>
             </div>
-            <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
+            <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)" ref="list">
               <div class="information">
                 <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
                 <div class="type-list">
@@ -145,6 +145,7 @@ export default {
           query,
         })
       }
+      this.$refs.list.scrollTop = 0
     },
   },
   components: {
