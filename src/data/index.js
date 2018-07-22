@@ -3,7 +3,7 @@ import multicombinations from '../utils/multicombinations'
 
 const ENV = process.env.NODE_ENV
 
-const database = require(`./raw/${ENV}`)
+const database = require(`./raw/${ENV}`).default
 
 export let pokemons = database.pokemons
 export let dishes = database.dishes
