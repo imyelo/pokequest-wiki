@@ -176,7 +176,7 @@ export default {
 @import '../stylesheet/colors.css';
 
 .screen {
-  background-color: hsl(47, 100%, 70%);
+  background-color: hsl(39,64%,88%)
 }
 .main {
   position: relative;
