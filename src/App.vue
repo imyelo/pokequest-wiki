@@ -41,7 +41,11 @@ input, textarea {
 .view-enter-active, .view-leave-active {
   transition: all .2s ease;
 }
-.view-enter, .view-leave-to {
+.view-enter {
+  opacity: 0;
+  transform: translate3d(0,10px,0);
+}
+.view-leave-to {
   opacity: 0;
   transform: translate3d(0,-10px,0);
 }
