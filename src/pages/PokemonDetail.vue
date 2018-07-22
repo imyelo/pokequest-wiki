@@ -98,7 +98,6 @@ export default {
       this.$refs.main.$el.scrollTop = 0 // TODO: remove it if page is recreated when router is changed
     },
     toPokemonList (filter) {
-      console.log(filter)
       this.$router.push({
         path: '/pokemons',
         query: filter,
