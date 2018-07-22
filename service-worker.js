@@ -15,7 +15,7 @@ importScripts("/static/workbox-v3.4.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/static/workbox-v3.4.1"});
 
 importScripts(
-  "/static/precache-manifest.5c4daa9dfd9b8b393195d6046a2a2665.js"
+  "/static/precache-manifest.c9a6b5fe50a2404ace6927fc1735aebd.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "pokemon-quest-toolbox-web"});
