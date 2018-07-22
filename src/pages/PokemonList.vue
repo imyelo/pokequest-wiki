@@ -1,7 +1,7 @@
 <template>
   <Screen class="screen">
     <Main class="main">
-      <div class="pokemon-list">
+      <div class="pokemon-list" ref="list">
         <transition-group name="list">
           <template>
             <div v-if="pokemons.length === 0" class="pokemon" key="NOT_FOUND">
@@ -9,7 +9,7 @@
                 <div class="title invalid">Not found</div>
               </div>
             </div>
-            <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)" ref="list">
+            <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
               <div class="information">
                 <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
                 <div class="type-list">
@@ -100,6 +100,11 @@ export default {
       return this.filters.types.length > 0 || this.filters.color
     },
   },
+  watch: {
+    filters () {
+      this.scrollToTop()
+    },
+  },
   methods: {
     toDetail (id) {
       this.$router.push(`/pokemons/${id}`)
@@ -145,6 +150,8 @@ export default {
           query,
         })
       }
+    },
+    scrollToTop () {
       this.$refs.list.scrollTop = 0
     },
   },
