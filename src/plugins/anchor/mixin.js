@@ -6,6 +6,9 @@ const mixin = {
   },
   methods: {
     scrollToAnchor (anchor) {
+      if (!this.$route) {
+        return
+      }
       anchor = anchor || this.$route.query.anchor
       if (!anchor) {
         return
