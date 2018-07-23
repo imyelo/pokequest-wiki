@@ -4,7 +4,7 @@ import { loading } from '../libraries/nprogress'
 export const env = process.env.NODE_ENV
 const qs = querystring.parse(window.location.search.slice(1))
 
-const isDevelopment = env.ENV === 'development'
+const isDevelopment = env === 'development'
 
 const isDebug = isDevelopment || ('debug' in qs)
 
