@@ -1380,12 +1380,12 @@ self.__precacheManifest = [
     "url": "/static/img/icons/apple-touch-icon-152x152.png"
   },
   {
-    "revision": "55c923f429aeaee493907e4db1877f47",
-    "url": "/static/img/icons/android-chrome-192x192.png"
-  },
-  {
     "revision": "5f36e77fa7bb048b43822fc33bb217ef",
     "url": "/static/img/icons/android-chrome-512x512.png"
+  },
+  {
+    "revision": "55c923f429aeaee493907e4db1877f47",
+    "url": "/static/img/icons/android-chrome-192x192.png"
   },
   {
     "revision": "05aaef0990a65f4cc4e4",
