@@ -16,7 +16,9 @@ if (process.env.NODE_ENV === 'production') {
       window.location.reload()
     }
   })()
-  navigator.serviceWorker.addEventListener('controllerchange', reload)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.addEventListener('controllerchange', reload)
+  }
 
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready () {
@@ -40,7 +42,7 @@ if (process.env.NODE_ENV === 'production') {
           {
             text: 'Try it now!',
             handler () {
-              if (!registration.waiting) {
+              if (!registration || !registration.waiting) {
                 return
               }
               registration.waiting.postMessage('skipWaiting')
