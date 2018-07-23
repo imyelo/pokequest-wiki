@@ -1,30 +1,56 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
-
-importScripts("/static/workbox-v3.4.1/workbox-sw.js");
+importScripts("/static/precache-manifest.edd2b7dd2db6f7f17b5bf4f975b980cc.js", "/static/workbox-v3.4.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/static/workbox-v3.4.1"});
-
-importScripts(
-  "/static/precache-manifest.47c99bf00c0d8768590100b7ed78bdc8.js"
-);
-
-workbox.core.setCacheNameDetails({prefix: "pokemon-quest-toolbox-web"});
+workbox.core.setCacheNameDetails({ prefix: 'pokequest-wiki' })
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
  * requests for URLs in the manifest.
  * See https://goo.gl/S9QRab
  */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.suppressWarnings();
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+self.__precacheManifest = [].concat(self.__precacheManifest || [])
+workbox.precaching.suppressWarnings()
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
+
+/**
+ * fonts
+ * see: https://developers.google.com/web/tools/workbox/guides/common-recipes
+ */
+workbox.routing.registerRoute(
+  new RegExp('https://fonts.(gstatic.)?font.im/(.*)'),
+  workbox.strategies.cacheFirst({
+    cacheName: 'font-im',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 30,
+      }),
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      }),
+    ],
+  }),
+)
+
+/**
+ * google analytics
+ * see: https://developers.google.com/web/tools/workbox/guides/enable-offline-analytics
+ */
+workbox.googleAnalytics.initialize()
+
+/**
+ * skip waiting api
+ * see: https://developers.google.com/web/tools/workbox/guides/advanced-recipes
+ */
+self.addEventListener('message', (event) => {
+  if (!event.data){
+    return
+  }
+
+  switch (event.data) {
+    case 'skipWaiting':
+      self.skipWaiting()
+      break
+    default:
+      break
+  }
+})
+
