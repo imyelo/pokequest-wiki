@@ -10,6 +10,7 @@ import Main from './components/layout/Main.vue'
 import Navbar from './components/layout/Navbar.vue'
 import Clearfix from './components/Clearfix.vue'
 import FastClick from 'fastclick'
+import './utils/eruda'
 import './utils/prevent-overscroll'
 import './registerServiceWorker'
 

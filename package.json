@@ -9,6 +9,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "eruda": "^1.5.0",
     "fastclick": "^1.0.6",
     "just-debounce-it": "^1.0.1",
     "just-flatten-it": "^2.0.0",
