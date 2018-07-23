@@ -25,7 +25,9 @@ module.exports = {
       appleTouchIcon: `${CACHEABLE_DIRECTORY}/img/icons/apple-touch-icon-152x152.png`,
       msTileImage: `${CACHEABLE_DIRECTORY}/img/icons/mstile-144x144.png`,
     },
+    workboxPluginMode: 'InjectManifest',
     workboxOptions: {
+      swSrc: 'src/service-worker.js',
       exclude: [/\.map$/, /^manifest.*\.js(?:on)?$/, 'CNAME'],
       importWorkboxFrom: 'local',
       importsDirectory: CACHEABLE_DIRECTORY,
