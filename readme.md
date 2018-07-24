@@ -10,13 +10,17 @@
 :rocket: [https://pokequest.wiki](https://pokequest.wiki)
 
 ## Screenshots
-<a href="./_medias/screenshots/pokemons-list.png"><img width="128" src="./_medias/screenshots/pokemons-list.png" /></a>
-<a href="./_medias/screenshots/pokemons-list-filter.png"><img width="128" src="./_medias/screenshots/pokemons-list-filter.png" /></a>
-<a href="./_medias/screenshots/pokemon-detail.png"><img width="128" src="./_medias/screenshots/pokemon-detail.png" /></a>
-<a href="./_medias/screenshots/pokemon-detail-dishes.png"><img width="128" src="./_medias/screenshots/pokemon-detail-dishes.png" /></a>
-<a href="./_medias/screenshots/dish-detail.png"><img width="128" src="./_medias/screenshots/dish-detail.png" /></a>
-<a href="./_medias/screenshots/dish-detail-qualities.png"><img width="128" src="./_medias/screenshots/dish-detail-qualities.png" /></a>
-<a href="./_medias/screenshots/dish-detail-example.png"><img width="128" src="./_medias/screenshots/dish-detail-example.png" /></a>
+<p>
+  <a href="./_medias/screenshots/pokemons-list.png"><img width="128" src="./_medias/screenshots/pokemons-list.png" /></a>
+  <a href="./_medias/screenshots/pokemons-list-filter.png"><img width="128" src="./_medias/screenshots/pokemons-list-filter.png" /></a>
+  <a href="./_medias/screenshots/pokemon-detail.png"><img width="128" src="./_medias/screenshots/pokemon-detail.png" /></a>
+  <a href="./_medias/screenshots/pokemon-detail-dishes.png"><img width="128" src="./_medias/screenshots/pokemon-detail-dishes.png" /></a>
+</p>
+<p>
+  <a href="./_medias/screenshots/dish-detail.png"><img width="128" src="./_medias/screenshots/dish-detail.png" /></a>
+  <a href="./_medias/screenshots/dish-detail-qualities.png"><img width="128" src="./_medias/screenshots/dish-detail-qualities.png" /></a>
+  <a href="./_medias/screenshots/dish-detail-example.png"><img width="128" src="./_medias/screenshots/dish-detail-example.png" /></a>
+</p>
 
 ## Features
 - Full 151 Pokémons data
