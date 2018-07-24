@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .screen {
   position: fixed;
   top: 0;

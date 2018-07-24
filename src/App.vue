@@ -35,8 +35,16 @@ input, textarea {
           user-select: text;
 }
 
-::-webkit-scrollbar{
-  display: none;
+::-webkit-scrollbar {
+  display: block;
+  width: 8px;
+  height: 200px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: hsla(50,0%,100%,0.75);
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: hsla(50,0%,80%,0.75);
 }
 
 .view-enter-active, .view-leave-active {
