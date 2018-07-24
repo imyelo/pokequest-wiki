@@ -1,8 +1,22 @@
-# PokeQuest Wiki
-> :closed_book: Pokémon Quest Wiki
+
+<h1 align="center">
+  <p><img width="64" src="./_medias/logo.png" /></p>
+  <p>PokeQuest Wiki</p>
+</h1>
+
+> :closed_book: Pokémon Quest Dex designed for Web
 
 ## Live Version
-https://pokequest.wiki
+:rocket: [https://pokequest.wiki](https://pokequest.wiki)
+
+## Screenshots
+<a href="./_medias/screenshots/pokemons-list.png"><img width="128" src="./_medias/screenshots/pokemons-list.png" /></a>
+<a href="./_medias/screenshots/pokemons-list-filter.png"><img width="128" src="./_medias/screenshots/pokemons-list-filter.png" /></a>
+<a href="./_medias/screenshots/pokemon-detail.png"><img width="128" src="./_medias/screenshots/pokemon-detail.png" /></a>
+<a href="./_medias/screenshots/pokemon-detail-dishes.png"><img width="128" src="./_medias/screenshots/pokemon-detail-dishes.png" /></a>
+<a href="./_medias/screenshots/dish-detail.png"><img width="128" src="./_medias/screenshots/dish-detail.png" /></a>
+<a href="./_medias/screenshots/dish-detail-qualities.png"><img width="128" src="./_medias/screenshots/dish-detail-qualities.png" /></a>
+<a href="./_medias/screenshots/dish-detail-example.png"><img width="128" src="./_medias/screenshots/dish-detail-example.png" /></a>
 
 ## Features
 - Full 151 Pokémons data
@@ -62,4 +76,4 @@ MIT @ yelo
 
 ----
 
-<p align="center"><img width="32" src="https://www.pokequest.wiki/favicon.png" /></p>
+<p align="center"><img width="32" src="./_medias/logo.png" /></p>
