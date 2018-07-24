@@ -23,14 +23,18 @@
             </div>
           </template>
         </transition-group>
+        <div class="about">
+          <div><a :href="GITHUB_URL" target="_blank">&lt; <Iconfont type="star" class="icon" /> Give me a Star / Fork me &gt; on <Iconfont type="github" class="icon" /> Github</a></div>
+          <div>PokeQuest Wiki - Version {{ VERSION }}</div>
+        </div>
       </div>
 
       <div class="toolbar">
         <transition name="toolbar-button">
-          <div key="top" v-if="!isAtTop" class="button" @click="scrollToTop"><Iconfont class="icon" type="top" /></div>
+          <div key="top" v-if="!isAtTop && !isAtBottom" class="button" @click="scrollToTop"><Iconfont class="icon" type="top" /></div>
         </transition>
         <transition name="toolbar-button">
-          <div key="filter" v-if="!showFilters" class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
+          <div key="filter" v-if="!showFilters && !isAtBottom" class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
         </transition>
       </div>
     </Main>
@@ -73,6 +77,9 @@ import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 import Iconfont from '../components/iconfont/Iconfont.vue'
 
+const VERSION = DEFINED_VERSION
+const GITHUB_URL = process.env.VUE_APP_GITHUB_URL
+
 export default {
   name: 'app',
   data () {
@@ -82,6 +89,9 @@ export default {
       POKEMON_COLORS,
       showFilters: false,
       isAtTop: true,
+      isAtBottom: false,
+      GITHUB_URL,
+      VERSION,
     }
   },
   computed: {
@@ -157,8 +167,9 @@ export default {
         })
       }
     },
-    handleScroll: debounce(function (event) {
-      this.isAtTop = event.target.scrollTop === 0
+    handleScroll: debounce(function ({ target }) {
+      this.isAtTop = target.scrollTop === 0
+      this.isAtBottom = target.scrollTop + target.clientHeight === target.scrollHeight
     }, 200),
     scrollToTop () {
       scroll.top(this.$refs.list, 0)
@@ -183,7 +194,6 @@ export default {
 }
 
 .pokemon-list {
-  padding-bottom: 100px;
   position: absolute;
   top: 0;
   right: 0;
@@ -257,6 +267,21 @@ export default {
           max-width: 100%;
         }
       }
+    }
+  }
+  .about {
+    font-size: 8px;
+    color: hsl(0, 0%, 45%);
+    text-align: center;
+    padding: 100px 0;
+    line-height: 2em;
+    a {
+      font-size: 10px;
+      color: hsl(0, 0%, 45%);
+      text-decoration: none;
+    }
+    .icon {
+      font-size: 12px;
     }
   }
 }

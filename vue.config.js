@@ -1,4 +1,7 @@
+const rev = require('git-rev-sync')
 const CACHEABLE_DIRECTORY = 'static'
+
+const version = rev.isTagDirty() ? `${rev.tag()}-${rev.short('.')}` : rev.tag()
 
 module.exports = {
   assetsDir: CACHEABLE_DIRECTORY, // cacheable dir
@@ -11,6 +14,11 @@ module.exports = {
       .use('file-loader')
         .loader('file-loader')
         .options(config.module.rule('svg').use('file-loader').get('options'))
+
+    config.plugin('define-version')
+      .use(require('webpack/lib/DefinePlugin'), [{
+        'DEFINED_VERSION': JSON.stringify(version),
+      }])
   },
 
   pwa: {
