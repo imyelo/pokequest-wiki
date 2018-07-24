@@ -1,7 +1,7 @@
 <template>
   <Screen class="screen">
-    <Main class="main">
-      <div class="pokemon-list" ref="list" @scroll="handleScroll">
+    <Main class="main" @scroll="handleScroll" ref="main">
+      <div class="pokemon-list">
         <transition-group name="list">
           <template>
             <div v-if="pokemons.length === 0" class="pokemon" key="NOT_FOUND">
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div class="toolbar">
+      <div class="toolbar" slot="absolute">
         <transition name="toolbar-button">
           <div key="top" v-if="!isAtTop && !isAtBottom" class="button" @click="scrollToTop"><Iconfont class="icon" type="top" /></div>
         </transition>
@@ -70,7 +70,6 @@
 </template>
 
 <script>
-import scroll from 'scroll'
 import debounce from 'just-debounce-it'
 import { POKEMON_TYPES, POKEMON_COLORS } from '../constants'
 import { pokemons } from '../data'
@@ -172,7 +171,7 @@ export default {
       this.isAtBottom = target.scrollTop + target.clientHeight === target.scrollHeight
     }, 200),
     scrollToTop () {
-      scroll.top(this.$refs.list, 0)
+      this.$refs.main.scrollTop()
     },
   },
   components: {
@@ -187,20 +186,10 @@ export default {
 @import '../stylesheet/colors.css';
 
 .screen {
-  background-color: hsl(39,64%,88%)
-}
-.main {
-  position: relative;
+  background-color: hsl(39,64%,88%);
 }
 
 .pokemon-list {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
   .pokemon {
     display: flex;
     justify-content: space-between;
@@ -288,8 +277,9 @@ export default {
 
 .toolbar {
   position: absolute;
+  z-index: 10;
   bottom: 0;
-  width: 100%;
+  right: 0;
   height: 90px;
   background-color: transparent;
   display: flex;

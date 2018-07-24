@@ -39,9 +39,7 @@ export default {
   right: 0;
   background-color: hsl(40,63%,86%);
   width: 100%;
-  max-width: 1125px;
   height: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   overflow: hidden;

@@ -72,7 +72,6 @@
 </template>
 
 <script>
-import scroll from 'scroll'
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 import Iconfont from '../components/iconfont/Iconfont.vue'
@@ -96,7 +95,7 @@ export default {
     },
     toPokemon (id) {
       this.$router.push(`/pokemons/${id}`)
-      scroll.top(this.$refs.main.$el, 0) // TODO: remove it if page is recreated when router is changed
+      this.$refs.main.scrollTop() // TODO: remove it if page is recreated when router is changed
     },
     toPokemonList (filter) {
       this.$router.push({
