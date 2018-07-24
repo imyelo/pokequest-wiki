@@ -59,6 +59,15 @@
               </div>
             </div>
           </div>
+          <div class="filter">
+            <h3>Advanced</h3>
+            <div class="options">
+              <div class="option" @click="switchFilter('summonable')">
+                <span class="check" :class="{ 'is-checked': filters.summonable }"><Iconfont v-if="filters.summonable" class="icon" type="check" /></span>
+                Summonable
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </transition>
@@ -92,6 +101,9 @@ export default {
   computed: {
     pokemons () {
       let filtered = pokemons
+      if (this.filters.summonable) {
+        filtered = filtered.filter((pokemon) => pokemon.dishes.length > 0)
+      }
       if (this.filters.types.length) {
         filtered = filtered.filter((pokemon) => this.filters.types.every((type) => ~pokemon.type.indexOf(type)))
       }
@@ -105,10 +117,11 @@ export default {
       return {
         types: query.types ? query.types.split(',') : [],
         color: query.color || '',
+        summonable: query.summonable + '' === 'true',
       }
     },
     hasFilters () {
-      return this.filters.types.length > 0 || this.filters.color
+      return this.filters.types.length > 0 || this.filters.color || this.filters.summonable
     },
   },
   watch: {
@@ -138,6 +151,12 @@ export default {
         })
         return
       }
+      if (filterName === 'summonable') {
+        this.updateFilter({
+          summonable: !filter,
+        })
+        return
+      }
       throw new Error('Invalid filter')
     },
     updateFilter (patch) {
@@ -149,6 +168,8 @@ export default {
         if (Array.isArray(patch[key]) && patch[key].length === 0) {
           delete query[key]
         } else if (typeof patch[key] === 'string' && patch[key] === '') {
+          delete query[key]
+        } else if (typeof patch[key] === 'boolean' && patch[key] === false) {
           delete query[key]
         }
       }
@@ -363,6 +384,7 @@ export default {
         border: 2px solid #fff;
         border-radius: 8px;
         text-transform: capitalize;
+        background-color: hsl(30,8%,55%);
         box-shadow: 0 1px 0 #fff, 0 2px 0 rgba(0,0,0,0.1);
         margin: 4px;
         .check {
