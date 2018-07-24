@@ -12,7 +12,7 @@
 <script>
 import Iconfont from '../iconfont/Iconfont.vue'
 
-const HOME_PATH = '/pokemons'
+const HOME_PATH = '/pokemon'
 
 export default {
   name: 'Navbar',

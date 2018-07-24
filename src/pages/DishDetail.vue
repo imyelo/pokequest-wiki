@@ -27,7 +27,7 @@
               <table>
                 <thead>
                   <tr>
-                    <th>Pokemon</th>
+                    <th>Pokémon</th>
                     <th>Chance</th>
                   </tr>
                 </thead>
@@ -118,7 +118,7 @@ export default {
   },
   methods: {
     toPokemon (id) {
-      this.$router.push(`/pokemons/${id}`)
+      this.$router.push(`/pokemon/${id}`)
     },
   },
 }

@@ -16,10 +16,10 @@ function page (path) {
 }
 
 const routes = [
-  { path: '/pokemons', component: page('./PokemonList.vue') },
-  { path: '/pokemons/:id', component: page('./PokemonDetail.vue') },
+  { path: '/pokemon', component: page('./PokemonList.vue') },
+  { path: '/pokemon/:id', component: page('./PokemonDetail.vue') },
   { path: '/dishes/:id', component: page('./DishDetail.vue') },
-  { path: '*', redirect: '/pokemons' },
+  { path: '*', redirect: '/pokemon' },
 ]
 
 const router = new Router({

@@ -44,7 +44,7 @@
     <transition name="filter-panel">
       <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>
         <div class="panel">
-          <h2><Iconfont class="icon" type="filter" /> Pokemon Filter</h2>
+          <h2><Iconfont class="icon" type="filter" /> Pokémon Filter</h2>
           <div class="filter">
             <h3>Type</h3>
             <div class="options">
@@ -122,7 +122,7 @@ export default {
   },
   methods: {
     toDetail (id) {
-      this.$router.push(`/pokemons/${id}`)
+      this.$router.push(`/pokemon/${id}`)
     },
     switchPicture () {
       this.picture = this.picture === 'avatar' ? 'sprite' : 'avatar'

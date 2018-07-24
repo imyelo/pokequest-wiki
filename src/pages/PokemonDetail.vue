@@ -52,7 +52,7 @@
           </table>
         </div>
         <div class="section pokemons">
-          <h3>See other pokemons</h3>
+          <h3>See other pokémon</h3>
           <div class="paginations">
             <div v-if="previous.id" class="previous" @click="toPokemon(previous.id)">
               <Iconfont class="icon" type="left" />
@@ -94,12 +94,12 @@ export default {
       this.$router.push(`/dishes/${id}?anchor=Quality-${quality}`)
     },
     toPokemon (id) {
-      this.$router.push(`/pokemons/${id}`)
+      this.$router.push(`/pokemon/${id}`)
       this.$refs.main.scrollTop() // TODO: remove it if page is recreated when router is changed
     },
     toPokemonList (filter) {
       this.$router.push({
-        path: '/pokemons',
+        path: '/pokemon',
         query: filter,
       })
     },
