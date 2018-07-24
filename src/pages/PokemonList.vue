@@ -2,27 +2,23 @@
   <Screen class="screen">
     <Main class="main" @scroll="handleScroll" ref="main">
       <div class="pokemon-list">
-        <transition-group name="list">
-          <template>
-            <div v-if="pokemons.length === 0" class="pokemon" key="NOT_FOUND">
-              <div class="information">
-                <div class="title invalid">Not found</div>
-              </div>
+        <div v-if="pokemons.length === 0" class="pokemon" key="NOT_FOUND">
+          <div class="information">
+            <div class="title invalid">Not found</div>
+          </div>
+        </div>
+        <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
+          <div class="information">
+            <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
+            <div class="type-list">
+              <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" />
             </div>
-            <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
-              <div class="information">
-                <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
-                <div class="type-list">
-                  <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" />
-                </div>
-              </div>
-              <div class="picture">
-                <div v-show="picture === 'sprite'" class="sprite" @click.stop="switchPicture"><img :src="pokemon.sprite" /></div>
-                <div v-show="picture === 'avatar'" class="avatar" @click.stop="switchPicture"><img :src="pokemon.avatar" /></div>
-              </div>
-            </div>
-          </template>
-        </transition-group>
+          </div>
+          <div class="picture">
+            <div v-show="picture === 'sprite'" class="sprite" @click.stop="switchPicture"><img :src="pokemon.sprite" /></div>
+            <div v-show="picture === 'avatar'" class="avatar" @click.stop="switchPicture"><img :src="pokemon.avatar" /></div>
+          </div>
+        </div>
         <div class="about">
           <div><a :href="GITHUB_URL" target="_blank">&lt; <Iconfont type="star" class="icon" /> Give me a Star / Fork me &gt; on <Iconfont type="github" class="icon" /> Github</a></div>
           <div>PokeQuest Wiki - Version {{ VERSION }}</div>
@@ -454,14 +450,6 @@ export default {
       }
     }
   }
-}
-
-.list-enter-active, .list-leave-active {
-  transition: all 200ms;
-}
-.list-enter, .list-leave-to {
-  opacity: 0;
-  transform: translate3d(-10px, 0, 0);
 }
 
 .toolbar-button-enter-active, .toolbar-button-leave-active {
