@@ -157,7 +157,7 @@ export default {
     justify-content: left;
     .avatar {
       width: 42px;
-      margin-sorter.filed: 12px;
+      margin-right: 12px;
       border: 2px solid #fff;
       border-radius: 8px;
       img {
