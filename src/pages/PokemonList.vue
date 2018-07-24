@@ -40,7 +40,10 @@
     <transition name="filter-panel">
       <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>
         <div class="panel">
-          <h2><Iconfont class="icon" type="filter" /> Pokémon Filter</h2>
+          <h2>
+            <Iconfont class="icon" type="filter" /> Pokémon Filter
+            <div class="close" @click.prevent="showFilters = false"><Iconfont class="icon" type="close-selected" /></div>
+          </h2>
           <div class="filter">
             <h3>Type</h3>
             <div class="options">
@@ -354,8 +357,13 @@ export default {
       font-weight: normal;
       color: #333;
       margin: 0 0 24px;
+      line-height: 1em;
       .icon {
         font-size: 24px;
+      }
+      .close {
+        float: right;
+        padding-left: 16px;
       }
     }
     .filter {
