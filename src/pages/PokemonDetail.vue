@@ -30,19 +30,27 @@
           <h3>Automatic Style</h3>
           {{ pokemon.automaticStyle }}
         </div>
-        <div v-show="pokemon.dishes.length > 0" class="section dishes">
+        <div v-show="dishes.length > 0" class="section dishes">
           <h3>Dishes</h3>
           <table>
             <thead class="title">
               <tr>
                 <th class="logo"></th>
-                <th class="name">Name</th>
-                <th class="quality">Quality</th>
-                <th class="chance">Chance</th>
+                <th class="name" @click="sortDishes('id')">
+                  (ID) Name
+                  <template v-if="dishesSorter.field === 'id'"><Iconfont class="icon" :type="dishesSorter.reverse ? 'sort-up' : 'sort-down'" /></template>
+                </th>
+                <th class="quality">
+                  Quality
+                </th>
+                <th class="chance" @click="sortDishes('chance', true)">
+                  Chance
+                  <template v-if="dishesSorter.field === 'chance'"><Iconfont class="icon" :type="dishesSorter.reverse ? 'sort-up' : 'sort-down'" /></template>
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(dish, index) of pokemon.dishes" :key="index" class="dish" @click="toDish(dish.id, dish.quality)">
+              <tr v-for="(dish, index) of dishes" :key="index" class="dish" @click="toDish(dish.id, dish.quality)">
                 <td class="logo"><img :src="dish.logo" /></td>
                 <td class="name">{{ dish.name }}</td>
                 <td class="quality">{{ dish.quality }}</td>
@@ -78,9 +86,22 @@ import Iconfont from '../components/iconfont/Iconfont.vue'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      dishesSorter: {
+        field: 'id',
+        reverse: false,
+      },
+    }
+  },
   computed: {
     pokemon () {
       return pokemons.find((pokemon) => pokemon.id === +this.$route.params.id) || {}
+    },
+    dishes () {
+      let list = this.pokemon.dishes
+      let { field, reverse } = this.dishesSorter
+      return list.sort((left, right) => (left[field] > right[field] ? 1 : left[field] < right[field] ? -1 : 0) * (reverse ? -1 : 1))
     },
     previous () {
       return pokemons.find((pokemon) => pokemon.id === +this.$route.params.id - 1) || {}
@@ -90,6 +111,16 @@ export default {
     },
   },
   methods: {
+    sortDishes (field, reverseFirst = false) {
+      if (this.dishesSorter.field === field) {
+        this.dishesSorter.reverse = !this.dishesSorter.reverse
+      } else {
+        this.dishesSorter = {
+          field,
+          reverse: reverseFirst,
+        }
+      }
+    },
     toDish (id, quality) {
       this.$router.push(`/dishes/${id}?anchor=Quality-${quality}`)
     },
@@ -126,7 +157,7 @@ export default {
     justify-content: left;
     .avatar {
       width: 42px;
-      margin-right: 12px;
+      margin-sorter.filed: 12px;
       border: 2px solid #fff;
       border-radius: 8px;
       img {
@@ -234,6 +265,9 @@ export default {
     th {
       padding: 12px 0;
       line-height: 2em;
+      .icon {
+        font-size: 10px;
+      }
     }
     td {
       text-align: center;
