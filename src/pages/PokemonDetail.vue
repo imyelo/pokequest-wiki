@@ -50,7 +50,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(dish, index) of dishes" :key="index" class="dish" @click="toDish(dish.id, dish.quality)">
+              <tr v-for="(dish, index) of dishes" :key="index" class="dish" :class="{ 'not-exist': !dish.isExist }" @click="toDish(dish.id, dish.quality)">
                 <td class="logo"><img :src="dish.logo" /></td>
                 <td class="name">{{ dish.name }}</td>
                 <td class="quality">{{ dish.quality }}</td>
@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { pokemons } from '../data'
+import { pokemons, recipes } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 import Iconfont from '../components/iconfont/Iconfont.vue'
 
@@ -101,7 +101,12 @@ export default {
     dishes () {
       let list = this.pokemon.dishes
       let { field, reverse } = this.dishesSorter
-      return list.sort((left, right) => (left[field] > right[field] ? 1 : left[field] < right[field] ? -1 : 0) * (reverse ? -1 : 1))
+      return list
+        .sort((left, right) => (left[field] > right[field] ? 1 : left[field] < right[field] ? -1 : 0) * (reverse ? -1 : 1))
+        .map((dish) => ({
+          ...dish,
+          isExist: recipes.filter((recipe) => recipe.dish.id === dish.id && recipe.quality === dish.quality).length > 0,
+        }))
     },
     previous () {
       return pokemons.find((pokemon) => pokemon.id === +this.$route.params.id - 1) || {}
@@ -260,6 +265,10 @@ export default {
         &:last-child {
           padding-right: 1em;
         }
+      }
+      &.not-exist {
+        text-decoration: line-through;
+        color: hsl(0,0%,80%);
       }
     }
     th {
