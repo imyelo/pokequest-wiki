@@ -11,8 +11,8 @@
 
 ## Screenshots
 <p>
-  <a href="./_medias/screenshots/pokemons-list.png"><img width="128" src="./_medias/screenshots/pokemons-list.png" /></a>
-  <a href="./_medias/screenshots/pokemons-list-filter.png"><img width="128" src="./_medias/screenshots/pokemons-list-filter.png" /></a>
+  <a href="./_medias/screenshots/pokemon-list.png"><img width="128" src="./_medias/screenshots/pokemon-list.png" /></a>
+  <a href="./_medias/screenshots/pokemon-list-filter.png"><img width="128" src="./_medias/screenshots/pokemon-list-filter.png" /></a>
   <a href="./_medias/screenshots/pokemon-detail.png"><img width="128" src="./_medias/screenshots/pokemon-detail.png" /></a>
   <a href="./_medias/screenshots/pokemon-detail-dishes.png"><img width="128" src="./_medias/screenshots/pokemon-detail-dishes.png" /></a>
 </p>
