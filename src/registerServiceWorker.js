@@ -16,6 +16,25 @@ if (process.env.NODE_ENV === 'production') {
       window.location.reload()
     }
   })()
+
+  const askToUpdate = (waiting) => banner({
+    text: 'New version of PokeQuest Wiki is available!',
+    actions: [
+      {
+        text: 'Try it now!',
+        handler () {
+          if (waiting.state !== 'installed') {
+            return
+          }
+          waiting.postMessage('skipWaiting')
+        },
+      },
+      {
+        text: 'Dismiss',
+      },
+    ],
+  })
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.addEventListener('controllerchange', reload)
   }
@@ -27,8 +46,11 @@ if (process.env.NODE_ENV === 'production') {
         'For more details, visit https://goo.gl/AFskqB'
       )
     },
-    registered () {
+    registered (registration) {
       console.log('Service worker has been registered.')
+      if (registration && registration.waiting) {
+        askToUpdate(registration.waiting)
+      }
     },
     cached () {
       console.log('Content has been cached for offline use.')
@@ -36,23 +58,9 @@ if (process.env.NODE_ENV === 'production') {
     },
     updated (registration) {
       console.log('New content is available; please refresh.')
-      banner({
-        text: 'New version of PokeQuest Wiki is available!',
-        actions: [
-          {
-            text: 'Try it now!',
-            handler () {
-              if (!registration || !registration.waiting) {
-                return
-              }
-              registration.waiting.postMessage('skipWaiting')
-            },
-          },
-          {
-            text: 'Dismiss',
-          },
-        ],
-      })
+      if (registration && registration.waiting) {
+        askToUpdate(registration.waiting)
+      }
     },
     offline () {
       let MESSAGE = 'No internet connection found. App is running in offline mode.'
