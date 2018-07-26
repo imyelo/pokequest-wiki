@@ -364,6 +364,7 @@ export default {
       .close {
         float: right;
         padding-left: 16px;
+        cursor: pointer;
       }
     }
     .filter {
@@ -395,6 +396,7 @@ export default {
         background-color: hsl(30,8%,55%);
         box-shadow: 0 1px 0 #fff, 0 2px 0 rgba(0,0,0,0.1);
         margin: 4px;
+        cursor: pointer;
         .check {
           border-radius: 50%;
           background-color: #fff;

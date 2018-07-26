@@ -78,6 +78,7 @@ export default {
       padding: 8px;
       line-height: 1em;
       text-transform: uppercase;
+      cursor: pointer;
       &:hover, &:active {
         background-color: rgba(255,255,255,0.1);
       }

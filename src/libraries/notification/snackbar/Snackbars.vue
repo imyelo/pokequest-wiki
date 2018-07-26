@@ -75,6 +75,7 @@ export default {
     color: hsl(0,0%,87%);
     font-weight: bold;
     margin-left: 36px;
+    cursor: pointer;
     .action {
       margin: 8px 8px 8px 0;
       padding: 8px;

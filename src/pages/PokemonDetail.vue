@@ -225,6 +225,7 @@ export default {
       margin-bottom: 12px;
       width: 100%;
       text-transform: uppercase;
+      cursor: pointer;
     }
   }
   .color {
@@ -239,6 +240,7 @@ export default {
       border-radius: 8px;
       text-transform: uppercase;
       box-shadow: 0 4px 0 #fff, 0 8px 0 rgba(0,0,0,0.1);
+      cursor: pointer;
       &.color-red {
         background-color: $color-red;
       }
