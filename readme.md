@@ -23,12 +23,12 @@
 </p>
 
 ## Features
-- Full 151 Pokémons data
+- Full 151 Pokémon data
 - Pecise Recipes data
-- Allow to filter Pokémons
+- Allow to filter Pokémon
   - by types
   - by color
-- Complete recipes for each of the Pokémons
+- Complete recipes for each of the Pokémon
 - Designed for mobile
 - Work offline
 - Fully Static Site
@@ -56,7 +56,7 @@ npm run deploy
 ```
 
 ## Where did the production data come from?
-- Pokémons data
+- Pokémon data
   - https://www.serebii.net/quest/pokemon.shtml
 - Recipe weights
   - https://www.reddit.com/r/PokemonQuest/comments/8uhl5o/pokemon_quest_mobile_datamining/
