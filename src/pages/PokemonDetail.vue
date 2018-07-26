@@ -30,6 +30,14 @@
           <h3>Automatic Style</h3>
           {{ pokemon.automaticStyle }}
         </div>
+        <div class="section">
+          <h3>Base HP</h3>
+          {{ pokemon.baseHp }}
+        </div>
+        <div class="section">
+          <h3>Base ATK</h3>
+          {{ pokemon.baseAtk }}
+        </div>
         <div v-show="dishes.length > 0" class="section dishes">
           <h3>Dishes</h3>
           <table>
