@@ -24,7 +24,7 @@ const MULLIGAN_DISH = dishes.find((dish) => dish.id === 1)
 const LEGENDARY_DISH = dishes.find((dish) => dish.id === 18)
 
 const INGAME_ORDERS_DISHES = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
-.map((id) => dishes.find((dish) => dish.id === id))
+  .map((id) => dishes.find((dish) => dish.id === id))
 const DEFAULT_MYSTICAL_DISH = LEGENDARY_DISH
 const DEFAULT_DISH = MULLIGAN_DISH
 const MATTERIAL_IS_MYSTICAL = 'mystical'
