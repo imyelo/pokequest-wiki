@@ -30,13 +30,41 @@
           <h3>Automatic Style</h3>
           {{ pokemon.automaticStyle }}
         </div>
-        <div class="section">
-          <h3>Base HP</h3>
-          {{ pokemon.baseHp }}
-        </div>
-        <div class="section">
-          <h3>Base ATK</h3>
-          {{ pokemon.baseAtk }}
+        <div class="section stats">
+          <h3>Stats (HP and ATK)</h3>
+          <div class="table-container">
+            <table>
+              <thead class="title">
+                <tr>
+                  <th :colspan="potsTable.showPotDetail ? 3 : 1" class="group-first-item clickable" @click="potsTable.showPotDetail = !potsTable.showPotDetail">Pot</th>
+                  <th :colspan="potsTable.showBase ? 2 : 1" class="group-first-item clickable" @click="potsTable.showBase = !potsTable.showBase">{{ potsTable.showBase ? 'Level 0 (Base)' : 'L0' }}</th>
+                  <th colspan="2" class="group-first-item">Level 100</th>
+                </tr>
+                <tr>
+                  <th class="group-first-item">Name</th>
+                  <th v-show="potsTable.showPotDetail">Bonus</th>
+                  <th v-show="potsTable.showPotDetail">Range</th>
+                  <th v-show="potsTable.showBase" class="group-first-item">HP</th>
+                  <th v-show="potsTable.showBase">ATK</th>
+                  <th v-show="!potsTable.showBase">...</th>
+                  <th class="group-first-item">HP</th>
+                  <th>ATK</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="pot of pots" :key="pot.id" class="pot">
+                  <td class="name group-first-item" :class="`pot-${pot.name}`">{{ pot.name }}</td>
+                  <td v-show="potsTable.showPotDetail">{{ pot.statBonus }}</td>
+                  <td v-show="potsTable.showPotDetail">{{ pot.ivRange.minimum }} - {{ pot.ivRange.maximum }}</td>
+                  <td v-show="potsTable.showBase" class="group-first-item">{{ pokemon.baseHp | statRange(pot) }}</td>
+                  <td v-show="!potsTable.showBase">...</td>
+                  <td v-show="potsTable.showBase">{{ pokemon.baseAtk | statRange(pot) }}</td>
+                  <td class="group-first-item">{{ pokemon.baseHp | statRange(pot, 100) }}</td>
+                  <td>{{ pokemon.baseAtk | statRange(pot, 100) }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div v-show="dishes.length > 0" class="section dishes">
           <h3>Dishes</h3>
@@ -44,14 +72,14 @@
             <thead class="title">
               <tr>
                 <th class="logo"></th>
-                <th class="name" @click="sortDishes('id')">
+                <th class="name clickable" @click="sortDishes('id')">
                   (ID) Name
                   <template v-if="dishesSorter.field === 'id'"><Iconfont class="icon" :type="dishesSorter.reverse ? 'sort-up' : 'sort-down'" /></template>
                 </th>
                 <th class="quality">
                   Quality
                 </th>
-                <th class="chance" @click="sortDishes('chance', true)">
+                <th class="chance clickable" @click="sortDishes('chance', true)">
                   Chance
                   <template v-if="dishesSorter.field === 'chance'"><Iconfont class="icon" :type="dishesSorter.reverse ? 'sort-up' : 'sort-down'" /></template>
                 </th>
@@ -88,7 +116,7 @@
 </template>
 
 <script>
-import { pokemons, recipes } from '../data'
+import { pokemons, recipes, pots } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 import Iconfont from '../components/iconfont/Iconfont.vue'
 
@@ -96,9 +124,14 @@ export default {
   name: 'app',
   data () {
     return {
+      pots,
       dishesSorter: {
         field: 'id',
         reverse: false,
+      },
+      potsTable: {
+        showPotDetail: false,
+        showBase: false,
       },
     }
   },
@@ -151,6 +184,11 @@ export default {
   components: {
     TypeCapsule,
     Iconfont,
+  },
+  filters: {
+    statRange (base, pot, level = 0) {
+      return `${+base + pot.statBonus + pot.ivRange.minimum + level} - ${ +base + pot.statBonus + pot.ivRange.maximum + level}`
+    },
   },
 }
 </script>
@@ -255,7 +293,7 @@ export default {
       }
     }
   }
-  .dishes {
+  .stats, .dishes {
     line-height: 2em;
     table {
       width: 100%;
@@ -287,6 +325,10 @@ export default {
       .icon {
         font-size: 10px;
       }
+      &.clickable {
+        cursor: pointer;
+        color: hsl(0,0%,30%);
+      }
     }
     td {
       text-align: center;
@@ -300,13 +342,41 @@ export default {
     }
     tbody {
       tr {
-        cursor: pointer;
         &:nth-child(2n) {
           background-color: hsl(42,52%,96%);
         }
         &:nth-child(2n+1) {
           background-color: hsl(42,52%,98%);
         }
+      }
+    }
+    .group-first-item {
+      padding-left: 1em;
+    }
+  }
+  .stats {
+    .table-container {
+      overflow-x: scroll;
+      padding-bottom: 12px;
+    }
+    table {
+      min-width: 100%;
+      width: auto;
+      table-layout: fixed;
+      td {
+        width: 80px;
+        min-width: 80px;
+        white-space: nowrap;
+      }
+    }
+    .name {
+      text-transform: capitalize;
+    }
+  }
+  .dishes {
+    tbody {
+      tr {
+        cursor: pointer;
         &:active, &:hover {
           background: hsl(40,63%,76%);
         }

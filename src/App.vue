@@ -38,7 +38,7 @@ input, textarea {
 ::-webkit-scrollbar {
   display: block;
   width: 8px;
-  height: 200px;
+  height: 8px;
 }
 ::-webkit-scrollbar-thumb {
   background-color: hsla(50,0%,100%,0.75);
