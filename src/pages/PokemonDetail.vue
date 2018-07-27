@@ -43,7 +43,7 @@
                 <tr>
                   <th class="group-first-item">Name</th>
                   <th v-show="potsTable.showPotDetail">Bonus</th>
-                  <th v-show="potsTable.showPotDetail">Range</th>
+                  <th v-show="potsTable.showPotDetail">IV Range</th>
                   <th v-show="potsTable.showBase" class="group-first-item">HP</th>
                   <th v-show="potsTable.showBase">ATK</th>
                   <th v-show="!potsTable.showBase">...</th>
