@@ -1,3 +1,4 @@
 [submodule "src/data/raw/production"]
 	path = src/data/raw/production
 	url = git@github.com:imyelo/pokequest-wiki-data.git
+  branch = master
