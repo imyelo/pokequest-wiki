@@ -1528,46 +1528,62 @@ export default {
     {
       "id": 1,
       "name": "brass",
-      "stat-bonus": 0,
-      "iv-range-minimum": 0,
-      "iv-range-maximum": 10,
-      "cook-turns-normal": 2,
-      "cook-turns-good": 4,
-      "cook-turns-very-good": 5,
-      "cook-turns-special": 6
+      "statBonus": 0,
+      "ivRange": {
+        "minimum": 0,
+        "maximum": 10
+      },
+      "cookTurns": {
+        "normal": 2,
+        "good": 4,
+        "veryGood": 5,
+        "special": 6
+      }
     },
     {
       "id": 2,
       "name": "bronze",
-      "stat-bonus": 50,
-      "iv-range-minimum": 0,
-      "iv-range-maximum": 50,
-      "cook-turns-normal": 2,
-      "cook-turns-good": 4,
-      "cook-turns-very-good": 5,
-      "cook-turns-special": 6
+      "statBonus": 50,
+      "ivRange": {
+        "minimum": 0,
+        "maximum": 50
+      },
+      "cookTurns": {
+        "normal": 2,
+        "good": 4,
+        "veryGood": 5,
+        "special": 6
+      }
     },
     {
       "id": 3,
       "name": "silver",
-      "stat-bonus": 100,
-      "iv-range-minimum": 0,
-      "iv-range-maximum": 100,
-      "cook-turns-normal": 3,
-      "cook-turns-good": 5,
-      "cook-turns-very-good": 6,
-      "cook-turns-special": 7
+      "statBonus": 100,
+      "ivRange": {
+        "minimum": 0,
+        "maximum": 100
+      },
+      "cookTurns": {
+        "normal": 3,
+        "good": 5,
+        "veryGood": 6,
+        "special": 7
+      }
     },
     {
       "id": 4,
       "name": "gold",
-      "stat-bonus": 300,
-      "iv-range-minimum": 0,
-      "iv-range-maximum": 100,
-      "cook-turns-normal": 4,
-      "cook-turns-good": 6,
-      "cook-turns-very-good": 7,
-      "cook-turns-special": 8
+      "statBonus": 300,
+      "ivRange": {
+        "minimum": 0,
+        "maximum": 100
+      },
+      "cookTurns": {
+        "normal": 4,
+        "good": 6,
+        "veryGood": 7,
+        "special": 8
+      }
     }
   ]
 }

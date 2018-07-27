@@ -8,6 +8,7 @@ const database = require(`./raw/${ENV}/index.js`).default
 export let pokemons = database.pokemons
 export let dishes = database.dishes
 export let ingredients = database.ingredients
+export let pots = database.pots
 export let recipes
 
 const DISH_WEIGHT_KEY = {
