@@ -1523,5 +1523,51 @@ export default {
       "quality": 2,
       "logo": require('./images/ingredients/0.png')
     }
+  ],
+  "pots": [
+    {
+      "id": 1,
+      "name": "brass",
+      "stat-bonus": 0,
+      "iv-range-minimum": 0,
+      "iv-range-maximum": 10,
+      "cook-turns-normal": 2,
+      "cook-turns-good": 4,
+      "cook-turns-very-good": 5,
+      "cook-turns-special": 6
+    },
+    {
+      "id": 2,
+      "name": "bronze",
+      "stat-bonus": 50,
+      "iv-range-minimum": 0,
+      "iv-range-maximum": 50,
+      "cook-turns-normal": 2,
+      "cook-turns-good": 4,
+      "cook-turns-very-good": 5,
+      "cook-turns-special": 6
+    },
+    {
+      "id": 3,
+      "name": "silver",
+      "stat-bonus": 100,
+      "iv-range-minimum": 0,
+      "iv-range-maximum": 100,
+      "cook-turns-normal": 3,
+      "cook-turns-good": 5,
+      "cook-turns-very-good": 6,
+      "cook-turns-special": 7
+    },
+    {
+      "id": 4,
+      "name": "gold",
+      "stat-bonus": 300,
+      "iv-range-minimum": 0,
+      "iv-range-maximum": 100,
+      "cook-turns-normal": 4,
+      "cook-turns-good": 6,
+      "cook-turns-very-good": 7,
+      "cook-turns-special": 8
+    }
   ]
 }
