@@ -15,6 +15,26 @@
 
     <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
     <link href='https://fonts.font.im/css?family=Open+Sans:400,300,600,400italic,800' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+      #trouble {
+        font-size: 12px;
+        color: hsl(0,0%,30%);
+        margin: 4em 2em;
+        line-height: 1.5em;
+        display: none;
+      }
+      #trouble.show {
+        display: block;
+      }
+      #trouble p {
+        margin: 1em 0;
+      }
+      #trouble a {
+        color: hsl(0,0%,20%);
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
     <noscript>
@@ -22,7 +42,52 @@
     </noscript>
 
     <img src="<%= BASE_URL %>favicon.png" style="position: fixed; z-index: -1; opacity: 0;" alt="thumbnail for wechat" />
-    <div id="app"></div>
+    <div id="app">
+      <div id="trouble">
+        <h2>Oops!</h2>
+        <p>It seems like the browser took you a long time to load the resources of <strong><i>PokeQuest.Wiki</i></strong>.</p>
+        <p>Of course you can continue to wait for the load to complete, but if you're sure your network speed is super fast, please press <i>Ctrl+F5</i> or <i>Ctrl+Shift+R</i> to have your browser try again.</p>
+        <p>Or <a id="clear-service-workers">click here</a> to clean up PokeQuest's cached local files. </p>
+        <p>If you're still having trouble, please <a href="https://github.com/imyelo/pokequest-wiki/issues" target="_blank">contact us here.</a></p>
+      </div>
+    </div>
+
+    <script>
+      ;(function () {
+        var TIMEOUT = 8 * 1000
+
+        var button = document.getElementById('clear-service-workers')
+        if (button) {
+          button.addEventListener('click', clear)
+        }
+
+        setTimeout(function () {
+          var div = document.getElementById('trouble')
+          if (div) {
+            div.className += 'show'
+          }
+        }, TIMEOUT)
+
+        function clear () {
+          try {
+            if (!navigator.serviceWorker) {
+              return
+            }
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+              var registration
+              for (registration of registrations) {
+                registration.unregister()
+              }
+            }).then(function () {
+              window.location.reload()
+            })
+          } catch (error) {
+            window.alert(error)
+          }
+        }
+      })()
+    </script>
+
     <!-- built files will be auto injected -->
   </body>
 </html>
