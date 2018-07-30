@@ -1,4 +1,4 @@
-importScripts("/static/precache-manifest.9832037e57f06837fc086cd5d7aa5155.js", "/static/workbox-v3.4.1/workbox-sw.js");
+importScripts("/static/precache-manifest.c319a44bd2ca69237365be9b93ca290f.js", "/static/workbox-v3.4.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/static/workbox-v3.4.1"});
 workbox.core.setCacheNameDetails({ prefix: 'pokequest-wiki' })
 
