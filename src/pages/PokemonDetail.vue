@@ -73,6 +73,41 @@
             </table>
           </div>
         </div>
+        <div class="section bingo">
+          <h3>Bingo bonus</h3>
+          <div class="table-container">
+            <table>
+              <thead class="title">
+                <tr>
+                  <th>Slot</th>
+                  <th>Bingo bonus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template v-for="(slot, slotIndex) of pokemon.bonus">
+                  <template v-if="!~bingosTable.hiddenSlots.indexOf(slotIndex)">
+                    <tr v-for="(bonus, index) of slot" :key="`${slotIndex}-${index}`" class="slot">
+                      <td v-if="index === 0" rowspan="3" @click="switchBingosTableSlot(slotIndex)">
+                        <Iconfont type="minus-circle-o" class="icon" />
+                        Slot {{ slotIndex + 1 }}
+                      </td>
+                      <td>{{ bonus }}</td>
+                    </tr>
+                  </template>
+                  <template v-else>
+                    <tr :key="slotIndex">
+                      <td @click="switchBingosTableSlot(slotIndex)">
+                        <Iconfont type="plus-circle" class="icon" />
+                        Slot {{ slotIndex + 1 }}
+                      </td>
+                      <td>...</td>
+                    </tr>
+                  </template>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div v-show="dishes.length > 0" class="section dishes">
           <h3>Dishes</h3>
           <table>
@@ -138,6 +173,9 @@ export default {
         field: 'id',
         reverse: false,
       },
+      bingosTable: {
+        hiddenSlots: [],
+      },
       statsTable: {
         showPotDetail: false,
         showBase: false,
@@ -190,6 +228,14 @@ export default {
         return
       }
       this.statsTable.customLevel = level
+    },
+    switchBingosTableSlot (slot) {
+      let index = this.bingosTable.hiddenSlots.indexOf(slot)
+      if (~index) {
+        this.bingosTable.hiddenSlots = [...this.bingosTable.hiddenSlots.slice(0, index), ...this.bingosTable.hiddenSlots.slice(index + 1)]
+      } else {
+        this.bingosTable.hiddenSlots.push(slot)
+      }
     },
     toDish (id, quality) {
       this.$router.push(`/dishes/${id}?anchor=Quality-${quality}`)
@@ -320,7 +366,7 @@ export default {
       }
     }
   }
-  .stats, .dishes {
+  .stats, .bingo, .dishes {
     line-height: 2em;
     table {
       width: 100%;
