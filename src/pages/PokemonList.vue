@@ -26,12 +26,19 @@
       </div>
 
       <div class="toolbar" slot="absolute">
-        <transition name="toolbar-button">
-          <div key="top" v-if="!isAtTop && !isAtBottom" class="button" @click="scrollToTop"><Iconfont class="icon" type="top" /></div>
-        </transition>
-        <transition name="toolbar-button">
-          <div key="filter" v-if="!showFilters && !isAtBottom" class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
-        </transition>
+        <div class="toolbar-left">
+          <transition name="toolbar-left-button">
+            <div key="language" v-if="isAtTop" class="button" @click="switchLanguage"><Iconfont class="icon" type="wen" /></div>
+          </transition>
+        </div>
+        <div class="toolbar-right">
+          <transition name="toolbar-right-button">
+            <div key="top" v-if="!isAtTop && !isAtBottom" class="button" @click="scrollToTop"><Iconfont class="icon" type="top" /></div>
+          </transition>
+          <transition name="toolbar-right-button">
+            <div key="filter" v-if="!showFilters && !isAtBottom" class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
+          </transition>
+        </div>
       </div>
     </Main>
 
@@ -79,7 +86,7 @@
 
 <script>
 import debounce from 'just-debounce-it'
-import { POKEMON_TYPES, POKEMON_COLORS } from '../constants'
+import { POKEMON_TYPES, POKEMON_COLORS, LANGUAGES } from '../constants'
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 import Iconfont from '../components/iconfont/Iconfont.vue'
@@ -135,6 +142,10 @@ export default {
   methods: {
     toDetail (id) {
       this.$router.push(`/pokemon/${id}`)
+    },
+    switchLanguage () {
+      let index = LANGUAGES.indexOf(this.$i18n.locale)
+      this.$i18n.locale = LANGUAGES[(index + 1) % LANGUAGES.length]
     },
     switchPicture () {
       this.picture = this.picture === 'avatar' ? 'sprite' : 'avatar'
@@ -296,17 +307,24 @@ export default {
 }
 
 .toolbar {
-  position: absolute;
-  z-index: 10;
-  bottom: 0;
-  right: 0;
-  height: 90px;
-  background-color: transparent;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 12px;
-  box-sizing: border-box;
+  .toolbar-left, .toolbar-right {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    height: 90px;
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+  .toolbar-left {
+    left: 0;
+  }
+  .toolbar-right {
+    right: 0;
+  }
   .button {
     background: hsl(0,0%,95%);
     color: hsl(0,0%,55%);
@@ -486,10 +504,14 @@ export default {
   }
 }
 
-.toolbar-button-enter-active, .toolbar-button-leave-active {
+.toolbar-left-button-enter-active, .toolbar-left-button-leave-active, .toolbar-right-button-enter-active, .toolbar-right-button-leave-active {
   transition: all 400ms;
 }
-.toolbar-button-enter, .toolbar-button-leave-to {
+.toolbar-left-button-enter, .toolbar-left-button-leave-to {
+  opacity: 0;
+  transform: translate3d(-10px, 0, 0);
+}
+.toolbar-right-button-enter, .toolbar-right-button-leave-to {
   opacity: 0;
   transform: translate3d(10px, 0, 0);
 }

@@ -31,3 +31,8 @@ export const RECIPE_QUALITIES = [
   'VERY_GOOD',
   'SPECIAL',
 ]
+
+export const LANGUAGES = [
+  'en',
+  'zh',
+]
