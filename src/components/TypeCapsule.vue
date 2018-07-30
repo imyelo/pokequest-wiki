@@ -20,6 +20,7 @@ export default {
   font-family: "Open Sans";
   text-transform: capitalize;
   font-size: 10px;
+  line-height: 1em;
   padding: 0.5em 1em;
   background-color: #ddd;
   color: #fff;

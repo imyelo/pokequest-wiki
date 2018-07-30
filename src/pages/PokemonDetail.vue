@@ -108,6 +108,31 @@
             </table>
           </div>
         </div>
+        <div class="section moves">
+          <h3>Moves</h3>
+          <div class="table-container">
+            <table>
+              <thead class="title">
+                <tr>
+                  <th class="type">Type</th>
+                  <th>Name</th>
+                  <th>Attack</th>
+                  <th>Wait</th>
+                  <th>Learnable</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(move, index) of pokemon.moves" :key="index" class="move">
+                  <td class="type"><type-capsule :value="move.type" /></td>
+                  <td>{{ move.name }}</td>
+                  <td>{{ move.attack }}</td>
+                  <td>{{ move.wait }}</td>
+                  <td>{{ move.learnable ? '√' : move.method }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div v-show="dishes.length > 0" class="section dishes">
           <h3>Dishes</h3>
           <table>
@@ -366,7 +391,7 @@ export default {
       }
     }
   }
-  .stats, .bingo, .dishes {
+  .stats, .bingo, .moves, .dishes {
     line-height: 2em;
     table {
       width: 100%;
@@ -431,7 +456,7 @@ export default {
       padding-left: 1em;
     }
   }
-  .stats {
+  .stats, .moves {
     .table-container {
       overflow-x: scroll;
       padding-bottom: 12px;
@@ -441,13 +466,30 @@ export default {
       width: auto;
       table-layout: fixed;
       td {
+        white-space: nowrap;
+      }
+    }
+  }
+  .stats {
+    table {
+      td {
         width: 80px;
         min-width: 80px;
-        white-space: nowrap;
       }
     }
     .name {
       text-transform: capitalize;
+    }
+  }
+  .moves {
+    table {
+      td {
+        width: 64px;
+        min-width: 64px;
+      }
+    }
+    .type {
+      padding-right: 8px;
     }
   }
   .dishes {
