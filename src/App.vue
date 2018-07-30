@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
 body, html {
   margin: 0;
   padding: 0;
@@ -24,15 +24,11 @@ body, html {
 }
 
 * {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 input, textarea {
-  -webkit-user-select: text;
-     -moz-user-select: text;
-          user-select: text;
+  user-select: text;
 }
 
 ::-webkit-scrollbar {
