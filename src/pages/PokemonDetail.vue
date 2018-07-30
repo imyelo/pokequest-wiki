@@ -87,7 +87,7 @@
                 <template v-for="(slot, slotIndex) of pokemon.bonus">
                   <template v-if="!~bingosTable.hiddenSlots.indexOf(slotIndex)">
                     <tr v-for="(bonus, index) of slot" :key="`${slotIndex}-${index}`" class="slot">
-                      <td v-if="index === 0" rowspan="3" @click="switchBingosTableSlot(slotIndex)">
+                      <td class="clickable" v-if="index === 0" rowspan="3" @click="switchBingosTableSlot(slotIndex)">
                         <Iconfont type="minus-circle-o" class="icon" />
                         Slot {{ slotIndex + 1 }}
                       </td>
@@ -96,7 +96,7 @@
                   </template>
                   <template v-else>
                     <tr :key="slotIndex">
-                      <td @click="switchBingosTableSlot(slotIndex)">
+                      <td class="clickable" @click="switchBingosTableSlot(slotIndex)">
                         <Iconfont type="plus-circle" class="icon" />
                         Slot {{ slotIndex + 1 }}
                       </td>
@@ -406,6 +406,10 @@ export default {
     td {
       text-align: center;
       padding: 12px 0;
+      &.clickable {
+        cursor: pointer;
+        color: hsl(0,0%,30%);
+      }
     }
     thead {
       tr {
