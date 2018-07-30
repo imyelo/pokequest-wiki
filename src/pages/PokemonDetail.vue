@@ -42,7 +42,9 @@
                   <th :colspan="statsTable.showBase ? 2 : 1" class="group-first-item clickable" @click="statsTable.showBase = !statsTable.showBase">
                     <Iconfont :type="statsTable.showBase ? 'minus-circle-o' : 'plus-circle'" class="icon" /> {{ statsTable.showBase ? 'Level 0 (Base)' : 'L0' }}
                   </th>
-                  <th colspan="2" class="group-first-item">Level 100</th>
+                  <th colspan="2" class="group-first-item" @click="editStatsTableCustomLevel">
+                    Level {{ statsTable.customLevel }} <Iconfont type="edit" class="icon" />
+                  </th>
                 </tr>
                 <tr>
                   <th class="group-first-item">Name</th>
@@ -63,8 +65,8 @@
                   <td v-show="statsTable.showBase" class="group-first-item">{{ pokemon.baseHp | statRange(pot) }}</td>
                   <td v-show="!statsTable.showBase" @click="statsTable.showBase = true">...</td>
                   <td v-show="statsTable.showBase">{{ pokemon.baseAtk | statRange(pot) }}</td>
-                  <td class="group-first-item">{{ pokemon.baseHp | statRange(pot, 100) }}</td>
-                  <td>{{ pokemon.baseAtk | statRange(pot, 100) }}</td>
+                  <td class="group-first-item">{{ pokemon.baseHp | statRange(pot, statsTable.customLevel) }}</td>
+                  <td>{{ pokemon.baseAtk | statRange(pot, statsTable.customLevel) }}</td>
                 </tr>
               </tbody>
             </table>
@@ -124,6 +126,8 @@ import { pokemons, recipes, pots } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 import Iconfont from '../components/iconfont/Iconfont.vue'
 
+const DEFAULT_STATS_TABLE_CUSTOM_LEVEL = 100
+
 export default {
   name: 'app',
   data () {
@@ -136,6 +140,7 @@ export default {
       statsTable: {
         showPotDetail: false,
         showBase: false,
+        customLevel: DEFAULT_STATS_TABLE_CUSTOM_LEVEL,
       },
     }
   },
@@ -170,6 +175,20 @@ export default {
           reverse: reverseFirst,
         }
       }
+    },
+    editStatsTableCustomLevel () {
+      let string = window.prompt('Please enter the level you want (from 1 to 100) :', this.statsTable.customLevel)
+      if (string === null) {
+        return
+      }
+      let level = parseInt(string)
+      if (!level || level < 1 || level > 100) {
+        if (window.confirm('This is not a valid level. Would you like to try again?')) {
+          this.editStatsTableCustomLevel()
+        }
+        return
+      }
+      this.statsTable.customLevel = level
     },
     toDish (id, quality) {
       this.$router.push(`/dishes/${id}?anchor=Quality-${quality}`)
