@@ -27,7 +27,8 @@
           <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`" @click="toPokemonList({ color: pokemon.color.toLowerCase() })">{{ pokemon.color }}</span>
         </div>
         <div class="section">
-          <h3>Automatic Style</h3>
+          <h3>Attack mode</h3>
+          <Iconfont :type="pokemon.automaticStyle.toLowerCase() === 'melee' ? 'melee' : pokemon.automaticStyle.toLowerCase() === 'range' ? 'bow' : 'question'" class="icon"/>
           {{ pokemon.automaticStyle }}
         </div>
         <div class="section stats">
@@ -263,6 +264,9 @@ export default {
       border-bottom: 1px solid #444;
       color: #444;
       font-weight: normal;
+    }
+    .icon {
+      font-size: 12px;
     }
   }
   .picture {
