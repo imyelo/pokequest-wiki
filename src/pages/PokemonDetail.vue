@@ -1,56 +1,56 @@
 <template>
-  <Screen :title="pokemon.name">
+  <Screen :title="$t(`pokemon[${JSON.stringify(pokemon.name)}]`)">
     <Main ref="main">
       <div class="pokemon">
         <div class="header">
           <div class="avatar"><img :src="pokemon.avatar" /></div>
           <div class="title">
             <div class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</div>
-            <div class="name">{{ pokemon.name }}</div>
+            <div class="name">{{ $t(`pokemon[${JSON.stringify(pokemon.name)}]`) }}</div>
           </div>
         </div>
         <div class="section classification">{{ pokemon.classification }}</div>
         <div class="section type-list">
-          <h3>Type</h3>
+          <h3>{{ $tc('concepts.type') }}</h3>
           <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" @click.native="toPokemonList({ types: type })" />
         </div>
         <div class="section picture">
-          <h3>Sprite</h3>
+          <h3>{{ $tc('concepts.sprite') }}</h3>
           <div class="sprite"><img :src="pokemon.sprite" /></div>
         </div>
-        <div v-show="pokemon.evolution" class="section evolution">
-          <h3>Evolution</h3>
+        <div v-if="pokemon.evolution" class="section evolution">
+          <h3>{{ $tc('concepts.evolution') }}</h3>
           {{ pokemon.evolution }}
         </div>
-        <div v-show="pokemon.color !== 'unknown'" class="section color">
-          <h3>Color</h3>
-          <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`" @click="toPokemonList({ color: pokemon.color.toLowerCase() })">{{ pokemon.color }}</span>
+        <div v-if="pokemon.color !== 'unknown'" class="section color">
+          <h3>{{ $tc('concepts.color') }}</h3>
+          <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`" @click="toPokemonList({ color: pokemon.color.toLowerCase() })">{{ $t(`colors[${JSON.stringify(pokemon.color.toLowerCase())}]`) }}</span>
         </div>
         <div class="section">
-          <h3>Attack mode</h3>
+          <h3>{{ $tc('concepts.attack-mode') }}</h3>
           <Iconfont :type="pokemon.automaticStyle.toLowerCase() === 'melee' ? 'melee' : pokemon.automaticStyle.toLowerCase() === 'range' ? 'bow' : 'question'" class="icon"/>
-          {{ pokemon.automaticStyle }}
+          {{ $tc(`attack-modes[${JSON.stringify(pokemon.automaticStyle.toLowerCase())}]`) }}
         </div>
         <div class="section stats">
-          <h3>Stats (HP and ATK)</h3>
+          <h3>{{ $tc('concepts.stat', 2) }} (HP and ATK)</h3>
           <div class="table-container">
             <table>
               <thead class="title">
                 <tr>
                   <th :colspan="statsTable.showPotDetail ? 3 : 1" class="group-first-item clickable" @click="statsTable.showPotDetail = !statsTable.showPotDetail">
-                    <Iconfont :type="statsTable.showPotDetail ? 'minus-circle-o' : 'plus-circle'" class="icon" /> Pot
+                    <Iconfont :type="statsTable.showPotDetail ? 'minus-circle-o' : 'plus-circle'" class="icon" /> {{ $tc('concepts.pot') }}
                   </th>
                   <th :colspan="statsTable.showBase ? 2 : 1" class="group-first-item clickable" @click="statsTable.showBase = !statsTable.showBase">
-                    <Iconfont :type="statsTable.showBase ? 'minus-circle-o' : 'plus-circle'" class="icon" /> {{ statsTable.showBase ? 'Level 0 (Base)' : 'L0' }}
+                    <Iconfont :type="statsTable.showBase ? 'minus-circle-o' : 'plus-circle'" class="icon" /> {{ statsTable.showBase ? `Level 0 (${$tc('concepts.base')})` : 'L0' }}
                   </th>
                   <th colspan="2" class="group-first-item" @click="editStatsTableCustomLevel">
                     Level {{ statsTable.customLevel }} <Iconfont type="edit" class="icon" />
                   </th>
                 </tr>
                 <tr>
-                  <th class="group-first-item">Name</th>
-                  <th v-show="statsTable.showPotDetail">Bonus</th>
-                  <th v-show="statsTable.showPotDetail">IV Range</th>
+                  <th class="group-first-item">{{ $tc('concepts.name') }}</th>
+                  <th v-show="statsTable.showPotDetail">{{ $tc('concepts.bonus') }}</th>
+                  <th v-show="statsTable.showPotDetail">{{ $tc('concepts.iv-range') }}</th>
                   <th v-show="statsTable.showBase" class="group-first-item">HP</th>
                   <th v-show="statsTable.showBase">ATK</th>
                   <th v-show="!statsTable.showBase" @click="statsTable.showBase = true">...</th>
@@ -60,7 +60,7 @@
               </thead>
               <tbody>
                 <tr v-for="pot of pots" :key="pot.id" class="pot">
-                  <td class="name group-first-item" :class="`pot-${pot.name}`">{{ pot.name }}</td>
+                  <td class="name group-first-item" :class="`pot-${pot.name}`">{{ $t(`pots[${JSON.stringify(pot.name)}]`) }}</td>
                   <td v-show="statsTable.showPotDetail">{{ pot.statBonus }}</td>
                   <td v-show="statsTable.showPotDetail">{{ pot.ivRange.minimum }} - {{ pot.ivRange.maximum }}</td>
                   <td v-show="statsTable.showBase" class="group-first-item">{{ pokemon.baseHp | statRange(pot) }}</td>
@@ -74,22 +74,22 @@
           </div>
         </div>
         <div class="section bingo">
-          <h3>Bingo bonus</h3>
+          <h3>{{ $tc('concepts.bingo-bonus') }}</h3>
           <div class="table-container">
             <table>
               <thead class="title">
                 <tr>
-                  <th>Slot</th>
-                  <th>Bingo bonus</th>
+                  <th>{{ $tc('concepts.slot') }}</th>
+                  <th>{{ $tc('concepts.bingo-bonus') }}</th>
                 </tr>
               </thead>
               <tbody>
                 <template v-for="(slot, slotIndex) of pokemon.bonus">
                   <template v-if="!~bingosTable.hiddenSlots.indexOf(slotIndex)">
-                    <tr v-for="(bonus, index) of slot" :key="`${slotIndex}-${index}`" class="slot">
-                      <td class="clickable" v-if="index === 0" rowspan="3" @click="switchBingosTableSlot(slotIndex)">
+                    <tr v-for="(bonus, index) of slot" :key="`${slotIndex}-${index}`">
+                      <td class="slot clickable" v-if="index === 0" rowspan="3" @click="switchBingosTableSlot(slotIndex)">
                         <Iconfont type="minus-circle-o" class="icon" />
-                        Slot {{ slotIndex + 1 }}
+                        {{ $tc('concepts.slot') }} {{ slotIndex + 1 }}
                       </td>
                       <td>{{ bonus }}</td>
                     </tr>
@@ -98,7 +98,7 @@
                     <tr :key="slotIndex">
                       <td class="clickable" @click="switchBingosTableSlot(slotIndex)">
                         <Iconfont type="plus-circle" class="icon" />
-                        Slot {{ slotIndex + 1 }}
+                        {{ $tc('concepts.slot') }} {{ slotIndex + 1 }}
                       </td>
                       <td>...</td>
                     </tr>
@@ -109,16 +109,16 @@
           </div>
         </div>
         <div class="section moves">
-          <h3>Moves</h3>
+          <h3>{{ $tc('concepts.move', 2) }}</h3>
           <div class="table-container">
             <table>
               <thead class="title">
                 <tr>
-                  <th class="type">Type</th>
-                  <th>Name</th>
-                  <th>Attack</th>
-                  <th>Wait</th>
-                  <th>Learnable</th>
+                  <th class="type">{{ $tc('concepts.type') }}</th>
+                  <th>{{ $tc('concepts.name') }}</th>
+                  <th>{{ $tc('concepts.attack') }}</th>
+                  <th>{{ $tc('concepts.wait') }}</th>
+                  <th>{{ $tc('concepts.learnable') }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -134,20 +134,20 @@
           </div>
         </div>
         <div v-show="dishes.length > 0" class="section dishes">
-          <h3>Dishes</h3>
+          <h3>{{ $tc('concepts.dish', 2) }}</h3>
           <table>
             <thead class="title">
               <tr>
                 <th class="logo"></th>
                 <th class="name clickable" @click="sortDishes('id')">
-                  (ID) Name
+                  (ID) {{ $tc('concepts.name') }}
                   <Iconfont class="icon" :type="dishesSorter.field !== 'id' ? 'minus' : dishesSorter.reverse ? 'sort-up' : 'sort-down'" />
                 </th>
                 <th class="quality">
-                  Quality
+                  {{ $tc('concepts.quality') }}
                 </th>
                 <th class="chance clickable" @click="sortDishes('chance', true)">
-                  Chance
+                  {{ $tc('concepts.chance') }}
                   <Iconfont class="icon" :type="dishesSorter.field !== 'chance' ? 'minus' : dishesSorter.reverse ? 'sort-up' : 'sort-down'" />
                 </th>
               </tr>
@@ -155,15 +155,15 @@
             <tbody>
               <tr v-for="(dish, index) of dishes" :key="index" class="dish" :class="{ 'not-exist': !dish.isExist }" @click="toDish(dish.id, dish.quality)">
                 <td class="logo"><img :src="dish.logo" /></td>
-                <td class="name">{{ dish.name }}</td>
-                <td class="quality">{{ dish.quality }}</td>
+                <td class="name">{{ $t(`dishes[${JSON.stringify(dish.name)}]`) }}</td>
+                <td class="quality">{{ $t(`qualities[${JSON.stringify(dish.quality)}]`) }}</td>
                 <td class="chance">{{ (dish.chance * 100).toFixed(2) }}%</td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="section pokemons">
-          <h3>See other pokémon</h3>
+          <h3>{{ $t('messages.see-other-pokemon') }}</h3>
           <div class="paginations">
             <div v-if="previous.id" class="previous" @click="toPokemon(previous.id)">
               <Iconfont class="icon" type="left" />
@@ -335,6 +335,7 @@ export default {
       border-bottom: 1px solid #444;
       color: #444;
       font-weight: normal;
+      text-transform: capitalize;
     }
     .icon {
       font-size: 12px;
@@ -420,6 +421,7 @@ export default {
     th {
       padding: 12px 0;
       line-height: 2em;
+      text-transform: capitalize;
       .icon {
         font-size: 10px;
       }
@@ -478,6 +480,11 @@ export default {
       }
     }
     .name {
+      text-transform: capitalize;
+    }
+  }
+  .bingo {
+    .slot {
       text-transform: capitalize;
     }
   }

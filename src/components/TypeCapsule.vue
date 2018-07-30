@@ -1,6 +1,6 @@
 <template>
   <div class="capsule" :class="`type-${value}`">
-    {{ value }}
+    {{ $t(`types[${JSON.stringify(value)}]`) }}
   </div>
 </template>
 

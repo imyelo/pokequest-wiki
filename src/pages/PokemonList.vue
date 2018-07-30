@@ -9,7 +9,7 @@
         </div>
         <div v-for="pokemon in pokemons" :key="pokemon.id" class="pokemon" :class="`color-${pokemon.color.toLowerCase()}`" @click="toDetail(pokemon.id)">
           <div class="information">
-            <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ pokemon.name }}</div>
+            <div class="title"><span class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</span> {{ $t(`pokemon[${JSON.stringify(pokemon.name)}]`) }}</div>
             <div class="type-list">
               <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" />
             </div>
@@ -41,33 +41,33 @@
       <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>
         <div class="panel">
           <h2>
-            <Iconfont class="icon" type="filter" /> Pokémon Filter
+            <Iconfont class="icon" type="filter" /> {{ $t('concepts.pokemon-filter') }}
             <div class="close" @click.prevent="showFilters = false"><Iconfont class="icon" type="close-selected" /></div>
           </h2>
           <div class="filter">
-            <h3>Type</h3>
+            <h3>{{ $tc('concepts.type') }}</h3>
             <div class="options">
               <div v-for="type in POKEMON_TYPES" :key="type" class="option" :class="`type-${type}`" @click="switchFilter('types', type)">
                 <span class="check" :class="{ 'is-checked': ~filters.types.indexOf(type) }"><Iconfont v-if="~filters.types.indexOf(type)" class="icon" type="check" /></span>
-                {{ type }}
+                {{ $t(`types[${JSON.stringify(type)}]`) }}
               </div>
             </div>
           </div>
           <div class="filter">
-            <h3>Color</h3>
+            <h3>{{ $tc('concepts.color') }}</h3>
             <div class="options">
               <div v-for="color in POKEMON_COLORS" :key="color" class="option" :class="`color-${color}`" @click="switchFilter('color', color)">
                 <span class="check" :class="{ 'is-checked': filters.color === color }"><Iconfont v-if="filters.color === color" class="icon" type="check" /></span>
-                {{ color }}
+                {{ $t(`colors[${JSON.stringify(color)}]`) }}
               </div>
             </div>
           </div>
           <div class="filter">
-            <h3>Advanced</h3>
+            <h3>{{ $tc('concepts.advanced') }}</h3>
             <div class="options">
               <div class="option" @click="switchFilter('summonable')">
                 <span class="check" :class="{ 'is-checked': filters.summonable }"><Iconfont v-if="filters.summonable" class="icon" type="check" /></span>
-                Summonable
+                {{ $t('concepts.summonable') }}
               </div>
             </div>
           </div>
@@ -358,6 +358,7 @@ export default {
       color: #333;
       margin: 0 0 24px;
       line-height: 1em;
+      text-transform: capitalize;
       .icon {
         font-size: 24px;
       }
@@ -377,6 +378,7 @@ export default {
       font-weight: normal;
       font-size: 18px;
       color: #333;
+      text-transform: capitalize;
     }
     .options {
       display: flex;

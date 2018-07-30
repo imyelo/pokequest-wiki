@@ -24,3 +24,10 @@ export const POKEMON_COLORS = [
   'yellow',
   'gray',
 ]
+
+export const RECIPE_QUALITIES = [
+  'BASIC',
+  'GOOD',
+  'VERY_GOOD',
+  'SPECIAL',
+]

@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import VueAnalytics from 'vue-analytics'
 import AnchorPlugin from './plugins/anchor'
 import App from './App.vue'
+import i18n from './languages'
 import router from './router'
 import Screen from './components/layout/Screen.vue'
 import Main from './components/layout/Main.vue'
@@ -36,6 +37,7 @@ if (GA_ID) {
 Vue.use(AnchorPlugin)
 
 new Vue({
+  i18n,
   router,
   render: h => h(App)
 }).$mount('#app')

@@ -1,34 +1,34 @@
 <template>
-  <Screen :title="dish.name">
+  <Screen :title="$t(`dishes[${JSON.stringify(dish.name)}]`)">
     <Main>
       <div class="dish">
         <div class="header">
           <div class="title">
-            <div class="id">Dish {{ (100 + dish.id + '').slice(1) }}</div>
-            <div class="name">{{ dish.name }}</div>
+            <div class="id">{{ $tc('concepts.dish') }} {{ (100 + dish.id + '').slice(1) }}</div>
+            <div class="name">{{ $t(`dishes[${JSON.stringify(dish.name)}]`) }}</div>
           </div>
         </div>
         <div class="section">
           <div>{{ dish.description }}</div>
         </div>
         <div class="section">
-          <h3>Picture</h3>
+          <h3>{{ $tc('concepts.picture') }}</h3>
           <div class="picture"><img :src="dish.logo" /></div>
         </div>
         <div class="section">
-          <h3>Ingredients</h3>
+          <h3>{{ $tc('concepts.ingredient', 2) }}</h3>
           <div>{{ dish.ingredients }}</div>
         </div>
         <div class="section recipes">
-          <h3>Recipes</h3>
+          <h3>{{ $tc('concepts.recipe', 2) }}</h3>
           <div v-for="(quality, index) in qualities" :key="index" class="group">
-            <h4 :data-anchor="`Quality-${quality.value}`">{{ quality.title }}</h4>
+            <h4 :data-anchor="`Quality-${quality.value}`">{{ $tc('concepts.quality') }}: {{ $tc(`qualities[${JSON.stringify(quality.value)}]`) }}</h4>
             <div class="pokemons">
               <table>
                 <thead>
                   <tr>
-                    <th>Pokémon</th>
-                    <th>Chance</th>
+                    <th>{{ $tc('concepts.pokemon') }}</th>
+                    <th>{{ $tc('concepts.chance') }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -46,9 +46,9 @@
               </table>
             </div>
             <div class="combinations">
-              <h5>Combinations <span class="count">({{ quality.recipes.length }})</span></h5>
+              <h5>{{ $tc('concepts.combination', 2) }} <span class="count">({{ quality.recipes.length }})</span></h5>
               <div v-if="quality.recipes.length === 0" class="ingredients">
-                Not exist
+                {{ $t('messages.not-exist') }}
               </div>
               <div v-for="recipe in quality.recipes" :key="recipe.id" class="ingredients">
                 <div v-for="(ingredient, index) in recipe.ingredients" :key="index" class="ingredient" :class="{ small: ingredient.quality === 1 }">
@@ -66,25 +66,7 @@
 
 <script>
 import { pokemons, dishes, recipes } from '../data'
-
-const QUALITIES = [
-  {
-    title: 'Quality: Basic',
-    value: 'BASIC',
-  },
-  {
-    title: 'Quality: Good',
-    value: 'GOOD',
-  },
-  {
-    title: 'Quality: Very good',
-    value: 'VERY_GOOD',
-  },
-  {
-    title: 'Quality: Special',
-    value: 'SPECIAL',
-  },
-]
+import { RECIPE_QUALITIES } from '../constants'
 
 export default {
   name: 'app',
@@ -94,12 +76,12 @@ export default {
     },
     qualities () {
       let matchRecipes = recipes.filter((recipe) => recipe.dish.id === +this.$route.params.id) || []
-      return QUALITIES.map((quality) => ({
-        ...quality,
-        recipes: matchRecipes.filter((recipe) => recipe.quality === quality.value),
+      return RECIPE_QUALITIES.map((quality) => ({
+        value: quality,
+        recipes: matchRecipes.filter((recipe) => recipe.quality === quality),
         pokemons: pokemons
           .map((pokemon) => {
-            let dish = pokemon.dishes.find((dish) => dish.id === +this.$route.params.id && dish.quality === quality.value)
+            let dish = pokemon.dishes.find((dish) => dish.id === +this.$route.params.id && dish.quality === quality)
             if (!dish) {
               return
             }
@@ -141,6 +123,7 @@ export default {
       .id {
         font-size: 12px;
         line-height: 1em;
+        text-transform: capitalize;
       }
       .name {
         font-weight: 800;
@@ -160,6 +143,7 @@ export default {
       border-bottom: 1px solid #444;
       color: #444;
       font-weight: normal;
+      text-transform: capitalize;
     }
   }
   .picture {
@@ -206,6 +190,7 @@ export default {
       th {
         padding: 12px 0;
         line-height: 2em;
+        text-transform: capitalize;
       }
       td {
         text-align: center;
@@ -258,6 +243,7 @@ export default {
         color: #666;
         text-align: center;
         background-color: hsl(42,52%,90%);
+        text-transform: capitalize;
         .count {
           padding-left: 0.5em;
           color: #999;
