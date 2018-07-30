@@ -36,17 +36,21 @@
             <table>
               <thead class="title">
                 <tr>
-                  <th :colspan="potsTable.showPotDetail ? 3 : 1" class="group-first-item clickable" @click="potsTable.showPotDetail = !potsTable.showPotDetail">Pot</th>
-                  <th :colspan="potsTable.showBase ? 2 : 1" class="group-first-item clickable" @click="potsTable.showBase = !potsTable.showBase">{{ potsTable.showBase ? 'Level 0 (Base)' : 'L0' }}</th>
+                  <th :colspan="statsTable.showPotDetail ? 3 : 1" class="group-first-item clickable" @click="statsTable.showPotDetail = !statsTable.showPotDetail">
+                    <Iconfont :type="statsTable.showPotDetail ? 'minus-circle-o' : 'plus-circle'" class="icon" /> Pot
+                  </th>
+                  <th :colspan="statsTable.showBase ? 2 : 1" class="group-first-item clickable" @click="statsTable.showBase = !statsTable.showBase">
+                    <Iconfont :type="statsTable.showBase ? 'minus-circle-o' : 'plus-circle'" class="icon" /> {{ statsTable.showBase ? 'Level 0 (Base)' : 'L0' }}
+                  </th>
                   <th colspan="2" class="group-first-item">Level 100</th>
                 </tr>
                 <tr>
                   <th class="group-first-item">Name</th>
-                  <th v-show="potsTable.showPotDetail">Bonus</th>
-                  <th v-show="potsTable.showPotDetail">IV Range</th>
-                  <th v-show="potsTable.showBase" class="group-first-item">HP</th>
-                  <th v-show="potsTable.showBase">ATK</th>
-                  <th v-show="!potsTable.showBase">...</th>
+                  <th v-show="statsTable.showPotDetail">Bonus</th>
+                  <th v-show="statsTable.showPotDetail">IV Range</th>
+                  <th v-show="statsTable.showBase" class="group-first-item">HP</th>
+                  <th v-show="statsTable.showBase">ATK</th>
+                  <th v-show="!statsTable.showBase" @click="statsTable.showBase = true">...</th>
                   <th class="group-first-item">HP</th>
                   <th>ATK</th>
                 </tr>
@@ -54,11 +58,11 @@
               <tbody>
                 <tr v-for="pot of pots" :key="pot.id" class="pot">
                   <td class="name group-first-item" :class="`pot-${pot.name}`">{{ pot.name }}</td>
-                  <td v-show="potsTable.showPotDetail">{{ pot.statBonus }}</td>
-                  <td v-show="potsTable.showPotDetail">{{ pot.ivRange.minimum }} - {{ pot.ivRange.maximum }}</td>
-                  <td v-show="potsTable.showBase" class="group-first-item">{{ pokemon.baseHp | statRange(pot) }}</td>
-                  <td v-show="!potsTable.showBase">...</td>
-                  <td v-show="potsTable.showBase">{{ pokemon.baseAtk | statRange(pot) }}</td>
+                  <td v-show="statsTable.showPotDetail">{{ pot.statBonus }}</td>
+                  <td v-show="statsTable.showPotDetail">{{ pot.ivRange.minimum }} - {{ pot.ivRange.maximum }}</td>
+                  <td v-show="statsTable.showBase" class="group-first-item">{{ pokemon.baseHp | statRange(pot) }}</td>
+                  <td v-show="!statsTable.showBase" @click="statsTable.showBase = true">...</td>
+                  <td v-show="statsTable.showBase">{{ pokemon.baseAtk | statRange(pot) }}</td>
                   <td class="group-first-item">{{ pokemon.baseHp | statRange(pot, 100) }}</td>
                   <td>{{ pokemon.baseAtk | statRange(pot, 100) }}</td>
                 </tr>
@@ -74,14 +78,14 @@
                 <th class="logo"></th>
                 <th class="name clickable" @click="sortDishes('id')">
                   (ID) Name
-                  <template v-if="dishesSorter.field === 'id'"><Iconfont class="icon" :type="dishesSorter.reverse ? 'sort-up' : 'sort-down'" /></template>
+                  <Iconfont class="icon" :type="dishesSorter.field !== 'id' ? 'minus' : dishesSorter.reverse ? 'sort-up' : 'sort-down'" />
                 </th>
                 <th class="quality">
                   Quality
                 </th>
                 <th class="chance clickable" @click="sortDishes('chance', true)">
                   Chance
-                  <template v-if="dishesSorter.field === 'chance'"><Iconfont class="icon" :type="dishesSorter.reverse ? 'sort-up' : 'sort-down'" /></template>
+                  <Iconfont class="icon" :type="dishesSorter.field !== 'chance' ? 'minus' : dishesSorter.reverse ? 'sort-up' : 'sort-down'" />
                 </th>
               </tr>
             </thead>
@@ -129,7 +133,7 @@ export default {
         field: 'id',
         reverse: false,
       },
-      potsTable: {
+      statsTable: {
         showPotDetail: false,
         showBase: false,
       },
