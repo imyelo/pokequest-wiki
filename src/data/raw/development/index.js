@@ -13,31 +13,41 @@ export default {
         {
           "name": "Petal Dance",
           "type": "grass",
-          "description": "156",
+          "attack": "156",
+          "wait": "5",
+          "description": "The user spins in place, scattering petals that deal damage to enemies around it.",
           "learnable": true
         },
         {
           "name": "Synthesis",
           "type": "grass",
-          "description": "0",
+          "attack": "0",
+          "wait": "5",
+          "description": "The user absorbs light, raising the damage it deals for a while.",
           "learnable": true
         },
         {
           "name": "Tackle",
           "type": "normal",
-          "description": "163",
+          "attack": "163",
+          "wait": "5",
+          "description": "The user smashes into enemies in front of itself with all its might, damaging them.",
           "learnable": true
         },
         {
           "name": "Toxic",
           "type": "poison",
-          "description": "59",
+          "attack": "59",
+          "wait": "4",
+          "description": "The user sprays a powerful poison around itself, often poisoning enemies hit by it.",
           "learnable": true
         },
         {
           "name": "Vine Whip",
           "type": "grass",
-          "description": "237",
+          "attack": "237",
+          "wait": "5",
+          "description": "The user strikes enemies in front of itself with whiplike vines. Deals damage to enemies hit by them.",
           "learnable": true
         }
       ],
@@ -104,49 +114,65 @@ export default {
         {
           "name": "Leech Seed",
           "type": "grass",
-          "description": "103",
+          "attack": "103",
+          "wait": "9",
+          "description": "The user plants a seed on the ground in front of itself. Enemies in range are gradually damaged. Part of the damage dealt is absorbed to restore the user's HP.",
           "learnable": true
         },
         {
           "name": "Petal Dance",
           "type": "grass",
-          "description": "156",
+          "attack": "156",
+          "wait": "5",
+          "description": "The user spins in place, scattering petals that deal damage to enemies around it.",
           "learnable": true
         },
         {
           "name": "Poison Powder",
           "type": "poison",
-          "description": "67",
+          "attack": "67",
+          "wait": "4",
+          "description": "The user scatters poison powder in front of itself, often poisoning enemies hit by it.",
           "learnable": true
         },
         {
           "name": "Synthesis",
           "type": "grass",
-          "description": "0",
+          "attack": "0",
+          "wait": "5",
+          "description": "The user absorbs light, raising the damage it deals for a while.",
           "learnable": true
         },
         {
           "name": "Tackle",
           "type": "normal",
-          "description": "163",
+          "attack": "163",
+          "wait": "5",
+          "description": "The user smashes into enemies in front of itself with all its might, damaging them.",
           "learnable": true
         },
         {
           "name": "Take Down",
           "type": "normal",
-          "description": "189",
+          "attack": "189",
+          "wait": "5",
+          "description": "The user slams into enemies in front of itself with a reckless, full-body charge, damaging all enemies hit by it. The user also takes recoil damage.",
           "learnable": true
         },
         {
           "name": "Toxic",
           "type": "poison",
-          "description": "59",
+          "attack": "59",
+          "wait": "4",
+          "description": "The user sprays a powerful poison around itself, often poisoning enemies hit by it.",
           "learnable": true
         },
         {
           "name": "Vine Whip",
           "type": "grass",
-          "description": "237",
+          "attack": "237",
+          "wait": "5",
+          "description": "The user strikes enemies in front of itself with whiplike vines. Deals damage to enemies hit by them.",
           "learnable": true
         }
       ],
@@ -213,55 +239,73 @@ export default {
         {
           "name": "Leech Seed",
           "type": "grass",
-          "description": "103",
+          "attack": "103",
+          "wait": "9",
+          "description": "The user plants a seed on the ground in front of itself. Enemies in range are gradually damaged. Part of the damage dealt is absorbed to restore the user's HP.",
           "learnable": true
         },
         {
           "name": "Mega Drain",
           "type": "grass",
-          "description": "165",
+          "attack": "165",
+          "wait": "9",
+          "description": "The user attacks enemies in front of itself, dealing damage to them. Some of the damage dealt is absorbed by the user, restoring its HP.",
           "learnable": true
         },
         {
           "name": "Petal Dance",
           "type": "grass",
-          "description": "156",
+          "attack": "156",
+          "wait": "5",
+          "description": "The user spins in place, scattering petals that deal damage to enemies around it.",
           "learnable": true
         },
         {
           "name": "Solar Beam",
           "type": "grass",
-          "description": "227",
+          "attack": "227",
+          "wait": "7",
+          "description": "The user gathers light and unleashes it in front of itself, dealing damage to enemies hit by it.",
           "learnable": true
         },
         {
           "name": "Synthesis",
           "type": "grass",
-          "description": "0",
+          "attack": "0",
+          "wait": "5",
+          "description": "The user absorbs light, raising the damage it deals for a while.",
           "learnable": true
         },
         {
           "name": "Tackle",
           "type": "normal",
-          "description": "163",
+          "attack": "163",
+          "wait": "5",
+          "description": "The user smashes into enemies in front of itself with all its might, damaging them.",
           "learnable": true
         },
         {
           "name": "Take Down",
           "type": "normal",
-          "description": "189",
+          "attack": "189",
+          "wait": "5",
+          "description": "The user slams into enemies in front of itself with a reckless, full-body charge, damaging all enemies hit by it. The user also takes recoil damage.",
           "learnable": true
         },
         {
           "name": "Toxic",
           "type": "poison",
-          "description": "59",
+          "attack": "59",
+          "wait": "4",
+          "description": "The user sprays a powerful poison around itself, often poisoning enemies hit by it.",
           "learnable": true
         },
         {
           "name": "Vine Whip",
           "type": "grass",
-          "description": "237",
+          "attack": "237",
+          "wait": "5",
+          "description": "The user strikes enemies in front of itself with whiplike vines. Deals damage to enemies hit by them.",
           "learnable": true
         }
       ],
@@ -326,31 +370,41 @@ export default {
         {
           "name": "Ember",
           "type": "fire",
-          "description": "109",
+          "attack": "109",
+          "wait": "7",
+          "description": "The user fires sparks in front of itself that split and run in three directions when they hit the ground. Deals damage to enemies they hit. Sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Fire Punch",
           "type": "fire",
-          "description": "229",
+          "attack": "229",
+          "wait": "5",
+          "description": "The user imbues its fist with the power of flames, and strikes enemies directly in front of it with a burning punch. Deals damage and sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Fire Spin",
           "type": "fire",
-          "description": "97",
+          "attack": "97",
+          "wait": "5",
+          "description": "The user creates flames all around itself and fires them off in a spiral. Deals damage to enemies they hit. Sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Metal Claw",
           "type": "steel",
-          "description": "211",
+          "attack": "211",
+          "wait": "5",
+          "description": "The user rakes enemies in front of itself with its steel claws, dealing damage. Sometimes raises the amount of damage the user deals.",
           "learnable": true
         },
         {
           "name": "Scratch",
           "type": "normal",
-          "description": "231",
+          "attack": "231",
+          "wait": "5",
+          "description": "The user rakes its hard, pointed claws over enemies directly in front of itself, damaging them.",
           "learnable": true
         }
       ],
@@ -416,43 +470,57 @@ export default {
         {
           "name": "Dragon Claw",
           "type": "dragon",
-          "description": "296",
+          "attack": "296",
+          "wait": "5",
+          "description": "The user gathers its strength, then charges forward while spinning, damaging enemies with its sharp claws.",
           "learnable": true
         },
         {
           "name": "Ember",
           "type": "fire",
-          "description": "109",
+          "attack": "109",
+          "wait": "7",
+          "description": "The user fires sparks in front of itself that split and run in three directions when they hit the ground. Deals damage to enemies they hit. Sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Fire Punch",
           "type": "fire",
-          "description": "229",
+          "attack": "229",
+          "wait": "5",
+          "description": "The user imbues its fist with the power of flames, and strikes enemies directly in front of it with a burning punch. Deals damage and sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Fire Spin",
           "type": "fire",
-          "description": "97",
+          "attack": "97",
+          "wait": "5",
+          "description": "The user creates flames all around itself and fires them off in a spiral. Deals damage to enemies they hit. Sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Flamethrower",
           "type": "fire",
-          "description": "94",
+          "attack": "94",
+          "wait": "5",
+          "description": "The user continuously breathes out long flames for a while. Deals damage to enemies as long as they remain in the flames. Sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Metal Claw",
           "type": "steel",
-          "description": "211",
+          "attack": "211",
+          "wait": "5",
+          "description": "The user rakes enemies in front of itself with its steel claws, dealing damage. Sometimes raises the amount of damage the user deals.",
           "learnable": true
         },
         {
           "name": "Scratch",
           "type": "normal",
-          "description": "231",
+          "attack": "231",
+          "wait": "5",
+          "description": "The user rakes its hard, pointed claws over enemies directly in front of itself, damaging them.",
           "learnable": true
         }
       ],
@@ -519,61 +587,81 @@ export default {
         {
           "name": "Dragon Claw",
           "type": "dragon",
-          "description": "296",
+          "attack": "296",
+          "wait": "5",
+          "description": "The user gathers its strength, then charges forward while spinning, damaging enemies with its sharp claws.",
           "learnable": true
         },
         {
           "name": "Ember",
           "type": "fire",
-          "description": "109",
+          "attack": "109",
+          "wait": "7",
+          "description": "The user fires sparks in front of itself that split and run in three directions when they hit the ground. Deals damage to enemies they hit. Sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Fire Blast",
           "type": "fire",
-          "description": "179",
+          "attack": "179",
+          "wait": "5",
+          "description": "The user sprays an all-consuming fire on the ground, damaging enemies hit by it and sometimes burning them.",
           "learnable": true
         },
         {
           "name": "Fire Punch",
           "type": "fire",
-          "description": "229",
+          "attack": "229",
+          "wait": "5",
+          "description": "The user imbues its fist with the power of flames, and strikes enemies directly in front of it with a burning punch. Deals damage and sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Fire Spin",
           "type": "fire",
-          "description": "97",
+          "attack": "97",
+          "wait": "5",
+          "description": "The user creates flames all around itself and fires them off in a spiral. Deals damage to enemies they hit. Sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Flame Charge",
           "type": "fire",
-          "description": "0",
+          "attack": "0",
+          "wait": "5",
+          "description": "The user stores up the power of flames, raising the damage it deals for a while.",
           "learnable": true
         },
         {
           "name": "Flamethrower",
           "type": "fire",
-          "description": "94",
+          "attack": "94",
+          "wait": "5",
+          "description": "The user continuously breathes out long flames for a while. Deals damage to enemies as long as they remain in the flames. Sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Flare Blitz",
           "type": "fire",
-          "description": "128",
+          "attack": "128",
+          "wait": "5",
+          "description": "The user creates a path of flames in front of itself and charges forward along it. Deals damage to enemies. Sometimes burns enemies.",
           "learnable": true
         },
         {
           "name": "Metal Claw",
           "type": "steel",
-          "description": "211",
+          "attack": "211",
+          "wait": "5",
+          "description": "The user rakes enemies in front of itself with its steel claws, dealing damage. Sometimes raises the amount of damage the user deals.",
           "learnable": true
         },
         {
           "name": "Scratch",
           "type": "normal",
-          "description": "231",
+          "attack": "231",
+          "wait": "5",
+          "description": "The user rakes its hard, pointed claws over enemies directly in front of itself, damaging them.",
           "learnable": true
         }
       ],
@@ -638,25 +726,33 @@ export default {
         {
           "name": "Bubble",
           "type": "water",
-          "description": "68",
+          "attack": "68",
+          "wait": "7",
+          "description": "The user fires bubbles in three directions. Deals damage to enemies hit by the bubbles and sometimes lowers their movement speed.",
           "learnable": true
         },
         {
           "name": "Tackle",
           "type": "normal",
-          "description": "163",
+          "attack": "163",
+          "wait": "5",
+          "description": "The user smashes into enemies in front of itself with all its might, damaging them.",
           "learnable": true
         },
         {
           "name": "Whirlpool",
           "type": "water",
-          "description": "94",
+          "attack": "94",
+          "wait": "5",
+          "description": "The user creates a whirlpool around itself. Deals damage to enemies around the user.",
           "learnable": true
         },
         {
           "name": "Withdraw",
           "type": "water",
-          "description": "0",
+          "attack": "0",
+          "wait": "5",
+          "description": "The user withdraws into its hard shell, reducing the amount of damage it takes for a while.",
           "learnable": true
         }
       ],
@@ -722,49 +818,65 @@ export default {
         {
           "name": "Aqua Jet",
           "type": "water",
-          "description": "182",
+          "attack": "182",
+          "wait": "5",
+          "description": "The user charges at enemies in front of itself with tremendous speed, dealing damage to them.",
           "learnable": true
         },
         {
           "name": "Aqua Ring",
           "type": "water",
-          "description": "0",
+          "attack": "0",
+          "wait": "9",
+          "description": "The user envelops itself in a veil made of water, restoring some of its HP.",
           "learnable": true
         },
         {
           "name": "Blizzard",
           "type": "ice",
-          "description": "52",
+          "attack": "52",
+          "wait": "5",
+          "description": "The user moves about while creating a blizzard centered on itself. Deals damage to enemies around the user and sometimes freezes them.",
           "learnable": true
         },
         {
           "name": "Bubble",
           "type": "water",
-          "description": "68",
+          "attack": "68",
+          "wait": "7",
+          "description": "The user fires bubbles in three directions. Deals damage to enemies hit by the bubbles and sometimes lowers their movement speed.",
           "learnable": true
         },
         {
           "name": "Surf",
           "type": "water",
-          "description": "127",
+          "attack": "127",
+          "wait": "5",
+          "description": "The user creates a wide wave and charges forward on it. Deals damage to enemies caught in the wave.",
           "learnable": true
         },
         {
           "name": "Tackle",
           "type": "normal",
-          "description": "163",
+          "attack": "163",
+          "wait": "5",
+          "description": "The user smashes into enemies in front of itself with all its might, damaging them.",
           "learnable": true
         },
         {
           "name": "Waterfall",
           "type": "water",
-          "description": "252",
+          "attack": "252",
+          "wait": "5",
+          "description": "The user approaches enemies in front of itself and creates a pillar of water beneath them. This deals damage to enemies it hits.",
           "learnable": true
         },
         {
           "name": "Whirlpool",
           "type": "water",
-          "description": "94",
+          "attack": "94",
+          "wait": "5",
+          "description": "The user creates a whirlpool around itself. Deals damage to enemies around the user.",
           "learnable": true
         }
       ],
@@ -830,55 +942,73 @@ export default {
         {
           "name": "Aqua Jet",
           "type": "water",
-          "description": "182",
+          "attack": "182",
+          "wait": "5",
+          "description": "The user charges at enemies in front of itself with tremendous speed, dealing damage to them.",
           "learnable": true
         },
         {
           "name": "Aqua Ring",
           "type": "water",
-          "description": "0",
+          "attack": "0",
+          "wait": "9",
+          "description": "The user envelops itself in a veil made of water, restoring some of its HP.",
           "learnable": true
         },
         {
           "name": "Blizzard",
           "type": "ice",
-          "description": "52",
+          "attack": "52",
+          "wait": "5",
+          "description": "The user moves about while creating a blizzard centered on itself. Deals damage to enemies around the user and sometimes freezes them.",
           "learnable": true
         },
         {
           "name": "Bubble",
           "type": "water",
-          "description": "68",
+          "attack": "68",
+          "wait": "7",
+          "description": "The user fires bubbles in three directions. Deals damage to enemies hit by the bubbles and sometimes lowers their movement speed.",
           "learnable": true
         },
         {
           "name": "Hydro Pump",
           "type": "water",
-          "description": "213",
+          "attack": "213",
+          "wait": "5",
+          "description": "The user shoots four pillars of water up from the ground and sends them out in front of itself. Deals damage to enemies hit by them.",
           "learnable": true
         },
         {
           "name": "Tackle",
           "type": "normal",
-          "description": "163",
+          "attack": "163",
+          "wait": "5",
+          "description": "The user smashes into enemies in front of itself with all its might, damaging them.",
           "learnable": true
         },
         {
           "name": "Waterfall",
           "type": "water",
-          "description": "252",
+          "attack": "252",
+          "wait": "5",
+          "description": "The user approaches enemies in front of itself and creates a pillar of water beneath them. This deals damage to enemies it hits.",
           "learnable": true
         },
         {
           "name": "Whirlpool",
           "type": "water",
-          "description": "94",
+          "attack": "94",
+          "wait": "5",
+          "description": "The user creates a whirlpool around itself. Deals damage to enemies around the user.",
           "learnable": true
         },
         {
           "name": "Withdraw",
           "type": "water",
-          "description": "0",
+          "attack": "0",
+          "wait": "5",
+          "description": "The user withdraws into its hard shell, reducing the amount of damage it takes for a while.",
           "learnable": true
         }
       ],
@@ -943,73 +1073,97 @@ export default {
         {
           "name": "Amnesia",
           "type": "psychic",
-          "description": "0",
+          "attack": "0",
+          "wait": "8",
+          "description": "The user temporarily empties its mind to forget its concerns, raising the amount of damage it deals and making it more resistant to negative effects.",
           "learnable": true
         },
         {
           "name": "Flash Cannon",
           "type": "steel",
-          "description": "170",
+          "attack": "170",
+          "wait": "7",
+          "description": "The user focuses all of its light energy into a single point and fires a beam in front of itself, sometimes raising the amount of damage enemies take.",
           "learnable": true
         },
         {
           "name": "Giga Impact",
           "type": "normal",
-          "description": "176",
+          "attack": "176",
+          "wait": "5",
+          "description": "The user focuses every bit of its power and charges toward enemies in front of itself, dealing huge damage to them.",
           "learnable": true
         },
         {
           "name": "Heat Wave",
           "type": "fire",
-          "description": "123",
+          "attack": "123",
+          "wait": "7",
+          "description": "The user exhales hot breath in front of itself, damaging enemies hit by it and sometimes burning them.",
           "learnable": true
         },
         {
           "name": "Hyper Beam",
           "type": "normal",
-          "description": "300",
+          "attack": "300",
+          "wait": "10",
+          "description": "The user stores up power and then fires a tremendous beam at enemies. Deals severe damage to enemies it hits.",
           "learnable": true
         },
         {
           "name": "Light Screen",
           "type": "psychic",
-          "description": "0",
+          "attack": "0",
+          "wait": "3",
+          "description": "The user creates a wall of light, making it harder for it to be affected by negative effects for a while.",
           "learnable": true
         },
         {
           "name": "Psychic",
           "type": "psychic",
-          "description": "121",
+          "attack": "121",
+          "wait": "7",
+          "description": "The user creates a large, mysterious light and fires it out, dealing damage to enemies hit by it. Sometimes raises the amount of damage they take.",
           "learnable": true
         },
         {
           "name": "Recover",
           "type": "normal",
-          "description": "0",
+          "attack": "0",
+          "wait": "9",
+          "description": "Restoring its own cells, the user restores its HP.",
           "learnable": true
         },
         {
           "name": "Teleport",
           "type": "psychic",
-          "description": "0",
+          "attack": "0",
+          "wait": "3",
+          "description": "The user utilizes its psychic powers to teleport.",
           "learnable": true
         },
         {
           "name": "Thunder",
           "type": "electric",
-          "description": "204",
+          "attack": "204",
+          "wait": "5",
+          "description": "The user strikes the area in front of itself with a lightning bolt. Deals damage to nearby enemies. Sometimes paralyzes enemies.",
           "learnable": true
         },
         {
           "name": "Transform",
           "type": "normal",
-          "description": "0",
+          "attack": "0",
+          "wait": "0",
+          "description": "When Ditto transforms into another Pokémon, this changes into a move that Pokémon can learn.",
           "learnable": true
         },
         {
           "name": "Tri Attack",
           "type": "normal",
-          "description": "81",
+          "attack": "81",
+          "wait": "5",
+          "description": "The user's body is imbued with three powers as it attacks enemies in front of itself, damaging them. Sometimes burns, paralyzes, or freezes enemies.",
           "learnable": true
         }
       ],
