@@ -350,8 +350,8 @@ export default {
     padding: 36px 24px;
     box-sizing: border-box;
     box-shadow: 0 2px 32px 4px rgba(0,0,0,0.1);
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     h2 {
       font-size: 24px;
       font-weight: normal;
