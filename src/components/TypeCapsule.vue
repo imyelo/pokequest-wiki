@@ -78,5 +78,8 @@ export default {
   &.type-dragon {
     background-color: $type-dragon;
   }
+  &.type-dark {
+    background-color: $type-dark;
+  }
 }
 </style>
