@@ -193,7 +193,7 @@ import Iconfont from '../components/iconfont/Iconfont.vue'
 const DEFAULT_STATS_TABLE_CUSTOM_LEVEL = 100
 
 export default {
-  name: 'app',
+  name: 'PokemonDetail',
   data () {
     return {
       pots,

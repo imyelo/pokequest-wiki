@@ -95,7 +95,7 @@ const VERSION = DEFINED_VERSION
 const GITHUB_URL = process.env.VUE_APP_GITHUB_URL
 
 export default {
-  name: 'app',
+  name: 'PokemonList',
   data () {
     return {
       picture: 'avatar',

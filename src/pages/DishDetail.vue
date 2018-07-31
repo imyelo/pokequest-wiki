@@ -69,7 +69,7 @@ import { pokemons, dishes, recipes } from '../data'
 import { RECIPE_QUALITIES } from '../constants'
 
 export default {
-  name: 'app',
+  name: 'DishDetail',
   computed: {
     dish () {
       return dishes.find((dish) => dish.id === +this.$route.params.id) || {}

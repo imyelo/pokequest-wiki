@@ -22,7 +22,7 @@ import { dishes } from '../data'
 import Iconfont from '../components/iconfont/Iconfont.vue'
 
 export default {
-  name: 'app',
+  name: 'DishList',
   data () {
     return {
       dishes,
