@@ -74,7 +74,7 @@
               <tbody>
                 <tr v-for="(move, index) of pokemon.moves" :key="index" class="move" @click="toMove(move)">
                   <td class="type"><type-capsule :value="move.type" /></td>
-                  <td>{{ move.name }}</td>
+                  <td>{{ $t(`moves[${JSON.stringify(move.name)}]`) }}</td>
                   <td>{{ move.attack }}</td>
                   <td>{{ move.wait }}</td>
                   <td>{{ move.learnable ? '√' : move.method }}</td>

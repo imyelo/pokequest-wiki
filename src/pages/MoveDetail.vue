@@ -1,10 +1,10 @@
 <template>
-  <Screen :title="move.name">
+  <Screen :title="$t(`moves[${JSON.stringify(move.name)}]`)">
     <Main>
       <div class="move">
         <div class="header">
           <div class="title">
-            <div class="name">{{ move.name }}</div>
+            <div class="name">{{ $t(`moves[${JSON.stringify(move.name)}]`) }}</div>
           </div>
         </div>
         <div class="section">

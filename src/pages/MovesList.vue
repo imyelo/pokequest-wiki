@@ -26,7 +26,7 @@
           <tbody>
             <tr v-for="(move, index) of moves" :key="index" class="move" @click="toDetail(move)">
               <td class="type"><type-capsule :value="move.type" class="capsule" @click.native.stop="switchFilter('type', move.type)" /></td>
-              <td class="name">{{ move.name }}</td>
+              <td class="name">{{ $t(`moves[${JSON.stringify(move.name)}]`) }}</td>
               <td>{{ move.attack }}</td>
               <td>{{ move.wait }}</td>
             </tr>
