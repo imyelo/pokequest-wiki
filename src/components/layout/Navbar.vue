@@ -69,7 +69,7 @@ $main-color: hsl(48,100%,50%);
   padding-bottom: env(safe-area-inset-bottom);
   padding-bottom: constant(safe-area-inset-bottom);
   background-color: $main-color;
-  box-shadow: 0 -1px 0 4px color($main-color a(50%));
+  box-shadow: 0 -4px 0 0 color($main-color a(50%));
   z-index: 1;
   display: flex;
   justify-content: space-around;
