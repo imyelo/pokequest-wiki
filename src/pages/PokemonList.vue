@@ -200,7 +200,7 @@ export default {
     handleScroll: debounce(function ({ target }) {
       this.isAtTop = target.scrollTop === 0
       this.isAtBottom = target.scrollTop + target.clientHeight === target.scrollHeight
-    }, 200),
+    }, 100),
     scrollToTop () {
       this.$refs.main.scrollTop()
     },
