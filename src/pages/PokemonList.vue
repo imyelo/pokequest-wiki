@@ -90,6 +90,7 @@ import { POKEMON_TYPES, POKEMON_COLORS, LANGUAGES } from '../constants'
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 import Iconfont from '../components/iconfont/Iconfont.vue'
+import { changeLocale } from '../languages'
 
 const VERSION = DEFINED_VERSION
 const GITHUB_URL = process.env.VUE_APP_GITHUB_URL
@@ -153,7 +154,7 @@ export default {
     },
     switchLanguage () {
       let index = LANGUAGES.indexOf(this.$i18n.locale)
-      this.$i18n.locale = LANGUAGES[(index + 1) % LANGUAGES.length]
+      changeLocale(LANGUAGES[(index + 1) % LANGUAGES.length])
     },
     switchPicture () {
       this.picture = this.picture === 'avatar' ? 'sprite' : 'avatar'
