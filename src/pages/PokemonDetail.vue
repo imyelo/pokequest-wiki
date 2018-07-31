@@ -26,6 +26,63 @@
           <h3>{{ $tc('concepts.color') }}</h3>
           <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`" @click="toPokemonList({ color: pokemon.color.toLowerCase() })">{{ $t(`colors[${JSON.stringify(pokemon.color.toLowerCase())}]`) }}</span>
         </div>
+        <div class="section dishes">
+          <h3>{{ $tc('concepts.dish', 2) }}</h3>
+          <table>
+            <thead class="title">
+              <tr>
+                <th class="logo"></th>
+                <th class="name clickable" @click="sortDishes('id')">
+                  (ID) {{ $tc('concepts.name') }}
+                  <Iconfont class="icon" :type="dishesSorter.field !== 'id' ? 'minus' : dishesSorter.reverse ? 'sort-up' : 'sort-down'" />
+                </th>
+                <th class="quality">
+                  {{ $tc('concepts.quality') }}
+                </th>
+                <th class="chance clickable" @click="sortDishes('chance', true)">
+                  {{ $tc('concepts.chance') }}
+                  <Iconfont class="icon" :type="dishesSorter.field !== 'chance' ? 'minus' : dishesSorter.reverse ? 'sort-up' : 'sort-down'" />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(dish, index) of dishes" :key="index" class="dish" :class="{ 'not-exist': !dish.isExist }" @click="toDish(dish.id, dish.quality)">
+                <td class="logo"><img :src="dish.logo" alt="logo" /></td>
+                <td class="name">{{ $t(`dishes[${JSON.stringify(dish.name)}]`) }}</td>
+                <td class="quality">{{ $t(`qualities[${JSON.stringify(dish.quality)}]`) }}</td>
+                <td class="chance">{{ (dish.chance * 100).toFixed(2) }}%</td>
+              </tr>
+              <tr v-if="dishes.length === 0" class="dish">
+                <td colspan="4">{{ $t('messages.not-exist') }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="section moves">
+          <h3>{{ $tc('concepts.move', 2) }}</h3>
+          <div class="table-container">
+            <table>
+              <thead class="title">
+                <tr>
+                  <th class="type">{{ $tc('concepts.type') }}</th>
+                  <th>{{ $tc('concepts.name') }}</th>
+                  <th>{{ $tc('concepts.attack') }}</th>
+                  <th>{{ $tc('concepts.wait') }}</th>
+                  <th>{{ $tc('concepts.learnable') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(move, index) of pokemon.moves" :key="index" class="move">
+                  <td class="type"><type-capsule :value="move.type" /></td>
+                  <td>{{ move.name }}</td>
+                  <td>{{ move.attack }}</td>
+                  <td>{{ move.wait }}</td>
+                  <td>{{ move.learnable ? '√' : move.method }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div class="section">
           <h3>{{ $tc('concepts.attack-mode') }}</h3>
           <Iconfont :type="pokemon.automaticStyle.toLowerCase() === 'melee' ? 'melee' : pokemon.automaticStyle.toLowerCase() === 'range' ? 'bow' : 'question'" class="icon"/>
@@ -108,60 +165,6 @@
             </table>
           </div>
         </div>
-        <div class="section moves">
-          <h3>{{ $tc('concepts.move', 2) }}</h3>
-          <div class="table-container">
-            <table>
-              <thead class="title">
-                <tr>
-                  <th class="type">{{ $tc('concepts.type') }}</th>
-                  <th>{{ $tc('concepts.name') }}</th>
-                  <th>{{ $tc('concepts.attack') }}</th>
-                  <th>{{ $tc('concepts.wait') }}</th>
-                  <th>{{ $tc('concepts.learnable') }}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(move, index) of pokemon.moves" :key="index" class="move">
-                  <td class="type"><type-capsule :value="move.type" /></td>
-                  <td>{{ move.name }}</td>
-                  <td>{{ move.attack }}</td>
-                  <td>{{ move.wait }}</td>
-                  <td>{{ move.learnable ? '√' : move.method }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div v-show="dishes.length > 0" class="section dishes">
-          <h3>{{ $tc('concepts.dish', 2) }}</h3>
-          <table>
-            <thead class="title">
-              <tr>
-                <th class="logo"></th>
-                <th class="name clickable" @click="sortDishes('id')">
-                  (ID) {{ $tc('concepts.name') }}
-                  <Iconfont class="icon" :type="dishesSorter.field !== 'id' ? 'minus' : dishesSorter.reverse ? 'sort-up' : 'sort-down'" />
-                </th>
-                <th class="quality">
-                  {{ $tc('concepts.quality') }}
-                </th>
-                <th class="chance clickable" @click="sortDishes('chance', true)">
-                  {{ $tc('concepts.chance') }}
-                  <Iconfont class="icon" :type="dishesSorter.field !== 'chance' ? 'minus' : dishesSorter.reverse ? 'sort-up' : 'sort-down'" />
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(dish, index) of dishes" :key="index" class="dish" :class="{ 'not-exist': !dish.isExist }" @click="toDish(dish.id, dish.quality)">
-                <td class="logo"><img :src="dish.logo" alt="logo" /></td>
-                <td class="name">{{ $t(`dishes[${JSON.stringify(dish.name)}]`) }}</td>
-                <td class="quality">{{ $t(`qualities[${JSON.stringify(dish.quality)}]`) }}</td>
-                <td class="chance">{{ (dish.chance * 100).toFixed(2) }}%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
         <div class="section pokemons">
           <h3>{{ $t('messages.see-other-pokemon') }}</h3>
           <div class="paginations">
@@ -198,13 +201,13 @@ export default {
         field: 'id',
         reverse: false,
       },
-      bingosTable: {
-        hiddenSlots: [],
-      },
       statsTable: {
         showPotDetail: false,
         showBase: false,
         customLevel: DEFAULT_STATS_TABLE_CUSTOM_LEVEL,
+      },
+      bingosTable: {
+        hiddenSlots: [],
       },
     }
   },
@@ -392,7 +395,7 @@ export default {
       }
     }
   }
-  .stats, .bingo, .moves, .dishes {
+   .dishes, .moves, .stats, .bingo {
     line-height: 2em;
     table {
       width: 100%;
@@ -458,7 +461,7 @@ export default {
       padding-left: 1em;
     }
   }
-  .stats, .moves {
+   .moves, .stats {
     .table-container {
       overflow-x: scroll;
       padding-bottom: 12px;
@@ -470,33 +473,6 @@ export default {
       td {
         white-space: nowrap;
       }
-    }
-  }
-  .stats {
-    table {
-      td {
-        width: 80px;
-        min-width: 80px;
-      }
-    }
-    .name {
-      text-transform: capitalize;
-    }
-  }
-  .bingo {
-    .slot {
-      text-transform: capitalize;
-    }
-  }
-  .moves {
-    table {
-      td {
-        width: 64px;
-        min-width: 64px;
-      }
-    }
-    .type {
-      padding-right: 8px;
     }
   }
   .dishes {
@@ -521,6 +497,33 @@ export default {
     }
     .chance {
       text-align: right;
+    }
+  }
+  .moves {
+    table {
+      td {
+        width: 64px;
+        min-width: 64px;
+      }
+    }
+    .type {
+      padding-right: 8px;
+    }
+  }
+  .stats {
+    table {
+      td {
+        width: 80px;
+        min-width: 80px;
+      }
+    }
+    .name {
+      text-transform: capitalize;
+    }
+  }
+  .bingo {
+    .slot {
+      text-transform: capitalize;
     }
   }
   .pokemons {
