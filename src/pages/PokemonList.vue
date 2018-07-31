@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import debounce from 'just-debounce-it'
+import throttle from 'just-throttle'
 import { POKEMON_TYPES, POKEMON_COLORS, LANGUAGES } from '../constants'
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
@@ -197,10 +197,10 @@ export default {
         })
       }
     },
-    handleScroll: debounce(function ({ target }) {
+    handleScroll: throttle(function ({ target }) {
       this.isAtTop = target.scrollTop === 0
       this.isAtBottom = target.scrollTop + target.clientHeight === target.scrollHeight
-    }, 100),
+    }, 200),
     scrollToTop () {
       this.$refs.main.scrollTop()
     },
