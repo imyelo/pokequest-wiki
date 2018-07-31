@@ -18,7 +18,7 @@ import { dishes } from '../data'
 import HomeMenu from '../components/layout/HomeMenu.vue'
 
 export default {
-  name: 'DishList',
+  name: 'DishesList',
   data () {
     return {
       dishes,
