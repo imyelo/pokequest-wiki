@@ -3,23 +3,19 @@
     <Main class="main">
       <div class="dish-list">
         <div v-for="dish in dishes" :key="dish.id" class="dish" @click="toDetail(dish.id)">
-          <div class="picture">
-            <div class="logo"><img :src="dish.logo" alt="logo" /></div>
-          </div>
-          <div class="information">
-            <div class="id">Dish {{ (100 + dish.id + '').slice(1) }}</div>
-            <div class="title">{{ $t(`dishes[${JSON.stringify(dish.name)}]`) }}</div>
-          </div>
+          <div class="id">Dish {{ (100 + dish.id + '').slice(1) }}</div>
+          <div class="picture"><img :src="dish.logo" alt="logo" /></div>
+          <div class="title">{{ $t(`dishes[${JSON.stringify(dish.name)}]`) }}</div>
         </div>
       </div>
     </Main>
-    <Navbar />
+    <HomeMenu />
   </Screen>
 </template>
 
 <script>
 import { dishes } from '../data'
-import Iconfont from '../components/iconfont/Iconfont.vue'
+import HomeMenu from '../components/layout/HomeMenu.vue'
 
 export default {
   name: 'DishList',
@@ -34,6 +30,7 @@ export default {
     },
   },
   components: {
+    HomeMenu,
   },
 }
 </script>
@@ -44,9 +41,11 @@ export default {
   padding-bottom: 12px;
   .dish {
     display: flex;
-    justify-content: flex-start;
-    padding: 18px 24px;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 48px 60px;
     cursor: pointer;
+    margin-bttom: 24px;
     &:nth-child(2n) {
       background-color: hsl(40,63%,86%);
       &:active, &:hover {
@@ -59,31 +58,22 @@ export default {
         background-color: hsl(40,63%,81%);
       }
     }
+    .id {
+      font-size: 10px;
+      color: #666;
+      margin-bottom: 24px;
+    }
     .picture {
-      display: flex;
-      .logo {
-        width: 48px;
-        padding: 6px 14px 0 0;
-        border-radius: 8px;
-        img {
-          width: 100%;
-          max-width: 100%;
-        }
+      width: 64px;
+      margin-bottom: 12px;
+      img {
+        width: 100%;
+        max-width: 100%;
       }
     }
-    .information {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      .id {
-        font-size: 10px;
-        color: #666;
-        line-height: 1em;
-      }
-      .title {
-        font-size: 14px;
-        color: #444;
-      }
+    .title {
+      font-size: 12px;
+      color: #444;
     }
   }
 }

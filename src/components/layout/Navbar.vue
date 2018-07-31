@@ -40,12 +40,12 @@ export default {
 
 <style lang="postcss" scoped>
 .navbar {
-  height: 48px;
+  height: 60px;
   padding-bottom: 4px;
   padding-bottom: env(safe-area-inset-bottom);
   padding-bottom: constant(safe-area-inset-bottom);
   background-color: hsl(48,100%,50%);
-  box-shadow: 0 -4px 0 4px color(hsl(48,100%,50%)  l(- 4%));
+  box-shadow: 0 -1px 0 4px color(hsl(48,100%,50%) a(50%));
   z-index: 1;
   display: flex;
   justify-content: space-around;
