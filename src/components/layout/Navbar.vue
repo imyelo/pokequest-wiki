@@ -56,9 +56,14 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+@import '../../stylesheet/size.css';
+
 $main-color: hsl(48,100%,50%);
 
 .homebar, .navbar {
+  width: 100%;
+  max-width: $main-max-width;
+  margin: 0 auto;
   height: 60px;
   padding: 8px;
   padding-bottom: env(safe-area-inset-bottom);
@@ -103,7 +108,7 @@ $main-color: hsl(48,100%,50%);
 }
 
 .navbar-enter-active, .navbar-leave-active {
-  transition: all .4s ease;
+  transition: all .2s ease;
 }
 .navbar-enter, .navbar-leave-to {
   opacity: 0;

@@ -28,6 +28,8 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+@import '../../stylesheet/size.css';
+
 .main {
   flex: 1;
   width: 100%;
@@ -45,7 +47,7 @@ export default {
     bottom: 0;
     left: 0;
     width: 100%;
-    max-width: 1125px;
+    max-width: $main-max-width;
     margin: 0 auto;
   }
   .scroller {
@@ -59,7 +61,7 @@ export default {
     -webkit-overflow-scrolling: touch;
     .content {
       width: 100%;
-      max-width: 1125px;
+      max-width: $main-max-width;
     }
   }
 }

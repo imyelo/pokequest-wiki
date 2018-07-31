@@ -215,6 +215,7 @@ export default {
 <style lang="postcss" scoped>
 @import '../stylesheet/themes/offical.css';
 @import '../stylesheet/colors.css';
+@import '../stylesheet/size.css';
 
 .screen {
   background-color: hsl(39,64%,88%);
@@ -364,10 +365,14 @@ export default {
     position: absolute;
     background-color: hsla(0,0%,95%,0.95);
     width: 100%;
+    max-width: $main-max-width;
     min-height: 300px;
     max-height: 100%;
     overflow-y: scroll;
+    left: 0;
+    right: 0;
     bottom: 0;
+    margin: 0 auto;
     padding: 36px 24px;
     box-sizing: border-box;
     box-shadow: 0 2px 32px 4px rgba(0,0,0,0.1);
