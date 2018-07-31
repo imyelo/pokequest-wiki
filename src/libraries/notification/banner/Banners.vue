@@ -79,7 +79,7 @@ export default {
       line-height: 1em;
       text-transform: uppercase;
       cursor: pointer;
-      &:hover, &:active {
+      &:active {
         background-color: rgba(255,255,255,0.1);
       }
     }

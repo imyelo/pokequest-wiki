@@ -479,7 +479,7 @@ export default {
     tbody {
       tr {
         cursor: pointer;
-        &:active, &:hover {
+        &:active {
           background: hsl(40,63%,76%);
         }
       }

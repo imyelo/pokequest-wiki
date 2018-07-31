@@ -48,13 +48,13 @@ export default {
     margin-bttom: 24px;
     &:nth-child(2n) {
       background-color: hsl(40,63%,86%);
-      &:active, &:hover {
+      &:active {
         background-color: hsl(40,63%,76%);
       }
     }
     &:nth-child(2n+1) {
       background-color: hsl(40,63%,91%);
-      &:active, &:hover {
+      &:active {
         background-color: hsl(40,63%,81%);
       }
     }
