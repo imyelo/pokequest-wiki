@@ -46,4 +46,8 @@ export const HOME_MENU_TABS = [
     path: '/dishes',
     icon: 'dish',
   },
+  {
+    path: '/moves',
+    icon: 'skill',
+  },
 ]

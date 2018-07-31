@@ -20,6 +20,7 @@ const routes = [
   { path: '/pokemon/:id', component: page('./PokemonDetail.vue') },
   { path: '/dishes', component: page('./DishesList.vue') },
   { path: '/dishes/:id', component: page('./DishDetail.vue') },
+  { path: '/moves', component: page('./MovesList.vue') },
   { path: '*', redirect: '/pokemon' },
 ]
 

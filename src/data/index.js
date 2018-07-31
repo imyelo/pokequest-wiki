@@ -1,4 +1,5 @@
 import flatten from 'just-flatten-it'
+import omit from 'just-omit'
 import multicombinations from '../utils/multicombinations'
 
 const ENV = process.env.NODE_ENV
@@ -10,6 +11,7 @@ export let dishes = database.dishes
 export let ingredients = database.ingredients
 export let pots = database.pots
 export let recipes
+export let moves
 
 const DISH_WEIGHT_KEY = {
   MULLIGAN: 'mulligan',
@@ -145,3 +147,18 @@ function getQuality (ingredients) {
   }
   return QUALITIES[0]
 }
+
+/**
+ * generate all moves
+ */
+let kvMoves = {}
+pokemons.forEach((pokemon) => {
+  pokemon.moves.forEach((move) => {
+    let name = move.name.toLowerCase()
+    if (name in kvMoves) {
+      return
+    }
+    kvMoves[name] = omit(move, 'learnable')
+  })
+})
+moves = Object.values(kvMoves)
