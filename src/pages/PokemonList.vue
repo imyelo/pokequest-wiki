@@ -28,7 +28,7 @@
       <div class="toolbar" slot="absolute">
         <div class="toolbar-left">
           <transition name="toolbar-button">
-            <div key="language" v-if="!isScrollingDown" class="button" @click="switchLanguage"><Iconfont class="icon" type="language" /></div>
+            <div key="language" v-if="!isScrollingDown || isAtTop" class="button" @click="switchLanguage"><Iconfont class="icon" type="language" /></div>
           </transition>
         </div>
         <div class="toolbar-right">
@@ -36,7 +36,7 @@
             <div key="top" v-if="!isScrollingDown && !isAtTop" class="button" @click="scrollToTop"><Iconfont class="icon" type="top" /></div>
           </transition>
           <transition name="toolbar-button">
-            <div key="filter" v-if="!isScrollingDown" class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
+            <div key="filter" v-if="!isScrollingDown || isAtTop" class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
           </transition>
         </div>
       </div>
