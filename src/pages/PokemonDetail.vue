@@ -72,7 +72,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(move, index) of pokemon.moves" :key="index" class="move">
+                <tr v-for="(move, index) of pokemon.moves" :key="index" class="move" @click="toMove(move)">
                   <td class="type"><type-capsule :value="move.type" /></td>
                   <td>{{ move.name }}</td>
                   <td>{{ move.attack }}</td>
@@ -277,6 +277,9 @@ export default {
         path: '/pokemon',
         query: filter,
       })
+    },
+    toMove (move) {
+      this.$router.push(`/moves/${move.name.replace(' ', '--')}`)
     },
   },
   components: {
@@ -504,6 +507,14 @@ export default {
       td {
         width: 64px;
         min-width: 64px;
+      }
+    }
+    tbody {
+      tr {
+        cursor: pointer;
+        &:active {
+          background: hsl(40,63%,76%);
+        }
       }
     }
     .type {
