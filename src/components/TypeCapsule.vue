@@ -17,7 +17,6 @@ export default {
 @import '../stylesheet/themes/offical.css';
 
 .capsule {
-  font-family: "Open Sans";
   text-transform: capitalize;
   font-size: 10px;
   line-height: 1em;
