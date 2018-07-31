@@ -28,7 +28,7 @@
       <div class="toolbar" slot="absolute">
         <div class="toolbar-left">
           <transition name="toolbar-left-button">
-            <div key="language" v-if="isAtTop" class="button" @click="switchLanguage"><Iconfont class="icon" type="wen" /></div>
+            <div key="language" v-if="isAtTop" class="button" @click="switchLanguage"><Iconfont class="icon" type="language" /></div>
           </transition>
         </div>
         <div class="toolbar-right">
