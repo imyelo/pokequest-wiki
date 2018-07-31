@@ -3,7 +3,7 @@
     <Main class="main">
       <div class="dish-list">
         <div v-for="dish in dishes" :key="dish.id" class="dish" @click="toDetail(dish.id)">
-          <div class="id">Dish {{ (100 + dish.id + '').slice(1) }}</div>
+          <div class="id">{{ $tc('concepts.dish') }} {{ (100 + dish.id + '').slice(1) }}</div>
           <div class="picture"><img :src="dish.logo" alt="logo" /></div>
           <div class="title">{{ $t(`dishes[${JSON.stringify(dish.name)}]`) }}</div>
         </div>
@@ -62,6 +62,7 @@ export default {
       font-size: 10px;
       color: #666;
       margin-bottom: 24px;
+      text-transform: capitalize;
     }
     .picture {
       width: 64px;
