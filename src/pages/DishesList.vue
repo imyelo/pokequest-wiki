@@ -34,6 +34,10 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.screen {
+  background-color: hsl(39,64%,88%);
+}
+
 .dish-list {
   background-color: hsl(40,63%,91%);
   padding-bottom: 12px;

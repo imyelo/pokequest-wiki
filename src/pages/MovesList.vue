@@ -197,7 +197,7 @@ export default {
     }
   }
   th, td {
-    width: 40px;
+    width: 60px;
   }
   thead {
     tr {
