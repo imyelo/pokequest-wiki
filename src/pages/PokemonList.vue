@@ -27,16 +27,16 @@
 
       <div class="toolbar" slot="absolute">
         <div class="toolbar-left">
-          <transition name="toolbar-left-button">
-            <div key="language" v-if="isAtTop" class="button" @click="switchLanguage"><Iconfont class="icon" type="language" /></div>
+          <transition name="toolbar-button">
+            <div key="language" v-if="!isScrollingDown" class="button" @click="switchLanguage"><Iconfont class="icon" type="language" /></div>
           </transition>
         </div>
         <div class="toolbar-right">
-          <transition name="toolbar-right-button">
-            <div key="top" v-if="!isAtTop && !isAtBottom" class="button" @click="scrollToTop"><Iconfont class="icon" type="top" /></div>
+          <transition name="toolbar-button">
+            <div key="top" v-if="!isScrollingDown && !isAtTop" class="button" @click="scrollToTop"><Iconfont class="icon" type="top" /></div>
           </transition>
-          <transition name="toolbar-right-button">
-            <div key="filter" v-if="!showFilters && !isAtBottom" class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
+          <transition name="toolbar-button">
+            <div key="filter" v-if="!isScrollingDown" class="button" @click="showFilters = true"><Iconfont class="icon" type="filter" /></div>
           </transition>
         </div>
       </div>
@@ -98,12 +98,14 @@ export default {
   name: 'PokemonList',
   data () {
     return {
+      scrollTop: {
+        last: 0,
+        current: 0,
+      },
       picture: 'avatar',
       POKEMON_TYPES,
       POKEMON_COLORS,
       showFilters: false,
-      isAtTop: true,
-      isAtBottom: false,
       GITHUB_URL,
       VERSION,
     }
@@ -132,6 +134,12 @@ export default {
     },
     hasFilters () {
       return !!(this.filters.types.length > 0 || this.filters.color || this.filters.summonable)
+    },
+    isScrollingDown () {
+      return this.scrollTop.current > this.scrollTop.last
+    },
+    isAtTop () {
+      return this.scrollTop.current === 0
     },
   },
   watch: {
@@ -198,8 +206,10 @@ export default {
       }
     },
     handleScroll: throttle(function ({ target }) {
-      this.isAtTop = target.scrollTop === 0
-      this.isAtBottom = target.scrollTop + target.clientHeight === target.scrollHeight
+      this.scrollTop = {
+        last: this.scrollTop.current,
+        current: target.scrollTop,
+      }
     }, 200),
     scrollToTop () {
       this.$refs.main.scrollTop()
@@ -512,16 +522,12 @@ export default {
   }
 }
 
-.toolbar-left-button-enter-active, .toolbar-left-button-leave-active, .toolbar-right-button-enter-active, .toolbar-right-button-leave-active {
+.toolbar-button-enter-active, .toolbar-button-leave-active {
   transition: all 400ms;
 }
-.toolbar-left-button-enter, .toolbar-left-button-leave-to {
+.toolbar-button-enter, .toolbar-button-leave-to {
   opacity: 0;
-  transform: translate3d(-10px, 0, 0);
-}
-.toolbar-right-button-enter, .toolbar-right-button-leave-to {
-  opacity: 0;
-  transform: translate3d(10px, 0, 0);
+  transform: translate3d(0,10px,0);
 }
 
 .filter-panel-enter-active, .filter-panel-leave-active {
