@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "eruda": "^1.5.0",
-    "fastclick": "^1.0.6",
     "just-flatten-it": "^2.0.0",
     "just-omit": "^1.0.1",
     "just-range": "^2.0.0",
