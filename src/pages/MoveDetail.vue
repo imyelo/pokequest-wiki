@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { pokemons, moves } from '../data'
+import { moves } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 
 export default {
