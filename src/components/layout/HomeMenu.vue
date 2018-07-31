@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <div v-for="(tab, index) of TABS" :key="index" class="item" :class="{ active: $route.path === tab.path }" @click="toPath(tab.path)">
+    <div v-for="(tab, index) of HOME_MENU_TABS" :key="index" class="item" :class="{ active: $route.path === tab.path }" @click="toPath(tab.path)">
       <Iconfont class="icon" :type="tab.icon" />
     </div>
   </div>
@@ -8,23 +8,13 @@
 
 <script>
 import Iconfont from '../iconfont/Iconfont.vue'
-
-const TABS = [
-  {
-    path: '/pokemon',
-    icon: 'home',
-  },
-  {
-    path: '/dishes',
-    icon: 'dish',
-  },
-]
+import { HOME_MENU_TABS } from '../../constants'
 
 export default {
   name: 'HomeMenu',
   data () {
     return {
-      TABS,
+      HOME_MENU_TABS,
     }
   },
   components: {

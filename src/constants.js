@@ -36,3 +36,14 @@ export const LANGUAGES = [
   'en',
   'zh',
 ]
+
+export const HOME_MENU_TABS = [
+  {
+    path: '/pokemon',
+    icon: 'home',
+  },
+  {
+    path: '/dishes',
+    icon: 'dish',
+  },
+]

@@ -39,13 +39,15 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+$main-color: hsl(48,100%,50%);
+
 .navbar {
   height: 60px;
   padding: 8px;
   padding-bottom: env(safe-area-inset-bottom);
   padding-bottom: constant(safe-area-inset-bottom);
-  background-color: hsl(48,100%,50%);
-  box-shadow: 0 -1px 0 4px color(hsl(48,100%,50%) a(50%));
+  background-color: $main-color;
+  box-shadow: 0 -1px 0 4px color($main-color a(50%));
   z-index: 1;
   display: flex;
   justify-content: space-around;
@@ -60,6 +62,7 @@ export default {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    color: color($main-color s(35%) l(35%));
     .icon {
       font-size: 24px;
     }
