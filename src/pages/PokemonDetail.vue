@@ -83,7 +83,7 @@
             </table>
           </div>
         </div>
-        <div class="section">
+        <div class="section attack-mode">
           <h3>{{ $tc('concepts.attack-mode') }}</h3>
           <Iconfont :type="pokemon.automaticStyle.toLowerCase() === 'melee' ? 'melee' : pokemon.automaticStyle.toLowerCase() === 'range' ? 'bow' : 'question'" class="icon"/>
           {{ $tc(`attack-modes[${JSON.stringify(pokemon.automaticStyle.toLowerCase())}]`) }}
@@ -508,6 +508,13 @@ export default {
     }
     .type {
       padding-right: 8px;
+    }
+  }
+  .attack-mode {
+    text-transform: capitalize;
+    font-size: 14px;
+    .icon {
+      font-size: 14px;
     }
   }
   .stats {
