@@ -210,7 +210,7 @@ export default {
           &:nth-child(2n+1) {
             background-color: hsl(42,52%,98%);
           }
-          &:active {
+          &:active, &.hover {
             background: hsl(40,63%,76%);
           }
         }

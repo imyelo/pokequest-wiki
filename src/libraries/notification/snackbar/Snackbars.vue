@@ -81,7 +81,7 @@ export default {
       padding: 8px;
       line-height: 1em;
       text-transform: uppercase;
-      &:active {
+      &:active, &.hover {
         background-color: rgba(255,255,255,0.1);
       }
     }

@@ -10,6 +10,7 @@ import Screen from './components/layout/Screen.vue'
 import Main from './components/layout/Main.vue'
 import Navbar from './components/layout/Navbar.vue'
 import Clearfix from './components/Clearfix.vue'
+import './utils/hover-pseudo-class'
 import './utils/eruda'
 import './registerServiceWorker'
 
