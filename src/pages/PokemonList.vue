@@ -43,7 +43,7 @@
     </Main>
 
     <Navbar v-show="hasFilters" />
-    <HomeMenu />
+    <HomeMenu v-show="!hasFilters" />
 
     <transition name="filter-panel">
       <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>

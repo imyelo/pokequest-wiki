@@ -21,6 +21,7 @@ const routes = [
   { path: '/dishes', component: page('./DishesList.vue') },
   { path: '/dishes/:id', component: page('./DishDetail.vue') },
   { path: '/moves', component: page('./MovesList.vue') },
+  { path: '/moves/:name', component: page('./MoveDetail.vue') },
   { path: '*', redirect: '/pokemon' },
 ]
 

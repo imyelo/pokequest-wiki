@@ -156,9 +156,30 @@ pokemons.forEach((pokemon) => {
   pokemon.moves.forEach((move) => {
     let name = move.name.toLowerCase()
     if (name in kvMoves) {
+      if (kvMoves[name].pokemons.find((mon) => pokemon.id === mon.id)) {
+        return
+      }
+      kvMoves[name].pokemons.push({
+        ...omit(pokemon, 'moves'),
+        move: {
+          learnable: move.learnable,
+          method: move.method,
+        },
+      })
       return
     }
-    kvMoves[name] = omit(move, 'learnable')
+    kvMoves[name] = {
+      ...omit(move, ['learnable', 'method']),
+      pokemons: [
+        {
+          ...omit(pokemon, 'moves'),
+          move: {
+            learnable: move.learnable,
+            method: move.method,
+          },
+        },
+      ],
+    }
   })
 })
 moves = Object.values(kvMoves)

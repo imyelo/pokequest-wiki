@@ -11,8 +11,7 @@
 
 <script>
 import Iconfont from '../iconfont/Iconfont.vue'
-
-const HOME_PATH = '/pokemon'
+import { HOME_MENU_TABS } from '../../constants'
 
 export default {
   name: 'Navbar',
@@ -24,7 +23,7 @@ export default {
   },
   computed: {
     isHome () {
-      return this.$route.path === HOME_PATH
+      return !!~HOME_MENU_TABS.map((tab) => tab.path).indexOf(this.$route.path)
     },
   },
   methods: {

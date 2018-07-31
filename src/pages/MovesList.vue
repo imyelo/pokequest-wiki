@@ -24,8 +24,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(move, index) of moves" :key="index" class="move">
-              <td class="type"><type-capsule :value="move.type" class="capsule" @click.native="switchFilter('type', move.type)" /></td>
+            <tr v-for="(move, index) of moves" :key="index" class="move" @click="toDetail(move)">
+              <td class="type"><type-capsule :value="move.type" class="capsule" @click.native.stop="switchFilter('type', move.type)" /></td>
               <td class="name">{{ move.name }}</td>
               <td>{{ move.attack }}</td>
               <td>{{ move.wait }}</td>
@@ -34,7 +34,9 @@
         </table>
       </div>
     </Main>
-    <HomeMenu />
+
+    <Navbar v-show="hasFilters" />
+    <HomeMenu v-show="!hasFilters" />
   </Screen>
 </template>
 
@@ -89,6 +91,9 @@ export default {
     HomeMenu,
   },
   methods: {
+    toDetail (move) {
+      this.$router.push(`/moves/${move.name.replace(' ', '--')}`)
+    },
     sort (field, reverseFirst = false) {
       if (this.sorter.field === field) {
         this.sorter.reverse = !this.sorter.reverse
@@ -218,6 +223,16 @@ export default {
   }
   .group-first-item {
     padding-left: 1em;
+  }
+}
+.moves-list {
+  tbody {
+    tr {
+      cursor: pointer;
+      &:active {
+        background: hsl(40,63%,76%);
+      }
+    }
   }
   .name {
     width: 120px;
