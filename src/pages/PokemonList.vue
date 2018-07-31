@@ -15,12 +15,12 @@
             </div>
           </div>
           <div class="picture">
-            <div v-show="picture === 'sprite'" class="sprite" @click.stop="switchPicture"><img :src="pokemon.sprite" /></div>
-            <div v-show="picture === 'avatar'" class="avatar" @click.stop="switchPicture"><img :src="pokemon.avatar" /></div>
+            <div v-show="picture === 'sprite'" class="sprite" @click.stop="switchPicture"><img :src="pokemon.sprite" alt="sprite" /></div>
+            <div v-show="picture === 'avatar'" class="avatar" @click.stop="switchPicture"><img :src="pokemon.avatar" alt="avatar" /></div>
           </div>
         </div>
         <div class="about">
-          <div><a :href="GITHUB_URL" target="_blank">&lt; <Iconfont type="star" class="icon" /> Give me a Star / Fork me &gt; on <Iconfont type="github" class="icon" /> Github</a></div>
+          <div><a :href="GITHUB_URL" target="_blank" rel="noopener">&lt; <Iconfont type="star" class="icon" /> Give me a Star / Fork me &gt; on <Iconfont type="github" class="icon" /> Github</a></div>
           <div>PokeQuest Wiki - Version {{ VERSION }}</div>
         </div>
       </div>

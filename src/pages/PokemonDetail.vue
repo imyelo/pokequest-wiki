@@ -3,7 +3,7 @@
     <Main ref="main">
       <div class="pokemon">
         <div class="header">
-          <div class="avatar"><img :src="pokemon.avatar" /></div>
+          <div class="avatar"><img :src="pokemon.avatar" alt="avatar" /></div>
           <div class="title">
             <div class="id">No.{{ (1000 + pokemon.id + '').slice(1) }}</div>
             <div class="name">{{ $t(`pokemon[${JSON.stringify(pokemon.name)}]`) }}</div>
@@ -16,7 +16,7 @@
         </div>
         <div class="section picture">
           <h3>{{ $tc('concepts.sprite') }}</h3>
-          <div class="sprite"><img :src="pokemon.sprite" /></div>
+          <div class="sprite"><img :src="pokemon.sprite" alt="sprite" /></div>
         </div>
         <div v-if="pokemon.evolution" class="section evolution">
           <h3>{{ $tc('concepts.evolution') }}</h3>
@@ -154,7 +154,7 @@
             </thead>
             <tbody>
               <tr v-for="(dish, index) of dishes" :key="index" class="dish" :class="{ 'not-exist': !dish.isExist }" @click="toDish(dish.id, dish.quality)">
-                <td class="logo"><img :src="dish.logo" /></td>
+                <td class="logo"><img :src="dish.logo" alt="logo" /></td>
                 <td class="name">{{ $t(`dishes[${JSON.stringify(dish.name)}]`) }}</td>
                 <td class="quality">{{ $t(`qualities[${JSON.stringify(dish.quality)}]`) }}</td>
                 <td class="chance">{{ (dish.chance * 100).toFixed(2) }}%</td>
@@ -167,10 +167,10 @@
           <div class="paginations">
             <div v-if="previous.id" class="previous" @click="toPokemon(previous.id)">
               <Iconfont class="icon" type="left" />
-              <div class="avatar"><img :src="previous.avatar" /></div>
+              <div class="avatar"><img :src="previous.avatar" alt="avatar" /></div>
             </div>
             <div v-if="next.id" class="next" @click="toPokemon(next.id)">
-              <div class="avatar"><img :src="next.avatar" /></div>
+              <div class="avatar"><img :src="next.avatar" alt="avatar" /></div>
               <Iconfont class="icon" type="right" />
             </div>
             <Clearfix />

@@ -13,7 +13,7 @@
         </div>
         <div class="section">
           <h3>{{ $tc('concepts.picture') }}</h3>
-          <div class="picture"><img :src="dish.logo" /></div>
+          <div class="picture"><img :src="dish.logo" alt="logo" /></div>
         </div>
         <div class="section">
           <h3>{{ $tc('concepts.ingredient', 2) }}</h3>
@@ -35,7 +35,7 @@
                   <tr v-for="pokemon in quality.pokemons" :key="pokemon.id" @click="toPokemon(pokemon.id)" class="pokemon">
                     <td>
                       <div class="avatar">
-                        <img :src="pokemon.avatar" />
+                        <img :src="pokemon.avatar" alt="avatar" />
                       </div>
                     </td>
                     <td>
@@ -52,7 +52,7 @@
               </div>
               <div v-for="recipe in quality.recipes" :key="recipe.id" class="ingredients">
                 <div v-for="(ingredient, index) in recipe.ingredients" :key="index" class="ingredient" :class="{ small: ingredient.quality === 1 }">
-                  <img :src="ingredient.logo" />
+                  <img :src="ingredient.logo" alt="logo" />
                 </div>
               </div>
             </div>
