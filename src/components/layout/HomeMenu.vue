@@ -45,6 +45,8 @@ $main-color: hsl(48,100%,50%);
 .menu {
   height: 60px;
   padding: 8px;
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: constant(safe-area-inset-bottom);
   background-color: $main-color;
   box-shadow: 0 -1px 0 4px color($main-color a(50%));
   z-index: 1;
