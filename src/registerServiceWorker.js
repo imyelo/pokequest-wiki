@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 import { register } from 'register-service-worker'
+import i18n from './languages'
 import banner from './libraries/notification/banner'
 import snackbar from './libraries/notification/snackbar'
 
@@ -18,10 +19,10 @@ if (process.env.NODE_ENV === 'production') {
   })()
 
   const askToUpdate = (waiting) => banner({
-    text: 'New version of PokeQuest Wiki is available!',
+    text: i18n.t('messages.new-version-available'),
     actions: [
       {
-        text: 'Try it now!',
+        text: i18n.t('messages.try-it-now'),
         handler () {
           if (waiting.state !== 'installed') {
             return
@@ -30,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
         },
       },
       {
-        text: 'Dismiss',
+        text: i18n.t('messages.dismiss'),
       },
     ],
   })
@@ -54,7 +55,7 @@ if (process.env.NODE_ENV === 'production') {
     },
     cached () {
       console.log('Content has been cached for offline use.')
-      snackbar({ text: 'PokeQuest Wiki is ready for offline use.' })
+      snackbar({ text: i18n.t('messages.ready-for-offline') })
     },
     updated (registration) {
       console.log('New content is available; please refresh.')
@@ -63,7 +64,7 @@ if (process.env.NODE_ENV === 'production') {
       }
     },
     offline () {
-      let MESSAGE = 'No internet connection found. App is running in offline mode.'
+      let MESSAGE = i18n.t('messages.no-internet-running-offline')
       console.log(MESSAGE)
       snackbar({ text: MESSAGE })
     },

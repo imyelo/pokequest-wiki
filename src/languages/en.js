@@ -455,5 +455,12 @@ export default {
   messages: {
     'see-other-pokemon': 'See other @:concepts.pokemon',
     'not-exist': 'Not exist',
+    'please-enter-level': 'Please enter the level you want (from 1 to 100) :',
+    'invalid-level-try-again': 'This is not a valid level. Would you like to try again?',
+    'new-version-available': 'New version of PokeQuest Wiki is available!',
+    'try-it-now': 'Try it now!',
+    'dismiss': 'Dismiss',
+    'no-internet-running-offline': 'No internet connection found. App is running in offline mode.',
+    'ready-for-offline': 'PokeQuest Wiki is ready for offline use.'
   },
 }

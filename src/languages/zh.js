@@ -455,5 +455,12 @@ export default {
   messages: {
     'see-other-pokemon': '查看其他@:concepts.pokemon',
     'not-exist': '不存在',
+    'please-enter-level': '请输入你想要的等级 (从 1 至 100) :',
+    'invalid-level-try-again': '这不是一个有效的等级数。要不再试一次?',
+    'new-version-available': '新版本的 PokeQuest Wiki 已经准备好了！',
+    'try-it-now': '马上试试！',
+    'dismiss': '下次吧',
+    'no-internet-running-offline': '当前无网络连接，应用正以离线的形式运行。',
+    'ready-for-offline': '你可以离线使用 PokeQuest Wiki 了。'
   },
 }

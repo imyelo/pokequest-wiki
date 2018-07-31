@@ -244,13 +244,13 @@ export default {
       }
     },
     editStatsTableCustomLevel () {
-      let string = window.prompt('Please enter the level you want (from 1 to 100) :', this.statsTable.customLevel)
+      let string = window.prompt(this.$t('messages.please-enter-level'), this.statsTable.customLevel)
       if (string === null) {
         return
       }
       let level = parseInt(string)
       if (!level || level < 1 || level > 100) {
-        if (window.confirm('This is not a valid level. Would you like to try again?')) {
+        if (window.confirm(this.$t('messages.invalid-level-try-again'))) {
           this.editStatsTableCustomLevel()
         }
         return
