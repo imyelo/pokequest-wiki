@@ -46,14 +46,6 @@ import Iconfont from '../components/iconfont/Iconfont.vue'
 
 export default {
   name: 'MovesList',
-  data () {
-    return {
-      sorter: {
-        field: 'type',
-        reverse: false,
-      },
-    }
-  },
   computed: {
     moves () {
       let filtered = moves
@@ -79,6 +71,13 @@ export default {
         type: query.type || '',
       }
     },
+    sorter () {
+      let { query } = this.$route
+      return {
+        field: query.sort || 'type',
+        reverse: !!query.reverse,
+      }
+    },
     hasFilters () {
       return !!this.filters.type
     },
@@ -93,25 +92,27 @@ export default {
     },
     sort (field, reverseFirst = false) {
       if (this.sorter.field === field) {
-        this.sorter.reverse = !this.sorter.reverse
+        this.updateQuery({
+          reverse: !this.sorter.reverse,
+        })
       } else {
-        this.sorter = {
-          field,
+        this.updateQuery({
+          sort: field,
           reverse: reverseFirst,
-        }
+        })
       }
     },
     switchFilter (filterName, value) {
       let filter = this.filters[filterName]
       if (filterName === 'type') {
-        this.updateFilter({
+        this.updateQuery({
           type: filter === value ? '' : value,
         })
         return
       }
       throw new Error('Invalid filter')
     },
-    updateFilter (patch) {
+    updateQuery (patch) {
       let query = {
         ...this.$route.query,
         ...patch,
