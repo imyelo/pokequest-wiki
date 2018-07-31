@@ -35,8 +35,7 @@
       </div>
     </Main>
 
-    <Navbar v-show="hasFilters" />
-    <HomeMenu v-show="!hasFilters" />
+    <Navbar :backable="hasFilters" />
   </Screen>
 </template>
 
@@ -44,7 +43,6 @@
 import { moves } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 import Iconfont from '../components/iconfont/Iconfont.vue'
-import HomeMenu from '../components/layout/HomeMenu.vue'
 
 export default {
   name: 'MovesList',
@@ -82,13 +80,12 @@ export default {
       }
     },
     hasFilters () {
-      return this.filters.type
+      return !!this.filters.type
     },
   },
   components: {
     TypeCapsule,
     Iconfont,
-    HomeMenu,
   },
   methods: {
     toDetail (move) {

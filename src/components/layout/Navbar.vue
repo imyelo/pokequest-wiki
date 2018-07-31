@@ -1,12 +1,19 @@
 <template>
-  <div class="navbar">
-    <div v-show="!isHome" class="item" @click="toHome">
-      <Iconfont class="icon" type="home" />
+  <transition name="navbar" mode="out-in">
+    <div v-if="isHome && !backable" key="homebar" class="homebar">
+      <div v-for="(tab, index) of HOME_MENU_TABS" :key="index" class="item" :class="{ active: $route.path === tab.path }" @click="switchTo(tab.path)">
+        <Iconfont class="icon" :type="tab.icon" />
+      </div>
     </div>
-    <div class="item" @click="back">
-      <Iconfont class="icon" type="back" />
+    <div v-if="!isHome || backable" key="navbar" class="navbar">
+      <div v-show="!isHome" class="item" @click="toHome">
+        <Iconfont class="icon" type="home" />
+      </div>
+      <div class="item" @click="back">
+        <Iconfont class="icon" type="back" />
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -16,7 +23,15 @@ import { HOME_MENU_TABS } from '../../constants'
 export default {
   name: 'Navbar',
   props: {
-    value: String,
+    backable: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data () {
+    return {
+      HOME_MENU_TABS,
+    }
   },
   components: {
     Iconfont,
@@ -33,6 +48,9 @@ export default {
     back () {
       this.$router.back()
     },
+    switchTo (path) {
+      this.$router.replace(path)
+    },
   },
 }
 </script>
@@ -40,7 +58,7 @@ export default {
 <style lang="postcss" scoped>
 $main-color: hsl(48,100%,50%);
 
-.navbar {
+.homebar, .navbar {
   height: 60px;
   padding: 8px;
   padding-bottom: env(safe-area-inset-bottom);
@@ -61,13 +79,34 @@ $main-color: hsl(48,100%,50%);
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: color($main-color s(35%) l(35%));
     .icon {
       font-size: 24px;
     }
-    .label {
-      font-size: 10px;
+  }
+}
+.homebar {
+  .item {
+    &.active {
+      .icon {
+        color: color($main-color s(20%) l(20%));
+      }
+    }
+    .icon {
+      color: color($main-color s(50%) l(50%));
     }
   }
+}
+.navbar {
+  .item {
+    color: color($main-color s(35%) l(35%));
+  }
+}
+
+.navbar-enter-active, .navbar-leave-active {
+  transition: all .4s ease;
+}
+.navbar-enter, .navbar-leave-to {
+  opacity: 0;
+  transform: translate3d(0,100%,0);
 }
 </style>

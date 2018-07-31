@@ -42,8 +42,7 @@
       </div>
     </Main>
 
-    <Navbar v-show="hasFilters" />
-    <HomeMenu v-show="!hasFilters" />
+    <Navbar :backable="hasFilters" />
 
     <transition name="filter-panel">
       <div v-show="showFilters" class="filters" @click.self="showFilters = false" @touchmove.prevent>
@@ -91,7 +90,6 @@ import { POKEMON_TYPES, POKEMON_COLORS, LANGUAGES } from '../constants'
 import { pokemons } from '../data'
 import TypeCapsule from '../components/TypeCapsule.vue'
 import Iconfont from '../components/iconfont/Iconfont.vue'
-import HomeMenu from '../components/layout/HomeMenu.vue'
 
 const VERSION = DEFINED_VERSION
 const GITHUB_URL = process.env.VUE_APP_GITHUB_URL
@@ -133,7 +131,7 @@ export default {
       }
     },
     hasFilters () {
-      return this.filters.types.length > 0 || this.filters.color || this.filters.summonable
+      return !!(this.filters.types.length > 0 || this.filters.color || this.filters.summonable)
     },
   },
   watch: {
@@ -210,7 +208,6 @@ export default {
   components: {
     TypeCapsule,
     Iconfont,
-    HomeMenu,
   },
 }
 </script>

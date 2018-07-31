@@ -9,13 +9,12 @@
         </div>
       </div>
     </Main>
-    <HomeMenu />
+    <Navbar />
   </Screen>
 </template>
 
 <script>
 import { dishes } from '../data'
-import HomeMenu from '../components/layout/HomeMenu.vue'
 
 export default {
   name: 'DishesList',
@@ -30,7 +29,6 @@ export default {
     },
   },
   components: {
-    HomeMenu,
   },
 }
 </script>
