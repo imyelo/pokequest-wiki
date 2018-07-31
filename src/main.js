@@ -12,7 +12,6 @@ import Navbar from './components/layout/Navbar.vue'
 import Clearfix from './components/Clearfix.vue'
 import FastClick from 'fastclick'
 import './utils/eruda'
-import './utils/prevent-overscroll'
 import './registerServiceWorker'
 
 const GA_ID = process.env.VUE_APP_GA_ID
