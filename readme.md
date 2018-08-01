@@ -24,11 +24,18 @@
 
 ## Features
 - Full 151 Pokémon data
-- Pecise Recipes data
+- Full 18 Dishes Data
+- Full 283 Moves Data
+- Precise Recipes data
 - Allow to filter Pokémon
   - by types
   - by color
+  - by being summonable
+- Allow to filter Moves
+  - by type
+- Multiple sorter for various data
 - Complete recipes for each of the Pokémon
+- Multiple languages (currently English and Chinese)
 - Designed for mobile
 - Work offline
 - Fully Static Site
