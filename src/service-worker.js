@@ -14,6 +14,20 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
  * see: https://developers.google.com/web/tools/workbox/guides/common-recipes
  */
 workbox.routing.registerRoute(
+  new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
+  workbox.strategies.cacheFirst({
+    cacheName: 'google-fonts',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 30,
+      }),
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      }),
+    ],
+  }),
+)
+workbox.routing.registerRoute(
   new RegExp('https://fonts.(gstatic.)?font.im/(.*)'),
   workbox.strategies.cacheFirst({
     cacheName: 'font-im',
