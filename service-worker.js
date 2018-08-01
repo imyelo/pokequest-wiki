@@ -1,4 +1,4 @@
-importScripts("/static/precache-manifest.7e47ec1b8b7b8906b1a8e35d3317639a.js", "/static/workbox-v3.4.1/workbox-sw.js");
+importScripts("/static/precache-manifest.f33269a5167ed16a1bd0e2cb841525ad.js", "/static/workbox-v3.4.1/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/static/workbox-v3.4.1"});
 workbox.core.setCacheNameDetails({ prefix: 'pokequest-wiki' })
 
@@ -15,6 +15,20 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
  * fonts
  * see: https://developers.google.com/web/tools/workbox/guides/common-recipes
  */
+workbox.routing.registerRoute(
+  new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
+  workbox.strategies.cacheFirst({
+    cacheName: 'google-fonts',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 30,
+      }),
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      }),
+    ],
+  }),
+)
 workbox.routing.registerRoute(
   new RegExp('https://fonts.(gstatic.)?font.im/(.*)'),
   workbox.strategies.cacheFirst({
