@@ -317,6 +317,7 @@ export default {
       font-size: 10px;
       color: hsl(0, 0%, 45%);
       text-decoration: none;
+      cursor: pointer;
     }
     .icon {
       font-size: 12px;

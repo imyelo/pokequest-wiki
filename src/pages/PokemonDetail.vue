@@ -550,6 +550,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
         .icon {
           font-size: 24px;
           color: #333;
