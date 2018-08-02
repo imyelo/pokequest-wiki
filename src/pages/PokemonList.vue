@@ -30,6 +30,12 @@
           <transition name="toolbar-button">
             <div key="language" v-if="!isScrollingDown || isAtTop" class="button" @click="switchLanguage"><Iconfont class="icon" type="language" /></div>
           </transition>
+          <transition name="toolbar-button">
+            <a key="language" v-if="!isScrollingDown || isAtTop" class="button" :href="GITHUB_URL" target="_blank" rel="noopener">
+              <Iconfont class="icon" type="star" />
+              <span class="label">{{ $t('messages.star-me') }}</span>
+            </a>
+          </transition>
         </div>
         <div class="toolbar-right">
           <transition name="toolbar-button">
@@ -323,7 +329,6 @@ export default {
     position: absolute;
     z-index: 10;
     bottom: 0;
-    height: 90px;
     background-color: transparent;
     display: flex;
     justify-content: flex-end;
@@ -333,6 +338,9 @@ export default {
   }
   .toolbar-left {
     left: 0;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
   }
   .toolbar-right {
     right: 0;
@@ -350,7 +358,8 @@ export default {
     border-radius: 8px;
     box-shadow: 0 4px 0 hsl(0,0%,75%), 0 8px 0 rgba(0,0,0,0.25), 0 0 12px 2px rgba(0,0,0,0.1);
     font-size: 14px;
-    margin: 0 8px 8px;
+    margin: 0 8px 16px;
+    text-decoration: none;
     &:active, &.hover {
       background: hsl(0,0%,90%);
     }
@@ -360,6 +369,10 @@ export default {
     line-height: 1em;
     color: hsl(0,0%,55%);
     display: inline-block;
+  }
+  .label {
+    padding-left: 0.5em;
+    font-weight: bold;
   }
 }
 

@@ -461,6 +461,7 @@ export default {
     'try-it-now': 'Try it now!',
     'dismiss': 'Dismiss',
     'no-internet-running-offline': 'No internet connection found. App is running in offline mode.',
-    'ready-for-offline': 'PokeQuest Wiki is ready for offline use.'
+    'ready-for-offline': 'PokeQuest Wiki is ready for offline use.',
+    'star-me': 'Star me',
   },
 }

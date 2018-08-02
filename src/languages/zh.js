@@ -461,6 +461,7 @@ export default {
     'try-it-now': '马上试试！',
     'dismiss': '下次吧',
     'no-internet-running-offline': '当前无网络连接，应用正以离线的形式运行。',
-    'ready-for-offline': '你可以离线使用 PokeQuest Wiki 了。'
+    'ready-for-offline': '你可以离线使用 PokeQuest Wiki 了。',
+    'star-me': '点赞',
   },
 }
