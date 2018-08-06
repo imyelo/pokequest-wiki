@@ -11,15 +11,15 @@
         <div class="section">
           <div>{{ dish.description }}</div>
         </div>
-        <div class="section">
+        <div class="section" data-anchor="Picture">
           <h3>{{ $tc('concepts.picture') }}</h3>
           <div class="picture"><img :src="dish.logo" alt="logo" /></div>
         </div>
-        <div class="section">
+        <div class="section" data-anchor="Ingredients">
           <h3>{{ $tc('concepts.ingredient', 2) }}</h3>
           <div>{{ dish.ingredients }}</div>
         </div>
-        <div class="section recipes">
+        <div class="section recipes" data-anchor="Recipes">
           <h3>{{ $tc('concepts.recipe', 2) }}</h3>
           <div v-for="(quality, index) in qualities" :key="index" class="group">
             <h4 :data-anchor="`Quality-${quality.value}`">{{ $tc('concepts.quality') }}: {{ $tc(`qualities[${JSON.stringify(quality.value)}]`) }}</h4>

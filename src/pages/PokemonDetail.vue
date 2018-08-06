@@ -10,23 +10,23 @@
           </div>
         </div>
         <div class="section classification">{{ pokemon.classification }}</div>
-        <div class="section type-list">
+        <div class="section type-list" data-anchor="Type">
           <h3>{{ $tc('concepts.type') }}</h3>
           <TypeCapsule v-for="type of pokemon.type" :key="type" :value="type" class="type" @click.native="toPokemonList({ types: type })" />
         </div>
-        <div class="section picture">
+        <div class="section picture" data-anchor="Picture">
           <h3>{{ $tc('concepts.sprite') }}</h3>
           <div class="sprite"><img :src="pokemon.sprite" alt="sprite" /></div>
         </div>
-        <div v-if="pokemon.evolution" class="section evolution">
+        <div v-if="pokemon.evolution" class="section evolution" data-anchor="Evolution">
           <h3>{{ $tc('concepts.evolution') }}</h3>
           {{ pokemon.evolution }}
         </div>
-        <div v-if="pokemon.color !== 'unknown'" class="section color">
+        <div v-if="pokemon.color !== 'unknown'" class="section color" data-anchor="Color">
           <h3>{{ $tc('concepts.color') }}</h3>
           <span class="color-capsule" :class="`color-${pokemon.color.toLowerCase()}`" @click="toPokemonList({ color: pokemon.color.toLowerCase() })">{{ $t(`colors[${JSON.stringify(pokemon.color.toLowerCase())}]`) }}</span>
         </div>
-        <div class="section dishes">
+        <div class="section dishes" data-anchor="Dishes">
           <h3>{{ $tc('concepts.dish', 2) }}</h3>
           <table>
             <thead class="title">
@@ -58,7 +58,7 @@
             </tbody>
           </table>
         </div>
-        <div class="section moves">
+        <div class="section moves" data-anchor="Moves">
           <h3>{{ $tc('concepts.move', 2) }}</h3>
           <div class="table-container">
             <table>
@@ -83,12 +83,12 @@
             </table>
           </div>
         </div>
-        <div class="section attack-mode">
+        <div class="section attack-mode" data-anchor="Attack-Mode">
           <h3>{{ $tc('concepts.attack-mode') }}</h3>
           <Iconfont :type="pokemon.automaticStyle.toLowerCase() === 'melee' ? 'melee' : pokemon.automaticStyle.toLowerCase() === 'range' ? 'bow' : 'question'" class="icon"/>
           {{ $tc(`attack-modes[${JSON.stringify(pokemon.automaticStyle.toLowerCase())}]`) }}
         </div>
-        <div class="section stats">
+        <div class="section stats" data-anchor="Stats">
           <h3>{{ $tc('concepts.stat', 2) }} (HP and ATK)</h3>
           <div class="table-container">
             <table>
@@ -130,7 +130,7 @@
             </table>
           </div>
         </div>
-        <div class="section bingo">
+        <div class="section bingo" data-anchor="Bingo">
           <h3>{{ $tc('concepts.bingo-bonus') }}</h3>
           <div class="table-container">
             <table>

@@ -10,11 +10,11 @@
         <div class="section">
           <div>{{ move.description }}</div>
         </div>
-        <div class="section">
+        <div class="section" data-anchor="Type">
           <h3>{{ $tc('concepts.type') }}</h3>
           <TypeCapsule :value="move.type" class="type" @click.native="toMovesList({ type: move.type })" />
         </div>
-        <div class="section stats">
+        <div class="section stats" data-anchor="Stats">
           <h3>{{ $tc('concepts.stat', 2) }}</h3>
           <table>
             <thead>
@@ -31,7 +31,7 @@
             </tbody>
           </table>
         </div>
-        <div class="section pokemons">
+        <div class="section pokemons" data-anchor="Pokemons">
           <h3>{{ $tc('concepts.pokemon', 2) }}</h3>
           <table>
             <thead>
