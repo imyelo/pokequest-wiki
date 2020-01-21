@@ -83,7 +83,7 @@ npm run deploy
   - https://github.com/imyelo/pokequest-wiki-data
 
 ## License
-MIT @ yelo
+MIT &copy; yelo 2018-present
 
 ----
 
